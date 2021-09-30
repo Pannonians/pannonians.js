@@ -1,5 +1,3 @@
-## Stavke
-
 ### 1 - Wednesday, September 29⋅1:30 – 2:00pm
 https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/#basic-javascript
 
