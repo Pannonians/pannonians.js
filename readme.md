@@ -20,7 +20,7 @@ https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/#ba
 Basic JavaScript:
   -> Comment your JavaScript Code <-----------> Declare String Variables
 
-Za pogledati dalje:
+Next steps / in your own free time:
 https://jsdoc.app/
 
 ------------------
