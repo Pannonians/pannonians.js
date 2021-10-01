@@ -30,4 +30,13 @@ https://www.w3schools.com/js/js_operators.asp
 https://www.w3schools.com/js/js_datatypes.asp
 https://www.w3schools.com/js/js_assignment.asp
 
+
+### 3 - Friday, October 1⋅12:00pm – 2:00pm
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/#basic-javascript
+
+Basic JavaScript
+-> Declare String Variables <---> Word Blanks
+
+additional hints and lesson takeaways in 3_strings folder
+
 ------------------
