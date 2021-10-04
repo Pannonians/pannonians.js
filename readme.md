@@ -40,3 +40,17 @@ Basic JavaScript
 additional hints and lesson takeaways in 3_strings folder
 
 ------------------
+
+### 4 - Monday, October 4 12:30pcm - 13:30pm
+
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/#basic-javascript
+
+Basic JavaScript
+  -> Store Multiple Values in one Variable using JavaScript Arrays <---> Shopping List
+
+additional hints and lesson takeaways in 4_nizovi folder
+
+Please be informed that the accent on these lessons was on arrays and arrays manipulation,
+and for homework .find(), .filter(), .map() and .reduce() functions were emphasised for learning.
+
+-----------------
