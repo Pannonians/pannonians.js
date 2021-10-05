@@ -178,31 +178,30 @@
 // console.log(allPets);
 
 var niz = [
-    {
-      name: "Dragica",
-      prezime: "Mladenovic",
-    },
-    {
-      name: "Tijana",
-      prezime: "Golovic",
-    },
-  ];
-  
-  var inicijali = niz.map(function (jedanUNizu) {
-    return jedanUNizu.name[0] + jedanUNizu.prezime[0];
-  });
-  console.log(inicijali);
-  
-  // funkcija je parce koda koja ima neke parametre,a i ne mora, i koja moze i ne mora da vrati neki rezultat
-  // sluze da izvrsava neki kod i pomaze nm da imamo neki reusaable kod
-  // funkcija ima ime, otvorene obicne zagrade u koju mogu da se stave neki parametri koji mogu da budu opcioni
-  // ima i viticaste zagrade u kojima zivi logicki deo te funkcije
-  
-  function FullName(firstName, lastName, middleName = "") {
-    if (middleName !== "") {
-      return firstName + " " + middleName + " " + lastName;
-    }
-    return firstName + " " + lastName;
+  {
+    name: "Dragica",
+    prezime: "Mladenovic",
+  },
+  {
+    name: "Tijana",
+    prezime: "Golovic",
+  },
+];
+
+var inicijali = niz.map(function (jedanUNizu) {
+  return jedanUNizu.name[0] + jedanUNizu.prezime[0];
+});
+console.log(inicijali);
+
+// funkcija je parce koda koja ima neke parametre,a i ne mora, i koja moze i ne mora da vrati neki rezultat
+// sluze da izvrsava neki kod i pomaze nm da imamo neki reusaable kod
+// funkcija ima ime, otvorene obicne zagrade u koju mogu da se stave neki parametri koji mogu da budu opcioni
+// ima i viticaste zagrade u kojima zivi logicki deo te funkcije
+
+function FullName(firstName, lastName, middleName = "") {
+  if (middleName !== "") {
+    return firstName + " " + middleName + " " + lastName;
   }
-  console.log(FullName("Dragica", "Mladenovic", "Vid"));
-  
+  return firstName + " " + lastName;
+}
+console.log(FullName("Dragica", "Mladenovic", "Vid"));
