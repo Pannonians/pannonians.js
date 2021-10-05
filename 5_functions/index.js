@@ -177,31 +177,53 @@
 // }, []); // vraca akumuliranu vrednost
 // console.log(allPets);
 
-var niz = [
-  {
-    name: "Dragica",
-    prezime: "Mladenovic",
-  },
-  {
-    name: "Tijana",
-    prezime: "Golovic",
-  },
-];
+// var niz = [
+//   {
+//     name: "Dragica",
+//     prezime: "Mladenovic",
+//   },
+//   {
+//     name: "Tijana",
+//     prezime: "Golovic",
+//   },
+// ];
 
-var inicijali = niz.map(function (jedanUNizu) {
-  return jedanUNizu.name[0] + jedanUNizu.prezime[0];
-});
-console.log(inicijali);
+// var inicijali = niz.map(function (jedanUNizu) {
+//   return jedanUNizu.name[0] + jedanUNizu.prezime[0];
+// });
+// console.log(inicijali);
 
 // funkcija je parce koda koja ima neke parametre,a i ne mora, i koja moze i ne mora da vrati neki rezultat
 // sluze da izvrsava neki kod i pomaze nm da imamo neki reusaable kod
 // funkcija ima ime, otvorene obicne zagrade u koju mogu da se stave neki parametri koji mogu da budu opcioni
 // ima i viticaste zagrade u kojima zivi logicki deo te funkcije
 
-function FullName(firstName, lastName, middleName = "") {
-  if (middleName !== "") {
-    return firstName + " " + middleName + " " + lastName;
-  }
-  return firstName + " " + lastName;
+// function FullName(firstName, lastName, middleName = "") {
+//   if (middleName !== "") {
+//     return firstName + " " + middleName + " " + lastName;
+//   }
+//   return firstName + " " + lastName;
+// }
+// console.log(FullName("Dragica", "Mladenovic", "Vid"));
+
+// ako imamo paranthesis, onda moramo da upisemo neki return
+// unutar tih zagrada, a inace mozemo i bez njih da vratimo vrednost
+// const es6Funkcija = () => {
+//   return "test uspesan";
+// };
+
+// const es6FunkcijaBezViticastih = () => "opet test uspesan";
+
+// console.log(es6Funkcija());
+// console.log(es6FunkcijaBezViticastih());
+
+// ovde mozete pored linije 222 staviti tacku, breakpoint,
+// in onda iz vscode mozete da kliknete Run and Debug,
+// pa da vidite kako se ova funkcija debaguje
+function ovdeJeNekaFunkcija() {
+  const qwe = "qwe";
+  const asd = "asd";
+  return qwe + " " + asd;
 }
-console.log(FullName("Dragica", "Mladenovic", "Vid"));
+
+ovdeJeNekaFunkcija();
