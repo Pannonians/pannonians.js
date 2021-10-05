@@ -54,3 +54,16 @@ Please be informed that the accent on these lessons was on arrays and arrays man
 and for homework .find(), .filter(), .map() and .reduce() functions were emphasised for learning.
 
 -----------------
+
+### 5 - Tuesday, October 5 15:30pcm - 16:45pm
+
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/#basic-javascript
+
+Basic JavaScript
+  -> Shopping List <---> Stand in line (sa stand in line)
+
+REDUCE! REDUCE REDUCE!
+...only reduce.
+-----------------
+
+-----------------
