@@ -193,9 +193,9 @@
 // });
 // console.log(inicijali);
 
-// funkcija je parce koda koja ima neke parametre,a i ne mora, i koja moze i ne mora da vrati neki rezultat
-// sluze da izvrsava neki kod i pomaze nm da imamo neki reusaable kod
-// funkcija ima ime, otvorene obicne zagrade u koju mogu da se stave neki parametri koji mogu da budu opcioni
+// funkcija je parce koda koja ima neke parametre, a i ne mora, i koja moze i ne mora da vrati neki rezultat
+// sluze da izvrsava neki kod i pomaze nam da imamo neki reusaable kod
+// funkcija ima ime, otvorene/zatvorene obicne zagrade u koju mogu da se stave neki parametri koji mogu da budu opcioni
 // ima i viticaste zagrade u kojima zivi logicki deo te funkcije
 
 // function FullName(firstName, lastName, middleName = "") {
