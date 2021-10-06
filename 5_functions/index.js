@@ -227,3 +227,8 @@ function ovdeJeNekaFunkcija() {
 }
 
 ovdeJeNekaFunkcija();
+
+Reducer je funkcija koja za parametre prihvata funkciju
+(sa parametrima AKUMULATOR i iterativna vrednost iz tog niza, jedna po jedna).
+Akumulator se prenosi u svaki novi korak loopa, od zadate inicijalne vrednosti.
+Konačni rezultat pokretanja reducera u svim elementima niza je jedna vrednost koja je rezultat kompletnog akumulatora.
