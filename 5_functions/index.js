@@ -116,48 +116,6 @@
 // }
 //  )
 
-// var personnel = [
-//     {
-//       id: 5,
-//       name: "Luke Skywalker",
-//       pilotingScore: 98,
-//       shootingScore: 56,
-//       isForceUser: true,
-//     },
-//     {
-//       id: 82,
-//       name: "Sabine Wren",
-//       pilotingScore: 73,
-//       shootingScore: 99,
-//       isForceUser: false,
-//     },
-//     {
-//       id: 22,
-//       name: "Zeb Orellios",
-//       pilotingScore: 20,
-//       shootingScore: 59,
-//       isForceUser: false,
-//     },
-//     {
-//       id: 15,
-//       name: "Ezra Bridger",
-//       pilotingScore: 43,
-//       shootingScore: 67,
-//       isForceUser: true,
-//     },
-//     {
-//       id: 11,
-//       name: "Caleb Dume",
-//       pilotingScore: 71,
-//       shootingScore: 85,
-//       isForceUser: true,
-//     },
-//   ];
-
-//   var forceUSers = personnel.filter(function (person) {
-//       return person.isForceUser;
-//   }
-//   )
 
 // const numbers = [1, 2, 3, 4];
 // const sum = numbers.reduce(function (result, item) {
@@ -206,27 +164,90 @@
 // }
 // console.log(FullName("Dragica", "Mladenovic", "Vid"));
 
-// ako imamo paranthesis, onda moramo da upisemo neki return
-// unutar tih zagrada, a inace mozemo i bez njih da vratimo vrednost
-// const es6Funkcija = () => {
-//   return "test uspesan";
-// };
+// const evenNum = [1, 2 ,3 , -10];
 
-// const es6FunkcijaBezViticastih = () => "opet test uspesan";
+// const filtered = evenNum.filter(n => n > 0);
+// console.log (filtered)
 
-// console.log(es6Funkcija());
-// console.log(es6FunkcijaBezViticastih());
+// const mapped = filtered.map(n => {
+//   const obj = {value: n}
+//   return obj;
+// })
 
-// ovde mozete pored linije 222 staviti tacku, breakpoint,
-// in onda iz vscode mozete da kliknete Run and Debug,
-// pa da vidite kako se ova funkcija debaguje
-function ovdeJeNekaFunkcija() {
-  const qwe = "qwe";
-  const asd = "asd";
-  return qwe + " " + asd;
-}
+// console.log(mapped)
 
-ovdeJeNekaFunkcija();
+var personnel = [
+    {
+      id: 5,
+      name: "Luke Skywalker",
+      pilotingScore: 98,
+      shootingScore: 56,
+      isForceUser: true,
+      eye_color: "blue"
+    },
+    {
+      id: 82,
+      name: "Sabine Wren",
+      pilotingScore: 73,
+      shootingScore: 99,
+      isForceUser: false,
+      eye_color: "blue"
+    },
+    {
+      id: 22,
+      name: "Zeb Orellios",
+      pilotingScore: 20,
+      shootingScore: 59,
+      isForceUser: false,
+      eye_color: "brown"
+    },
+    {
+      id: 15,
+      name: "Ezra Bridger",
+      pilotingScore: 43,
+      shootingScore: 67,
+      isForceUser: true,
+      eye_color: "black"
+    },
+    {
+      id: 11,
+      name: "Caleb Dume",
+      pilotingScore: 71,
+      shootingScore: 85,
+      isForceUser: true,
+      eye_color: "green"
+    },
+  ];
+  
+  // const name = personnel.filter(function (person) {
+  //     return person.name;
+  // });
+  // console.log(name);
+  
+  // const pilotScore = personnel.map((score) => ({name: score.name, his_score: score.pilotingScore}));
+  
+  // const pilotScore = personnel.map (function (score_name){
+  //  return ({name: score_name.name,
+  //   value: score_name.pilotingScore});
+  // })
+  // console.log(pilotScore);
+  
+  
+  // const firstNames = personnel.map(names => names.name.split(" ")[0]);
+  // console.log(firstNames)
+  
+  
+  // const sumOfPoints = personnel.reduce((totalPoints, point) => totalPoints + point.pilotingScore, 0);
+  // console.log(sumOfPoints)
+  
+  const eyes = personnel.filter(function (greenEye){
+    if (greenEye.eye_color == "green")
+    return greenEye.name;
+    
+  });
+  console.log(eyes)
+  
+  
 
 Reducer je funkcija koja za parametre prihvata funkciju
 (sa parametrima AKUMULATOR i iterativna vrednost iz tog niza, jedna po jedna).
