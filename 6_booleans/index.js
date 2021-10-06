@@ -1,16 +1,14 @@
-
-// //Boolean. Booleans may only be one of two values: true or false. 
-// //They are basically little on-off switches, where true is on and false is off. 
+// //Boolean. Booleans may only be one of two values: true or false.
+// //They are basically little on-off switches, where true is on and false is off.
 // //These two states are mutually exclusive.
 // //Boolean conditions True and False are conditions under which JavaScript will execute some code.
-
 
 // function trueOrFalse(wasThatTrue) {
 //     if(wasThatTrue) {
 //       return "Yes, that was true";
 //     }
 //      return "No, that was false";
-  
+
 //   }
 //   console.log(trueOrFalse(true));
 //   console.log(trueOrFalse(false));
@@ -33,7 +31,7 @@
 //       return "Huge";
 //     }
 //   }
-  
+
 //   console.log(testSize(50));
 
 //   function golfScore(par, strokes) {
@@ -60,9 +58,8 @@
 //       return "Go Home";
 //     }
 //   }
-  
-//   console.log(golfScore(4, 7));
 
+//   console.log(golfScore(4, 7));
 
 //   if (true) {  //uvek će se izvršiti
 
@@ -71,20 +68,16 @@
 
 //   }
 
-
 if ("true") {
- console.log("izvršeno")
-}    //postojanje vrednosti
+  console.log("izvršeno");
+} //postojanje vrednosti
 
 if (1) {
-    console.log("izvršeno2")
-   }
+  console.log("izvršeno2");
+}
 
-   if (0) {
-    console.log("izvršeno3")
-   }
+if (0) {
+  console.log("izvršeno3");
+}
 
-   console.log(typeof 0);  // 1(broj) je True a 0(broj) je False unutar IF statement-a
-
-  
-  
+console.log(typeof 0); // 1(broj) je True a 0(broj) je False unutar IF statement-a
