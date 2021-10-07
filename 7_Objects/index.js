@@ -4,60 +4,61 @@
 // slicni su nizovima, ali za razliku od nizova kojima pristupamo pomocu indeksa
 // ojektima pristupamo kroz properties
 
-var myDog = {
-    name: "Hugo",
-    legs: 4,
-    tails: 1,
-    friends: ["Hutchie", "Max"],
-  };
+// var myDog = {
+//     name: "Hugo",
+//     legs: 4,
+//     tails: 1,
+//     "his friends": ["Hutchie", "Max"],
+//   };
   
-  console.log(myDog);
+//   console.log(myDog);
+
   
-  // objektima mozemo pristupiti na dva nacina
+//   // objektima mozemo pristupiti na dva nacina
   
-  // 1. DOT NOTATION (.) - koriti se kada znamo ime properties-a
+//   // 1. DOT NOTATION (.) - koriti se kada znamo ime properties-a
   
-  var testObj = {
-    hat: "ballcap",
-    shirt: "jersey",
-    shoes: "cleats",
-  };
+//   var testObj = {
+//     hat: "ballcap",
+//     shirt: "jersey",
+//     shoes: "cleats",
+//   };
   
-  var hatValue = testObj.hat;
-  var shirtValue = testObj.shirt;
+//   var hatValue = testObj.hat;
+//   var shirtValue = testObj.shirt;
   
-  console.log(hatValue);
-  console.log(shirtValue);
+//   console.log(hatValue);
+//   console.log(shirtValue);
   
-  // 2. BRACKET NOTATION - korisiti se kada properties ima space u nazivu,
-  //    ali se moze koristiti i kod properties koji nemaju space
+//   // 2. BRACKET NOTATION - korisiti se kada properties ima space u nazivu,
+//   //    ali se moze koristiti i kod properties koji nemaju space
   
-  var testObj = {
-    "an entree": "hamburger",
-    "my side": "veggies",
-    "the drink": "water",
-  };
+//   var testObj = {
+//     "an entree": "hamburger",
+//     "my side": "veggies",
+//     "the drink": "water",
+//   };
   
-  var entreeValue = testObj["an entree"];
-  var drinkValue = testObj["the drink"];
+//   var entreeValue = testObj["an entree"];
+//   var drinkValue = testObj["the drink"];
   
-  console.log(entreeValue);
-  console.log(drinkValue);
+//   console.log(entreeValue);
+//   console.log(drinkValue);
   
-  //   BRACKET NOTATION mozemo koristiti da pristupimo properties koji je predstavljen kao vrednosti varijable
+//   //   BRACKET NOTATION mozemo koristiti da pristupimo properties koji je predstavljen kao vrednosti varijable
   
-  var testObj = {
-    12: "Namath",
-    16: "Montana",
-    19: "Unitas",
-  };
+//   var testObj = {
+//     12: "Namath",
+//     16: "Montana",
+//     19: "Unitas",
+//   };
   
-  var playerNumber = 16;
-  var player = testObj[playerNumber];
+//   var playerNumber = 16;
+//   var player = testObj[playerNumber];
   
-  console.log(player);
+//   console.log(player);
   
-  //   kod kreiranog JS objekta uvek je moguce update-ovati njegov properties
+//   //   kod kreiranog JS objekta uvek je moguce update-ovati njegov properties
   
   var myDog = {
     name: "Coder",
@@ -68,6 +69,10 @@ var myDog = {
   myDog.name = "Happy Coder";
   
   console.log(myDog);
+
+  myDog.friends.push("novi prijatelj");
+
+  console.log(myDog.friends.length)
   
   //   takodje mozemo dodati neki property kod vec postojeceg JS objekta
   
