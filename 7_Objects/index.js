@@ -227,3 +227,91 @@
   
   
   // igor zavrsio
+
+  
+// const qwe = {
+//   user: {
+//     user_notes: [
+//       {
+//         created_at: "2021-09-24T14:01:50.940Z",
+//         message: " qwewq e qwe",
+//         admin: {
+//           email: "petar@kikoff.com"
+//         }
+//       },
+//       {
+//         created_at: "2021-09-14T20:50:44.173Z",
+//         message: "Notes1!!",
+//         admin: {
+//           email: "petar@kikoff.com"
+//         }
+//       },
+//     ],
+//   },
+//   admin: {
+//     isAdmin: true
+//   }
+// }
+
+// qwe.user.user_notes.forEach(jedan => {
+//   console.log(`${jedan.admin.email} (${jedan.created_at}) : ${jedan.message}`)
+// })
+
+// const slova = (broj) => {
+//   switch (broj) {
+//     case 'alpha':
+//       return "jedan"
+//     case 'beta':
+//       return "dva"
+//     default:
+//       return null
+//   }
+// }
+
+// console.log(slova('alpha'))
+// console.log(slova('beta'))
+// console.log(slova('gamma'))
+
+// const slova = {
+//   alpha: 'jedan',
+//   beta: 'dva',
+//   gamma: 'tri'
+// }
+
+// console.log(slova.alpha)
+// console.log(slova.beta)
+// console.log(slova.gamma)
+
+// importovani fajlovi, komponente, kao
+// ovo je simulacija recimo react-a
+const komponenta_plavo_dugme = "plavo dugme";
+const komponenta_crveno_dugme = "crveno dugme";
+const komponenta_zeleno_dugme = "zeleno dugme";
+const komponenta_ljubicasto_dugme = 'ljubicasto dugme'
+
+const podatak = {
+  boja_dugmeta: 'crveno_dugme'
+}
+
+// ovo je kao simulacija da pisemo neki
+// html da bi prikazali komponentu
+const dugme = {
+  plavo_dugme: komponenta_plavo_dugme,
+  crveno_dugme: komponenta_crveno_dugme,
+  zeleno_dugme: komponenta_zeleno_dugme,
+  ljubicasto_dugme: komponenta_ljubicasto_dugme
+}
+
+// ako bi koristili object notation
+console.log(dugme[podatak.boja_dugmeta])
+
+// ako ne bi koristili object notation
+// podatak.boja_dugmeta === 'plavo_dugme'
+//   ? console.log(komponenta_plavo_dugme)
+//   : podatak.boja_dugmeta === 'crveno_dugme'
+//   ? console.log(komponenta_crveno_dugme)
+//   : podatak.boja_dugmeta === 'zeleno_dugme'
+//   ? console.log(komponenta_zeleno_dugme)
+//   : podatak.boja_dugmeta === 'ljubicasto_dugme'
+//   ? console.log(komponenta_ljubicasto_dugme)
+//   : console.log('nema')
