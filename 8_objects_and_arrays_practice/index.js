@@ -1,22 +1,20 @@
 const exampleData = {
-  user: {
-    user_notes: [
-      {
-        created_at: "2021-09-24T14:01:50.940Z",
-        message: " qwewq e qwe",
-        admin: {
-          email: "petar@kikoff.com",
-        },
+  user: [
+    {
+      created_at: "2021-09-24T14:01:50.940Z",
+      message: " qwewq e qwe",
+      admin: {
+        email: "petar@kikoff.com",
       },
-      {
-        created_at: "2021-09-14T20:50:44.173Z",
-        message: "Notes1!!",
-        admin: {
-          email: "petar@kikoff.com",
-        },
+    },
+    {
+      created_at: "2021-09-14T20:50:44.173Z",
+      message: "Notes1!!",
+      admin: {
+        email: "petar@kikoff.com",
       },
-    ],
-  },
+    },
+  ],
   admin: {
     isAdmin: true,
   },
@@ -34,72 +32,126 @@ const person = {
   },
 };
 
-const me = Object.create(person);
+// console.log("person", person);
+// const me = Object.create(person);
+// console.log("me.isHuman", me.isHuman);
+// console.log("me", me);
 
-me.name = "Matthew"; // "name" is a property set on "me", but not on "person"
-me.isHuman = true; // inherited properties can be overwritten
+// console.log("Object.entries(person)", Object.entries(person));
+// console.log("Object.entries(me)", Object.entries(me));
 
-me.printIntroduction();
+// console.log("me === person", me === person);
 
-// Object.assign -> make a new object based on existing object, and keeps the existing object's
-// information. You can consider this an expansion of the existing object by "assigning" new object's properties
-const qwe = Object.assign({ qwe: "asdasdasd" }, exampleData);
-console.log("qwe === exampleData", qwe === exampleData);
-console.log("qwe", qwe);
+// const me2 = { ...person };
+// console.log("me2", me2);
+// console.log("me2 === person", me2 === person);
+
+// const istaReferenca = person;
+// console.log("istaReferenca", istaReferenca);
+// console.log("istaReferenca === person", istaReferenca === person);
+// delete istaReferenca.isHuman;
+// console.log("person", person);
+
+// console.log("istaReferenca === person", istaReferenca === person);
+
+// me.name = "Petar"; // "name" is a property set on "me", but not on "person"
+// me.isHuman = true; // inherited properties can be overwritten
+
+// me.printIntroduction();
+
+// console.log("me", me);
+
+// console.log(person.name, person.isHuman);
+// console.log(me.name, me.isHuman);
+
+// // Object.assign -> make a new object based on existing object, and keeps the existing object's
+// // information. You can consider this an expansion of the existing object by "assigning" new object's properties
+// const qwe = Object.assign({ qwe: "qweqweqwe" }, exampleData);
+// console.log("qwe === exampleData", qwe === exampleData);
+// console.log("qwe === person", qwe === person);
+// console.log("qwe", qwe);
+
+// // ovo je shorthand za Object.assign()
+// const asd = { qwe: "qweqweqwe", ...exampleData };
+// console.log("asd === exampleData", asd === exampleData);
+// console.log("asd", asd);
 
 // If we assign existing const to a new const without Object.assign,
 // they will be considered the same, as that is not the new instance
-const asd = exampleData;
-console.log("asd === exampleData", asd === exampleData);
+// const asd = exampleData;
+// console.log("asd === exampleData", asd === exampleData);
 
-// Object.freeze -> freezes deleting, adding or changing attributes to
-// an existing object
-const obj = {
-  prop: 42,
-};
+// // Object.freeze -> freezes deleting, adding or changing attributes to
+// // an existing object
+// const obj = {
+//   prop: 42,
+// };
 
-Object.freeze(obj);
+// Object.freeze(obj);
 
-obj.prop = 33;
+// obj.prop = 33;
+// obj.newData = "qwe";
 
-console.log("obj.prop", obj.prop);
+// console.log("obj", obj);
+
+// const asd = { ...obj };
+// asd.prop = 69;
+
+// console.log("asd", asd);
+
+// // Object.seal -> zamrzava objekat za kreiranje novih propertiJa
+// Object.seal(asd);
+
+// asd.prop = 9;
+// asd.nekiNoviProp = "zxczxc";
+
+// console.log("asd", asd);
 
 // Object.keys get's keys of the object in an array
-console.log(Object.keys(exampleData));
+// console.log('Object.keys(exampleData)', Object.keys(exampleData));
 
 // Object.values get's only values
-console.log(Object.values(exampleData));
+// console.log("Object.values(exampleData)", Object.values(exampleData));
 
-// Object.entries and Object.fromEntries
-// A way to convert object into array and vice-versa.
-// Object.entries get's both keys and values into sub-arrays
-const entriesTest = {
-  a: "somestring",
-  b: 42,
-};
+// // Object.entries and Object.fromEntries
+// // A way to convert object into array and vice-versa.
+// // Object.entries get's both keys and values into sub-arrays
+// const entriesTest = {
+//   a: "somestring",
+//   b: 42,
+// };
 
-for (const [key, value] of Object.entries(entriesTest)) {
-  console.log(`${key}: ${value}`);
+// for (const [key, value] of Object.entries(entriesTest)) {
+//   console.log(`${key}: ${value}`);
+// }
+
+// const entries = Object.entries(entriesTest);
+// console.log("entries", entries);
+// console.log("Object.fromEntries(entries)", Object.fromEntries(entries));
+
+// Object.values(entriesTest).forEach((entry) => console.log(entry));
+// Object.keys(entriesTest).forEach((key) => console.log(entriesTest[key]));
+
+class User {
+  constructor(name, dob) {
+    this.name = name;
+    this.dob = dob;
+  }
 }
 
-const entries = Object.entries(entriesTest);
-console.log("entries", entries);
-console.log("Object.fromEntries(entries)", Object.fromEntries(entries));
+const UserList = [];
 
-// Practice 8_objects_and_arrays!
-// Let's simulate a TODO app!
-/**
- * 1. Create a class called Todo
- * 2. It will have two properties: Text and Done. Defaults are "" and false
- * 3. It will have one function: toggleMarkAsDone
- * 4. Make an empty list of todos
- * 5. Create a todo for each of the lessons we've covered till now (1-8)
- * 6. After creating each of them, add them to the list
- * 7. console.log each of the items in the list in the form of: `${Text}: ${Done ? 'done!' : 'not yet done'}`
- * 8. Now mark first seven as done using the method in the object toggleMarkAsDone
- * 9. console.log them all again
- * 10. ~OPTIONAL~ Make optional additional Todos in the TodoList
- * 11. Filter and console.log only ones that are done
- * 12. Filter and console.log only ones that are not yet done
- * 13. Commit!
- */
+UserList.push(new User("Petar", 1988));
+UserList.push(new User("Dragica", 1983));
+
+UserList.forEach((user) => {
+  console.log(`Ime: ${user.name}, dob: ${user.dob}`);
+});
+
+console.log("-----------------------------");
+
+UserList.push(new User("Tijana", 1988));
+
+UserList.forEach((user) => {
+  console.log(`Ime: ${user.name}, dob: ${user.dob}`);
+});
