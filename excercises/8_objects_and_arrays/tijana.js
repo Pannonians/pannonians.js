@@ -14,4 +14,5 @@
  * 11. Filter and console.log only ones that are done
  * 12. Filter and console.log only ones that are not yet done
  * 13. Commit!
+ * 14. Bonus points: Napravite i timestamp kad se koji todo napravio, i kad se koji todo prebacio na true.
  */
