@@ -67,3 +67,22 @@ REDUCE! REDUCE REDUCE!
 -----------------
 
 -----------------
+### 6 - Wednesday, October 6 15:30pcm - 16:45pm
+
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/#basic-javascript
+Basic JavaScript
+  -> Understanding Boolean Values <---> Golf Code
+
+-----------------
+### 7 - Tuesday, October 5 15:30pcm - 16:45pm
+
+Od ovoga:
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/basic-javascript/build-javascript-objects
+
+Do ovde:
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/basic-javascript/accessing-nested-arrays
+
+MDN stranica za objekte:
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
+
+-----------------
