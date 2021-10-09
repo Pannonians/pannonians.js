@@ -1,5 +1,15 @@
-var Person = function (name) {
+/**
+ * What is Prototype in JS?
+ *
+ * The prototype is an object that is associated with every functions and objects
+ * by default in JavaScript, where function's prototype property is accessible
+ * and modifiable and object's prototype property (aka attribute) is not visible.
+ *
+ * Every function includes prototype object by default
+ */
+var Person = function (name, lastName = "") {
   this.name = name;
+  this.lastName = lastName;
   this.canTalk = true;
 };
 
