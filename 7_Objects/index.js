@@ -229,33 +229,33 @@
   // igor zavrsio
 
   
-// const qwe = {
-//   user: {
-//     user_notes: [
-//       {
-//         created_at: "2021-09-24T14:01:50.940Z",
-//         message: " qwewq e qwe",
-//         admin: {
-//           email: "petar@kikoff.com"
-//         }
-//       },
-//       {
-//         created_at: "2021-09-14T20:50:44.173Z",
-//         message: "Notes1!!",
-//         admin: {
-//           email: "petar@kikoff.com"
-//         }
-//       },
-//     ],
-//   },
-//   admin: {
-//     isAdmin: true
-//   }
-// }
+const qwe = {
+  user: {
+    user_notes: [
+      {
+        created_at: "2021-09-24T14:01:50.940Z",
+        message: " qwewq e qwe",
+        admin: {
+          email: "petar@kikoff.com"
+        }
+      },
+      {
+        created_at: "2021-09-14T20:50:44.173Z",
+        message: "Notes1!!",
+        admin: {
+          email: "petar@kikoff.com"
+        }
+      },
+    ],
+  },
+  admin: {
+    isAdmin: true
+  }
+}
 
-// qwe.user.user_notes.forEach(jedan => {
-//   console.log(`${jedan.admin.email} (${jedan.created_at}) : ${jedan.message}`)
-// })
+qwe.user.user_notes.forEach(jedan => {
+  console.log(`${jedan.admin.email} (${jedan.created_at}) : ${jedan.message}`)
+})
 
 // const slova = (broj) => {
 //   switch (broj) {
