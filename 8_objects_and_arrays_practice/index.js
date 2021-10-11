@@ -32,10 +32,10 @@ const person = {
   },
 };
 
-// console.log("person", person);
-// const me = Object.create(person);
-// console.log("me.isHuman", me.isHuman);
-// console.log("me", me);
+console.log("person", person);
+const me = Object.create(person);
+console.log("me.isHuman", me.isHuman);
+console.log("me", me);
 
 // console.log("Object.entries(person)", Object.entries(person));
 // console.log("Object.entries(me)", Object.entries(me));
@@ -132,26 +132,26 @@ const person = {
 // Object.values(entriesTest).forEach((entry) => console.log(entry));
 // Object.keys(entriesTest).forEach((key) => console.log(entriesTest[key]));
 
-class User {
-  constructor(name, dob) {
-    this.name = name;
-    this.dob = dob;
-  }
-}
+// class User {
+//   constructor(name, dob) {
+//     this.name = name;
+//     this.dob = dob;
+//   }
+// }
 
-const UserList = [];
+// const UserList = [];
 
-UserList.push(new User("Petar", 1988));
-UserList.push(new User("Dragica", 1983));
+// UserList.push(new User("Petar", 1988));
+// UserList.push(new User("Dragica", 1983));
 
-UserList.forEach((user) => {
-  console.log(`Ime: ${user.name}, dob: ${user.dob}`);
-});
+// UserList.forEach((user) => {
+//   console.log(`Ime: ${user.name}, dob: ${user.dob}`);
+// });
 
-console.log("-----------------------------");
+// console.log("-----------------------------");
 
-UserList.push(new User("Tijana", 1988));
+// UserList.push(new User("Tijana", 1988));
 
-UserList.forEach((user) => {
-  console.log(`Ime: ${user.name}, dob: ${user.dob}`);
-});
+// UserList.forEach((user) => {
+//   console.log(`Ime: ${user.name}, dob: ${user.dob}`);
+// });
