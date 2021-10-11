@@ -16,3 +16,57 @@
  * 13. Commit!
  * 14. Bonus points: Napravite i timestamp kad se koji todo napravio, i kad se koji todo prebacio na true.
  */
+class Todo {
+  text = "";
+  done = false;
+  constructor(text, done) {
+    this.text = text;
+    this.done = done;
+  }
+  toggleDone() {
+    if (this.done === false) {
+      this.done = true;
+    } else {
+      this.done = false;
+    }
+    this.done = !this.done;
+  }
+}
+
+let listOfToDos = [];
+
+let toDo1 = new Todo("Coments, variables and arithmetics", false);
+let toDo2 = new Todo("Data types and operators", false);
+let toDo3 = new Todo("Strings", false);
+let toDo4 = new Todo("Arrays", false);
+let toDo5 = new Todo("Functions", false);
+let toDo6 = new Todo("Booleans", false);
+let toDo7 = new Todo("Objects", false);
+let toDo8 = new Todo("Objects and Arrays practice", false);
+let toDo9 = new Todo("ToDo app", false);
+let toDo10 = new Todo("React", false);
+
+listOfToDos.push(
+  toDo1,
+  toDo2,
+  toDo3,
+  toDo4,
+  toDo5,
+  toDo6,
+  toDo7,
+  toDo8,
+  toDo9,
+  toDo10
+);
+
+for (index = 0; index < 7; index++) {
+  listOfToDos[index].toggleDone();
+}
+
+listOfToDos.forEach((toDo) => {
+  console.log(`${toDo.text}: ${toDo.done ? "done!" : "not yet done"}`);
+});
+
+// function change() {
+//   this.done = !this.done;
+// }
