@@ -1,0 +1,15 @@
+{
+  "name": "pannonians.js",
+  "version": "0.0.1",
+  "description": "PannoniansJS apps and learning",
+  "repository": "git@pannonians.github.com:Pannonians/pannonians.js.git",
+  "author": "pvukmanovic-pannonians <petar.vukmanovic@pannonians.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "todo": "yarn workspace @pannonians/todo"
+  }
+}
