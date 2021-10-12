@@ -101,3 +101,17 @@ Prikaz znanja do danasnjeg dana.
 NPM, Yarn, React setup
 
 -----------------
+
+### 11 - Tuesday, October 12 13:30pm - 14:30pm
+NPM, Yarn, React setup
+
+Init apps workspaces, init todo react app.
+To run the app, enter these commands in root folder (where package.json is, in pannonians.js):
+
+```
+git checkout -b VASE_IME/todo
+yarn install
+yarn todo start
+```
+
+-----------------
