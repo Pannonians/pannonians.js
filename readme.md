@@ -41,7 +41,7 @@ additional hints and lesson takeaways in 3_strings folder
 
 ------------------
 
-### 4 - Monday, October 4 12:30pcm - 13:30pm
+### 4 - Monday, October 4 12:30pm - 13:30pm
 
 https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/#basic-javascript
 
@@ -55,7 +55,7 @@ and for homework .find(), .filter(), .map() and .reduce() functions were emphasi
 
 -----------------
 
-### 5 - Tuesday, October 5 15:30pcm - 16:45pm
+### 5 - Tuesday, October 5 15:30pm - 16:45pm
 
 https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/#basic-javascript
 
@@ -67,14 +67,14 @@ REDUCE! REDUCE REDUCE!
 -----------------
 
 -----------------
-### 6 - Wednesday, October 6 15:30pcm - 16:45pm
+### 6 - Wednesday, October 6 15:30pm - 16:45pm
 
 https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/#basic-javascript
 Basic JavaScript
   -> Understanding Boolean Values <---> Golf Code
 
 -----------------
-### 7 - Tuesday, October 5 15:30pcm - 16:45pm
+### 7 - Thursday, October 7 15:30pm - 16:45pm
 
 Od ovoga:
 https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/basic-javascript/build-javascript-objects
@@ -84,5 +84,20 @@ https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/bas
 
 MDN stranica za objekte:
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
+
+-----------------
+### 8 - Friday, October 8 15:30pm - 16:45pm
+
+Kombinovanje objekata i nizova i svega do sada, vezbe, pripreme za Monday Demo.
+
+-----------------
+### 9 - Monday, October 11 15:30pm - 16:30pm
+
+Monday Demo. Todo proceduralna aplikacija u terminalu.
+Prikaz znanja do danasnjeg dana.
+
+-----------------
+### 10 - Tuesday, October 12 13:30pm - 14:30pm
+NPM, Yarn, React setup
 
 -----------------
