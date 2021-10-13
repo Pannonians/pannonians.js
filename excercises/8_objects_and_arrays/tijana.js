@@ -22,14 +22,12 @@ class Todo {
   constructor(text, done) {
     this.text = text;
     this.done = done;
+    this.time = new Date();
   }
   toggleDone() {
     if (this.done === false) {
       this.done = true;
-    } else {
-      this.done = false;
     }
-    this.done = !this.done;
   }
 }
 
@@ -67,6 +65,10 @@ listOfToDos.forEach((toDo) => {
   console.log(`${toDo.text}: ${toDo.done ? "done!" : "not yet done"}`);
 });
 
-// function change() {
-//   this.done = !this.done;
-// }
+const taskDone = listOfToDos.filter((toDo) => toDo.done === true);
+console.log("Done");
+console.log(taskDone);
+
+const taskNotDone = listOfToDos.filter((toDo) => toDo.done === false);
+console.log("Not yet done");
+console.log(taskNotDone);
