@@ -11,5 +11,6 @@
   ],
   "scripts": {
     "todo": "yarn workspace @pannonians/todo"
-  }
+  },
+  "main": "index.js"
 }
