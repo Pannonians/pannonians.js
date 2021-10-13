@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+.todo-containar{
+    background-color: chocolate;
+    font: 100;
+}
+
+.todo-list{
+  background-color: crimson;
+  font: bold;
+}
