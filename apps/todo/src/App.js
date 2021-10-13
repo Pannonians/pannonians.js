@@ -9,6 +9,7 @@ function App() {
       <header className="App-header">
         <h1>Pannonians.js hello world!</h1>
       </header>
+      <Form/>
     </div>
   );
 }
