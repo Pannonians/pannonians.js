@@ -47,7 +47,7 @@ body {
 }
 
 .button:active {
-  transform: scale(0, 90);
+  opacity: 0.5;
 }
 
 .button-block {

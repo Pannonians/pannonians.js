@@ -3,7 +3,7 @@ import Button from "./Button";
 
 const Header = ({ title }) => {
   const onClickHandeler = () => {
-    alert("Bravisimo");
+    console.log("Bravisimo");
   };
   return (
     <header className="header">
