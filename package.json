@@ -11,5 +11,8 @@
   ],
   "scripts": {
     "todo": "yarn workspace @pannonians/todo"
+  },
+  "dependencies": {
+    "react-icons": "^4.3.1"
   }
 }

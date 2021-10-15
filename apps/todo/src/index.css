@@ -55,18 +55,18 @@ body {
   width: 100%;
 }
 
-.event {
+.task {
   background: #f3f3f3;
   margin: 5px;
   padding: 10px 20px;
   cursor: pointer;
 }
 
-.event.reminder {
+.task.done {
   border-left: 5px solid darkolivegreen;
 }
 
-.event h3 {
+.task h4 {
   display: flex;
   align-items: center;
   justify-content: space-between;
