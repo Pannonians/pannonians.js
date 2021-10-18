@@ -23,7 +23,7 @@ function App() {
     getLocalTodos();
   }, []); //since we have empty [] it means that function will be executed only once
 
-  // Effects
+  // Effects - run function whenever useState is changed
   useEffect(() => {
     filterHandler();
     saveLocalTodos();

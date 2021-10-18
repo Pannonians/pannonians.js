@@ -8,13 +8,14 @@ const Form = ({ inputText, setInputText, todos, setTodos, setStatus }) => {
   };
 
   const submitTodoHandler = (e) => {
-    e.preventDefault(); // after entering some text in input field and click sign plus to submit it, page is refreshing; with preventDefault function we stopped it
+    // after entering some text in input field and clicking sign plus to submit it, page is refreshing; with preventDefault function we stopped it
+    e.preventDefault(); 
     // console.log("ahahahah")
     setTodos([
       ...todos, // if some todo already exists just pass it to the array
       { text: inputText, completed: false, id: Math.random() * 1000 },
     ]);
-    setInputText("");
+    setInputText(""); // input field text become empty after clicking submit button, unless text will still remain in the field
   };
 
   const statusHandler = (e) => {
@@ -23,7 +24,7 @@ const Form = ({ inputText, setInputText, todos, setTodos, setStatus }) => {
   return (
     <form>
       <input
-        value={inputText}
+        value={inputText} // 
         onChange={inputTextHendler} //whenever we change something in the input filed inputTextHendler function will be triggered
         type="text"
         className="todo-input"
