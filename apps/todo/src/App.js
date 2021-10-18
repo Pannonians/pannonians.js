@@ -67,7 +67,7 @@ function App() {
       <header className="App-header">
         <h1>To-Do List</h1>
       </header>
-      <Form
+      <Form //with <Form/> we are rendering component
         todos={todos}
         setTodos={setTodos}
         inputText={inputText}
