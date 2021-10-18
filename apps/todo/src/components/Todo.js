@@ -12,6 +12,7 @@ const Todo = ({ text, todo, todos, setTodos }) => {
     setTodos(
       todos.map((item) => {
         if (item.id === todo.id) {
+          // return one item with all properties but property COMPLETED change from false to true and vice versa
           return {
             ...item,
             completed: !item.completed,
@@ -23,9 +24,9 @@ const Todo = ({ text, todo, todos, setTodos }) => {
   };
   return (
     <div className="todo">
-      <li className={`todo-item ${todo.completed ? "completed" : ""}`}>
+      {/* <li className={`todo-item ${todo.completed ? "completed" : ""}`}>
         {text}
-      </li>
+      </li> */}
       <button onClick={completeHandler} className="complete-btn">
         <i className="fas fa-check"></i>
       </button>
