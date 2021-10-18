@@ -5,7 +5,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 // importing components
-import Form from "./components/Form"; //when we have some componenet, we can use it by putting it (look line 66) as HTML element
+import Form from "./components/Form"; //when we have some componenet, we can use it by putting it (look line 70) as HTML element
 import ToDoList from "./components/ToDoList";
 import Todo from "./components/Todo";
 

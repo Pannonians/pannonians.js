@@ -13,7 +13,7 @@ const Form = ({ inputText, setInputText, todos, setTodos, setStatus }) => {
     // console.log("ahahahah")
     setTodos([
       ...todos, // if some todo already exists just pass it to the array
-      { text: inputText, completed: false, id: Math.random() * 1000 },
+      { text: inputText, completed: false, id: Math.random() * 1000, date: Date.now },
     ]);
     setInputText(""); // input field text become empty after clicking submit button, unless text will still remain in the field
   };
@@ -24,7 +24,7 @@ const Form = ({ inputText, setInputText, todos, setTodos, setStatus }) => {
   return (
     <form>
       <input
-        value={inputText} // 
+        value={inputText} 
         onChange={inputTextHendler} //whenever we change something in the input filed inputTextHendler function will be triggered
         type="text"
         className="todo-input"
