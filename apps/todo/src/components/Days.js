@@ -6,13 +6,13 @@ const Days = () => {
 
   function printDate(d) {
     const days = [
+      "Sunday",
       "Monday",
       "Tuesday",
       "Wednesday",
       "Thursday",
       "Friday",
-      "Saturday",
-      "Sunday",
+      "Saturday"
     ];
     const months = [
       "January",
