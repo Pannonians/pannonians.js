@@ -30,7 +30,7 @@ body {
 .button {
   display: inline-block;
   color: beige;
-  background: rgb(96, 104, 130);
+  background: rgb(43, 150, 59);
   border: none;
   padding: 5px, 5px;
   margin: 10px;
@@ -66,10 +66,15 @@ body {
   border-left: 5px solid darkolivegreen;
 }
 
+.task.notDone {
+  border-left: 5px solid red;
+}
+
 .task h4 {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  user-select: none;
 }
 
 .add-form {

@@ -2,6 +2,8 @@ import { useState } from "react";
 import "./App.css";
 import Header from "./Components/Heder";
 import Tasks from "./Components/Tasks";
+import AddTask from "./Components/AddTask";
+import Task from "./Components/Task";
 
 const App = () => {
   const [tasks, setTasks] = useState([
@@ -57,13 +59,33 @@ const App = () => {
     },
   ]);
 
-  const deleteTask = (id) => {
-    console.log("obrisano", id);
+  const addTask = (task) => {
+    const id = Math.floor(Math.random() * 10000) + 1;
+    const newTask = { id, ...task };
+    setTasks([...tasks, newTask]);
   };
+
+  const deleteTask = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
+
+  const toggleDone = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, done: !task.done } : task
+      )
+    );
+  };
+
   return (
     <div className="containerTodo">
       <Header />
-      <Tasks tasks={tasks} onDelete={deleteTask} />
+      <AddTask onAdd={addTask} />
+      {tasks.length > 0 ? (
+        <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleDone} />
+      ) : (
+        "No Tasks To Do"
+      )}
     </div>
   );
 };
