@@ -1,38 +1,192 @@
-.App {
-  text-align: center;
+#root{
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  padding:0;
+  padding-left: 0;
+  font-family: "Montserrat";
+}
+
+.todoApp {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #fff;
+  width: 250px;
+  min-width: 45vw;
+  min-height: 80vh;
+  max-height: auto;
+  border-radius: 8px;
+  box-shadow: 3px 3px 15px rgb(0 0 0 / 20%);
+  padding-bottom: 15px;
+}
+
+.daysContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-left: 1.5rem;
+  background: 
+    url(.././src/Landing\ page\ FINAL.jpg)
+      no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100%;
+  min-height: 35vh;
+  border-radius: 8px 8px 0 0;
+}
+
+.headline {
+  color: white;
+  font-family: Montserrat;
+  font-size: 32px;
+  font-weight: bolder;
+  display: flex;
+  justify-content: center;
+  text-shadow: black 0  0 10px;
+}
+
+.today {
+  color: white;
+  font-family: Montserrat;
+  font-size: 24px;
+  text-shadow: black 0 0 10px;
+}
+
+.dayContainer {
+  margin-bottom: 30px;
+}
+
+.formContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.todoInput {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+  height: 30px;
+  padding-left: 10px;
+  border-radius: 0.25rem;
+  border-color: rgba(0, 0, 0, 0.193);
+  border-width: 1px;
+}
+
+.todoButton {
+  width: 100%;
+  height: 30px;
+  margin-top: 10px;
+  background-color: rgb(32, 69, 109);
+  color: white;
+  border-radius: 0.25rem;
+  border: none;
+}
+
+.select {
+  margin-top: 10px;
+}
+
+.filterTodo {
+  width: 100%;
+  height: 30px;
+  background-color: rgba(8, 9, 9, 0.076);
+  border-radius: 0.25rem;
+  color: rgb(21, 35, 90);
+  border-color: transparent;
+}
+
+.addButton {
+  font-style: normal;
+}
+
+.todoListContainer{
+  width:100%;
+}
+
+.todoContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
+ }
+
+.todoList{
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  width: 100%;
+}
+
+.todo{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: #fff;
+  color: #333;
+  font-size: 0.9rem;
+  transition: all 0.5s ease;
+  border-bottom: 1px solid rgba(153, 153, 153, 0.5);
+  box-sizing: border-box;
+  list-style: none;
+  padding-top: 20px;
+  width:100%;
+}
+
+.trashButton,
+.completeButton {
+  background: #f72d17;
+  color: white;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px;
+  border-radius: 0.3rem;
+  
+  
+}
+.completeButton {
+  background: rgb(27, 50, 84);
+  justify-content: space-between;
+}
+.todo-item {
+  padding: 0rem 0.5rem;
+}
+
+.fa-trash,
+.fa-check {
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
 }
