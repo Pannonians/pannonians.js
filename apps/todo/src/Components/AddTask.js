@@ -1,20 +1,20 @@
 import { useState } from "react";
 
-const AddTask = ({ onAdd }) => {
-  const [lesson, setLesson] = useState("");
+const AddTask = ({ onAdd, selectedTasks, setSelectedTasks }) => {
+  const [task, setTask] = useState("");
   const [done, setDone] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (!lesson) {
+    if (!task) {
       alert("Please add a task ToDo");
       return;
     }
 
-    onAdd({ lesson, done });
+    onAdd({ task, done });
 
-    setLesson("");
+    setTask("");
     setDone(false);
   };
 
@@ -25,8 +25,8 @@ const AddTask = ({ onAdd }) => {
         <input
           type="text"
           placeholder="Add Task ToDo"
-          value={lesson}
-          onChange={(e) => setLesson(e.target.value)}
+          value={task}
+          onChange={(e) => setTask(e.target.value)}
         />
       </div>
       <div className="form-control form-control-check">

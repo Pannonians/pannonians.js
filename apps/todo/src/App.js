@@ -1,63 +1,51 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./Components/Heder";
 import Tasks from "./Components/Tasks";
 import AddTask from "./Components/AddTask";
 import Task from "./Components/Task";
+import SelectionForm from "./Components/SelectionForm";
 
 const App = () => {
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      lesson: "Learn about comments, variables and arithmetics",
-      done: true,
-    },
-    {
-      id: 2,
-      lesson: "Learn about data types and operators",
-      done: true,
-    },
-    {
-      id: 3,
-      lesson: "Learn about strings",
-      done: true,
-    },
-    {
-      id: 4,
-      lesson: "Learn about arrays",
-      done: true,
-    },
-    {
-      id: 5,
-      lesson: "Learn about functions",
-      done: true,
-    },
-    {
-      id: 6,
-      lesson: "Learn about booleans",
-      done: true,
-    },
-    {
-      id: 7,
-      lesson: "Learn about objects",
-      done: true,
-    },
-    {
-      id: 8,
-      lesson: "Learn about objects and arrays practise",
-      done: true,
-    },
-    {
-      id: 9,
-      lesson: "Learn to code in JS",
-      done: false,
-    },
-    {
-      id: 10,
-      lesson: "Learn to use React",
-      done: false,
-    },
-  ]);
+  const [tasks, setTasks] = useState([]);
+  const [status, setStatus] = useState("all");
+  const [selectedTasks, setSelectedTasks] = useState([]);
+
+  useEffect(() => {
+    getLocalTasks();
+  }, []);
+
+  useEffect(() => {
+    filterHandler();
+    saveLocalTasks();
+  }, [tasks, status]);
+
+  const filterHandler = () => {
+    switch (status) {
+      case "done":
+        setSelectedTasks(tasks.filter((task) => task.done === true));
+        break;
+      case "not-done":
+        setSelectedTasks(tasks.filter((task) => task.done === false));
+        break;
+      default:
+        setSelectedTasks(tasks);
+        break;
+    }
+  };
+
+  const saveLocalTasks = () => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  };
+
+  const getLocalTasks = () => {
+    if (localStorage.getItem("tasks") === null) {
+      localStorage.setItem("tasks", JSON.stringify([]));
+    } else {
+      let tasksLocal = JSON.parse(localStorage.getItem("tasks"));
+      setTasks(tasksLocal);
+    }
+  };
 
   const addTask = (task) => {
     const id = Math.floor(Math.random() * 10000) + 1;
@@ -80,9 +68,20 @@ const App = () => {
   return (
     <div className="containerTodo">
       <Header />
-      <AddTask onAdd={addTask} />
+      <AddTask
+        selectedTasks={selectedTasks}
+        setSelectedTasks={setSelectedTasks}
+        onAdd={addTask}
+      />
+      <SelectionForm setStatus={setStatus} />
       {tasks.length > 0 ? (
-        <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleDone} />
+        <Tasks
+          selectedTasks={selectedTasks}
+          setSelectedTasks={setSelectedTasks}
+          tasks={tasks}
+          onDelete={deleteTask}
+          onToggle={toggleDone}
+        />
       ) : (
         "No Tasks To Do"
       )}
