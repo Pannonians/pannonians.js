@@ -7,7 +7,6 @@ const BASE_URL = "https://jsonplaceholder.typicode.com";
 const POSTS_URL = `${BASE_URL}/posts`;
 
 function App() {
-
   const [posts, setPosts] = useState([]);
 
   const getPosts = async () => {
@@ -22,7 +21,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <div>{JSON.stringify(posts)}</div>
+        <div>
+          <pre>
+            <code>{JSON.stringify(posts, "", 2)}</code>
+          </pre>
+        </div>
       </header>
     </div>
   );
