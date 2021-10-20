@@ -14,6 +14,7 @@ const Form = ({ setInputText, todos, setTodos, inputText, setStatus }) => {
     setInputText("");
   };
   const statusHandler = (e) => {
+    e.preventDefault();
     setStatus(e.target.value);
   };
   return (
@@ -30,11 +31,30 @@ const Form = ({ setInputText, todos, setTodos, inputText, setStatus }) => {
       </button>
 
       <div className="select">
-        <select onChange={statusHandler} name="todos" className="filterTodo">
-          <option value="all">All</option>
-          <option value="completed">Completed</option>
-          <option value="uncompleted">Uncompleted</option>
-        </select>
+        <button
+          onClick={statusHandler}
+          className="filterTodo"
+          name="todos"
+          value="all"
+        >
+          All
+        </button>
+        <button
+          onClick={statusHandler}
+          className="filterTodo"
+          name="todos"
+          value="completed"
+        >
+          Completed
+        </button>
+        <button
+          onClick={statusHandler}
+          className="filterTodo"
+          name="todos"
+          value="uncompleted"
+        >
+          Uncompleted
+        </button>
       </div>
     </form>
   );
