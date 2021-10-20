@@ -10,6 +10,7 @@
     "apps/*"
   ],
   "scripts": {
-    "todo": "yarn workspace @pannonians/todo"
+    "todo": "yarn workspace @pannonians/todo",
+    "blog": "yarn workspace @pannonians/blog"
   }
 }
