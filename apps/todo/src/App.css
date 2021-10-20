@@ -106,16 +106,21 @@
 
 .select {
   margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.filterTodo {
-  width: 100%;
+ .filterTodo {
+ 
+  width: 32%;
   height: 30px;
   background-color: rgba(8, 9, 9, 0.076);
   border-radius: 0.25rem;
   color: rgb(21, 35, 90);
   border-color: transparent;
-}
+} 
 
 .addButton {
   font-style: normal;
