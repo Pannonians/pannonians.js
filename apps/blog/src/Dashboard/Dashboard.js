@@ -24,6 +24,13 @@ function App() {
   const { auth } = Firebase.getInstance();
   const { currentUser } = auth;
   const [isAuthenticated] = useContext(authStore);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      history.push("/");
+    }
+  }, [history, isAuthenticated]);
+  
   const logout = async () => {
     await auth.signOut();
     history.push("/login");
