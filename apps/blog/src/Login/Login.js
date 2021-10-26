@@ -1,5 +1,5 @@
-import { useContext, useRef } from "react";
-import { Redirect, Link } from "react-router-dom";
+import { useContext } from "react";
+import { Redirect } from "react-router-dom";
 import authStore from "../store/authStore";
 import Firebase from "../firebase";
 import { GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
