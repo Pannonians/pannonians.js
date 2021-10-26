@@ -1,34 +1,58 @@
-import logo from "./logo.svg";
 import "./App.css";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 
-const BASE_URL = "https://jsonplaceholder.typicode.com";
-const POSTS_URL = `${BASE_URL}/posts`;
+import authStore from "./store/authStore";
+import { useContext, useEffect, useState } from "react";
+import Firebase from "./firebase";
+
+import Login from "./Login/Login";
+import Dashboard from "./Dashboard/Dashboard";
+import { useHistory } from "react-router-dom";
+
+const { auth } = Firebase.getInstance();
 
 function App() {
-  const [posts, setPosts] = useState([]);
+  const history = useHistory();
 
-  const getPosts = async () => {
-    const { data } = await axios.get(POSTS_URL);
-    setPosts(data);
-  };
+  const [isAuthenticated, setAuthentication] = useState(useContext(authStore));
 
   useEffect(() => {
-    getPosts();
+    if (!isAuthenticated && history) {
+      history.push("/");
+    }
+  }, [history, isAuthenticated]);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      user ? setAuthentication(true) : setAuthentication(false);
+    });
+    return unsubscribe;
   }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>Blog incoming, jel sad dobro!</h1>
-        <div>
-          <pre>
-            <code>{JSON.stringify(posts, "", 2)}</code>
-          </pre>
-        </div>
-      </header>
-    </div>
+    <authStore.Provider value={[isAuthenticated, setAuthentication]}>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Login />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/dashboard">
+            <Dashboard />
+          </Route>
+          <Route path="*">
+            <Redirect to="/" />
+          </Route>
+        </Switch>
+      </Router>
+    </authStore.Provider>
   );
 }
 
