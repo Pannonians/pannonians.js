@@ -5,11 +5,9 @@ const SOURCE = {
 
 const API_SOURCE_ENUM = {
   jsonplaceholder: "jsonplaceholder",
-  firebase: "firebase"
+  firebase: "firebase",
 };
 
 const API_SOURCE = API_SOURCE_ENUM.jsonplaceholder;
-const schema = {
-    getPosts: SOURCE[API_SOURCE]["getPosts"]
-  };
-export default schema;
+
+export const getPosts = SOURCE[API_SOURCE]["getPosts"];

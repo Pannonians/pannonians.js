@@ -1,19 +1,15 @@
 import "../App.css";
 import { useContext, useEffect, useState } from "react";
-import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Firebase from "../firebase";
 import authStore from "../store/authStore";
-import schema from "../API";
-
-const BASE_URL = "https://jsonplaceholder.typicode.com";
-const POSTS_URL = `${BASE_URL}/posts`;
+import { getPosts } from "../API";
 
 function App() {
   const [posts, setPosts] = useState([]);
 
   const fetchPosts = async () => {
-    const data = schema.getPosts();
+    const data = await getPosts();
     setPosts(data);
   };
 
