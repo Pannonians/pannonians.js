@@ -4,6 +4,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Firebase from "../firebase";
 import authStore from "../store/authStore";
+import schema from "../API";
 
 const BASE_URL = "https://jsonplaceholder.typicode.com";
 const POSTS_URL = `${BASE_URL}/posts`;
@@ -11,13 +12,13 @@ const POSTS_URL = `${BASE_URL}/posts`;
 function App() {
   const [posts, setPosts] = useState([]);
 
-  const getPosts = async () => {
-    const { data } = await axios.get(POSTS_URL);
+  const fetchPosts = async () => {
+    const data = schema.getPosts();
     setPosts(data);
   };
 
   useEffect(() => {
-    getPosts();
+    fetchPosts();
   }, []);
 
   const history = useHistory();
@@ -30,7 +31,7 @@ function App() {
       history.push("/");
     }
   }, [history, isAuthenticated]);
-  
+
   const logout = async () => {
     await auth.signOut();
     history.push("/login");
