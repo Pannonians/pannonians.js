@@ -11,6 +11,9 @@ const POSTS_URL = `${BASE_URL}/posts`;
 function App() {
   const [posts, setPosts] = useState([]);
 
+  // "async" znaci da postoji neki period koji treba da prodje od momenta kada pozovemo
+  // API do momenta kada dobijemo odgovor od njega
+  // u nasem slucaju mi kreiramo API call ka Firestore database 
   const getPosts = async () => {
     const { data } = await axios.get(POSTS_URL);
     setPosts(data);
