@@ -4,6 +4,7 @@ import authStore from "../store/authStore";
 import Firebase from "../firebase";
 import { GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
 
+
 const { auth, signInWithPopup } = Firebase.getInstance();
 
 export default function Signup() {
