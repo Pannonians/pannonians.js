@@ -1,26 +1,36 @@
 import "../App.css";
 import { useContext, useEffect, useState } from "react";
+
+import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Firebase from "../firebase";
 import authStore from "../store/authStore";
-import { getPosts } from "../API";
+
+const BASE_URL = "https://jsonplaceholder.typicode.com";
+const POSTS_URL = `${BASE_URL}/posts`;
+
 
 function App() {
   const [posts, setPosts] = useState([]);
 
-  const fetchPosts = async () => {
-    const data = await getPosts();
+
+  const getPosts = async () => {
+    const { data } = await axios.get(POSTS_URL);
+
     setPosts(data);
   };
 
   useEffect(() => {
-    fetchPosts();
+
+    getPosts();
+
   }, []);
 
   const history = useHistory();
   const { auth } = Firebase.getInstance();
   const { currentUser } = auth;
   const [isAuthenticated] = useContext(authStore);
+
 
   useEffect(() => {
     if (!isAuthenticated) {
