@@ -45,26 +45,34 @@ function App() {
 
   if (!isAuthenticated) return <div></div>;
   return (
-    <div className="App">
+    <div className="App App-header">
       <header className="App-header">
+        <nav className="headerMenu">
+          <a href="#">About us</a>
+          <a href ="#">Posts</a>
+          <a href ="#">Contact Us</a> 
+          </nav>
+          <div>
         {currentUser && currentUser.email && (
-          <div className="blog-header">
-            <div>
+          <div>
+            <div className="headerMenu a userInfo">
               <img src={currentUser.photoURL} alt="profile" />
               <p>{currentUser.displayName}</p>
               <p>{currentUser.email}</p>
               <button onClick={logout}>Sign out</button>
             </div>
-            <h1>Blog incoming, jel sad dobro!</h1>
+            {/* <h1>Blog incoming, jel sad dobro!</h1> */}
           </div>
         )}
 
         {console.log(currentUser)}
+        </div>
         <div>
           <pre>
             <code>{JSON.stringify(posts, "", 2)}</code>
           </pre>
         </div>
+       
       </header>
     </div>
   );

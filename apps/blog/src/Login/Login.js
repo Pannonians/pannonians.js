@@ -5,7 +5,7 @@ import Firebase from "../firebase";
 import { GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
 
 const { auth, signInWithPopup } = Firebase.getInstance();
-// added comment for practicing merge/rebase
+// added comment for practicing merge/rebaseeee
 export default function Signup() {
   const [isAuthenticated, setAuthentication] = useContext(authStore);
 
@@ -34,4 +34,6 @@ export default function Signup() {
       </button>
     </div>
   );
+
+  
 }
