@@ -48,7 +48,7 @@ function App() {
     <div className="App App-header">
       <header className="App-header">
         <nav className="headerMenu">
-          <a href="#">About us</a>
+          <a href="#">About Us</a>
           <a href ="#">Posts</a>
           <a href ="#">Contact Us</a> 
           </nav>
