@@ -60,6 +60,7 @@ function App() {
               <p>{currentUser.displayName}</p>
               <p>{currentUser.email}</p>
               <button onClick={logout}>Sign out</button>
+              
             </div>
             {/* <h1>Blog incoming, jel sad dobro!</h1> */}
           </div>
