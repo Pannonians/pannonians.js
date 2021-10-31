@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import Firebase from "../firebase";
 import authStore from "../store/authStore";
 import { getPosts } from "../API";
-import { deletePost } from "../API";
+
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -14,14 +14,11 @@ function App() {
     setPosts(data);
   };
 
-  const removePost = async () => {
-    const data1 = await deletePost();
-    setPosts(data1);
-  };
+ 
 
   useEffect(() => {
     fetchPosts();
-    removePost();
+    
   }, []);
 
   const history = useHistory();
