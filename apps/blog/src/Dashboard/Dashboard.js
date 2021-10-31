@@ -51,6 +51,12 @@ function App() {
           <a href="#">About Us</a>
           <a href ="#">Posts</a>
           <a href ="#">Contact Us</a> 
+          <div className="userInfo link">
+          <a href="#"><i class="fa fa-facebook-square"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-instagram"></i></a>  
+            </div>
+          
           </nav>
           <div>
         {currentUser && currentUser.email && (
@@ -60,8 +66,7 @@ function App() {
               <p>{currentUser.displayName}</p>
               <p>{currentUser.email}</p>
               <button onClick={logout}>Sign out</button>
-              
-            </div>
+              </div>
             {/* <h1>Blog incoming, jel sad dobro!</h1> */}
           </div>
         )}
