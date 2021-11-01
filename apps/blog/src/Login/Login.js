@@ -23,7 +23,7 @@ export default function Signup() {
   if (isAuthenticated === null) return null;
   if (isAuthenticated === true) return <Redirect to="/dashboard" />;
   return (
-    <div clasName = "mainContainer">
+    <div clasName="mainContainer">
       <button onClick={(event) => signup(event, GoogleAuthProvider)}>
         Login with Google
       </button>
