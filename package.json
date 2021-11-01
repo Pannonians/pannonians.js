@@ -12,5 +12,9 @@
   "scripts": {
     "todo": "yarn workspace @pannonians/todo",
     "blog": "yarn workspace @pannonians/blog"
+  },
+  "dependencies": {
+    "flag": "^4.4.0",
+    "react-icon": "^1.0.0"
   }
 }

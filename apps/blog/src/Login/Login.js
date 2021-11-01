@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import authStore from "../store/authStore";
 import Firebase from "../firebase";
 import { GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
+import Skoljka_color from "../Skoljka_color.png";
 
 const { auth, signInWithPopup } = Firebase.getInstance();
 
@@ -23,13 +24,33 @@ export default function Signup() {
   if (isAuthenticated === null) return null;
   if (isAuthenticated === true) return <Redirect to="/dashboard" />;
   return (
-    <div clasName="mainContainer">
-      <button onClick={(event) => signup(event, GoogleAuthProvider)}>
-        Login with Google
-      </button>
-      <button onClick={(event) => signup(event, GithubAuthProvider)}>
-        Login with Github
-      </button>
+
+    <div className="mainContainer">
+      <div className="Text"><h className="Title">Pannonians Blog</h>
+      <p className="subtitle">Learning React and JS</p></div>
+     
+      
+      <div className="loginContainer">
+        <div className="Logo">
+          <img src={Skoljka_color} />
+        </div>
+
+        <button
+          className="Google"
+          onClick={(event) => signup(event, GoogleAuthProvider)}
+        >
+          <i className="fab fa-google"></i>
+          Login with Google
+        </button>
+        <button
+          className="Github"
+          onClick={(event) => signup(event, GithubAuthProvider)}
+        >
+          <i className="fab fa-github"></i>
+          Login with Github
+        </button>
+      </div>
+
     </div>
   );
 }
