@@ -25,10 +25,11 @@ export default function Signup() {
   if (isAuthenticated === true) return <Redirect to="/dashboard" />;
   return (
     <div className="mainContainer">
-      <div className="Text"><h className="Title">Pannonians Blog</h>
-      <p className="subtitle">Learning React and JS</p></div>
-     
-      
+      <div className="Text">
+        <h className="Title">Pannonians Blog</h>
+        <p className="subtitle">Learning React and JS</p>
+      </div>
+
       <div className="loginContainer">
         <div className="Logo">
           <img src={Skoljka_color} />
