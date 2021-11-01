@@ -25,32 +25,16 @@ export default function Signup() {
   if (isAuthenticated === true) return <Redirect to="/dashboard" />;
   return (
 
-    <div className="mainContainer">
-      <div className="Text"><h className="Title">Pannonians Blog</h>
-      <p className="subtitle">Learning React and JS</p></div>
-     
-      
-      <div className="loginContainer">
-        <div className="Logo">
-          <img src={Skoljka_color} />
-        </div>
+    <div clasName = "mainContainer">
 
-        <button
-          className="Google"
-          onClick={(event) => signup(event, GoogleAuthProvider)}
-        >
-          <i className="fab fa-google"></i>
-          Login with Google
-        </button>
-        <button
-          className="Github"
-          onClick={(event) => signup(event, GithubAuthProvider)}
-        >
-          <i className="fab fa-github"></i>
-          Login with Github
-        </button>
-      </div>
-
+      <button onClick={(event) => signup(event, GoogleAuthProvider)}>
+        Login with Google
+      </button>
+      <button onClick={(event) => signup(event, GithubAuthProvider)}>
+        Login with Github
+      </button>
     </div>
   );
+
+  
 }
