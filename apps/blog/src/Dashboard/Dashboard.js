@@ -11,6 +11,7 @@ const POSTS_URL = `${BASE_URL}/posts`;
 
 function App() {
   const [posts, setPosts] = useState([]);
+  const [search, setSearch] = useState(false);
 
   const getPosts = async () => {
     const { data } = await axios.get(POSTS_URL);
@@ -21,6 +22,17 @@ function App() {
   useEffect(() => {
     getPosts();
   }, []);
+
+  const submitSearch = (e) =>{
+    e.preventDefault();
+    alert("Searched");
+  }
+
+  const openSearch = () =>{
+    setSearch (true);
+  }
+
+  const searchClass = search ?'searchInput active': 'searchInput';
 
   const history = useHistory();
   const { auth } = Firebase.getInstance();
@@ -58,9 +70,12 @@ function App() {
             </a>
           </div>
         </nav>
+        <form className="searchForm" onSubmit={submitSearch}>
         <div className="userInfo link">
-            <input id="input" type="text" placeholder="Search"/><i class="fa fa-search"></i>
+            <input className={searchClass} type="text" placeholder="Search"/><i onClick={openSearch} className="fa fa-search searchIcon"></i>
           </div>
+          </form>
+        
         <div>
           {currentUser && currentUser.email && (
             <div className="headerUserInfo">
