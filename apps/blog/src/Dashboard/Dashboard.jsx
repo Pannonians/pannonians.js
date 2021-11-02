@@ -10,6 +10,7 @@ import { deletePost } from "../API/jsonplaceholder"
 
 function App() {
   const [posts, setPosts] = useState([]);
+  const [search, setSearch] = useState(false);
   // const [newPost, setNewPost] = useState("")
 
   const fetchPosts = async () => {
@@ -39,6 +40,18 @@ function App() {
   }, []);
 
  
+
+
+  const submitSearch = (e) =>{
+    e.preventDefault();
+    alert("Searched");
+  }
+
+  const openSearch = () =>{
+    setSearch (true);
+  }
+
+  const searchClass = search ?'searchInput active': 'searchInput';
 
   const history = useHistory();
   const { auth } = Firebase.getInstance();
@@ -70,9 +83,51 @@ function App() {
             </div>
             <h1>Blog incoming, jel sad dobro!</h1>
           </div>
+          
         )}
 
         {console.log(currentUser)}
+        </header>
+        
+    <div className="App App-header">
+      <header className="App-header">
+        <nav className="headerMenu">
+          <a href="#">About Us</a>
+          <a href="#">Posts</a>
+          <a href="#">Contact Us</a>
+          <div className="userInfo link">
+            <a href="#">
+              <i class="fa fa-facebook-square"></i>
+            </a>
+            <a href="#">
+              <i class="fa fa-twitter"></i>
+            </a>
+            <a href="#">
+              <i class="fa fa-instagram"></i>
+            </a>
+          </div>
+        </nav>
+        <form className="searchForm" onSubmit={submitSearch}>
+        <div className="userInfo link">
+            <input className={searchClass} type="text" placeholder="Search"/><i onClick={openSearch} className="fa fa-search searchIcon"></i>
+          </div>
+          </form>
+        
+        <div>
+          {currentUser && currentUser.email && (
+            <div className="headerUserInfo">
+              <div className="headerMenu a userInfo">
+                <img src={currentUser.photoURL} alt="profile" />
+                <p>{currentUser.displayName}</p>
+                <p>{currentUser.email}</p>
+                <button onClick={logout}>Sign out</button>
+              </div>
+              {/* <h1>Blog incoming, jel sad dobro!</h1> */}
+            </div>
+          )}
+
+          {console.log(currentUser)}
+        </div>
         <div>
           <pre>
             <code>{JSON.stringify(posts, "", 2)}</code>
@@ -80,6 +135,8 @@ function App() {
         </div>
       </header>
     </div>
+    </div>
+    
   );
 }
 
