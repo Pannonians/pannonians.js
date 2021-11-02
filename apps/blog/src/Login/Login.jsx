@@ -33,11 +33,11 @@ export default function Signup() {
 
       <div className="loginContainer">
         <div className="Logo">
-          <img src={Skoljka_color} alt="Logo Skoljka"/>
+          <img src={Skoljka_color} alt ="" />
         </div>
 
 
-    <div clasName = "mainContainer">
+    
 
       <button onClick={(event) => signup(event, GoogleAuthProvider)}>
         Login with Google
@@ -45,6 +45,7 @@ export default function Signup() {
       <button onClick={(event) => signup(event, GithubAuthProvider)}>
         Login with Github
       </button>
+    </div>
     </div>
   );
 

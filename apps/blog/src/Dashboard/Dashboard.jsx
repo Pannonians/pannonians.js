@@ -21,6 +21,7 @@ function App() {
  
   const destroyPost = async (id) => {
     const clean = await deletePost();
+    console.log("clean", clean);
     
   };
 
