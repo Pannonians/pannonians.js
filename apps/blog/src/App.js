@@ -10,8 +10,8 @@ import authStore from "./store/authStore";
 import { useContext, useEffect, useState } from "react";
 import Firebase from "./firebase";
 
-import Login from "./Login/Login";
-import Dashboard from "./Dashboard/Dashboard";
+import Login from "./Login/Login.js";
+import Dashboard from "./Dashboard/Dashboard.js";
 import { useHistory } from "react-router-dom";
 
 const { auth } = Firebase.getInstance();
