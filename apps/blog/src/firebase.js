@@ -18,10 +18,8 @@ const firebaseConfig = {
   measurementId: "G-8E7QNMP4TR",
 };
 
-
 // This is a singleton.
 // https://en.wikipedia.org/wiki/Singleton_pattern
-
 const Firebase = (function () {
   let instance;
 
