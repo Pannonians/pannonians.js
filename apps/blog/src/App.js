@@ -10,7 +10,7 @@ import authStore from "./store/authStore";
 import { useContext, useEffect, useState } from "react";
 import Firebase from "./firebase";
 
-import Login from "./Login/Login.js";
+import Login from "./Login/Login.jsx";
 import Dashboard from "./Dashboard/Dashboard.jsx";
 import { useHistory } from "react-router-dom";
 

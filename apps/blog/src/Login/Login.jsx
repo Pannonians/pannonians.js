@@ -32,7 +32,7 @@ export default function Signup() {
       
       <div className="loginContainer">
         <div className="Logo">
-          <img src={Skoljka_color} />
+          <img src={Skoljka_color} alt ="" />
         </div>
 
         <button
