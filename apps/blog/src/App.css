@@ -14,10 +14,7 @@
 }
 
 .App-header {
-  width: 80vw;
-  margin: 0 auto;
-
-  min-height: 100vh;
+ 
   display: flex;
   flex-direction: column;
   font-size: 12px;
@@ -131,4 +128,65 @@
   flex-direction: row;
   align-items: flex-start;
   margin-top: 10px;
+}
+
+.link {
+  font-size: 12px;
+  color: white;
+  margin: 15px 0;
+}
+
+.headerMenu a{
+  display: inline-block;
+  margin: 0 10px;
+  text-decoration: none;
+  letter-spacing: 1,2px;
+  color: white;
+
+}
+
+.userInfo{
+  float: right;
+  margin-top: 0;
+  padding: 0;
+}
+
+.searchForm{
+  display: flex;
+  margin: 0px 10px;
+ 
+}
+
+.searchInput{
+  border: 0;
+  width: 0;
+  transition: width 0.2s ease-in;
+}
+
+.searchIcon{
+cursor: pointer;
+}
+
+.searchInput.active{
+  width: 150px;
+}
+
+.searchInput:focus{
+  outline: none;
+}
+
+.headerMenu a:hover {
+  color: rgba(59, 59, 216, 0.801);
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+
+
+.headerUserInfo{
+  display: flex;
+  justify-content: center;
+  justify-items: center;
 }
