@@ -22,10 +22,10 @@ export const Sidebar = (props) => {
         setPosts(posts);
 
         console.log(posts)
-    }, posts);
+    }, [posts]);
 
     return (
-        <div className="sidebarContainer" {...props}>
+        <div className="sidebarContainer">
 
             <Card style={{ marginBottom: '20px', padding: '20px', boxSizing: 'border-box' }}>
                 <div className="cardHeader">
@@ -73,7 +73,7 @@ export const Sidebar = (props) => {
                         posts.map(post => {
                             return (
 
-                                <NavLink to={`/post/${post.id}`}>
+                                <NavLink key={post.id} to={`/post/${post.id}`}>
                                     <div className="recentPost">
                                         <h3>{post.title}</h3>
                                         <span>Nov 5, 2021</span>
