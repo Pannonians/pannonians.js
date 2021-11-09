@@ -1,5 +1,13 @@
 .App {
-  background-color: #282c34;
+  background-color: #2c313b;
+  margin-left: 100px;
+  margin-right: 100px;
+
+}
+
+body{
+  background: #edebe9;
+
 }
 
 .App-logo {
@@ -189,4 +197,11 @@ cursor: pointer;
   display: flex;
   justify-content: center;
   justify-items: center;
+}
+
+.posts{
+
+  margin-left: 100px;
+  margin-right: 100px;
+  
 }
