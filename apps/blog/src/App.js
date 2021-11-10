@@ -10,9 +10,12 @@ import authStore from "./store/authStore";
 import { useContext, useEffect, useState } from "react";
 import Firebase from "./firebase";
 
-import Login from "./Login/Login.jsx";
-import Dashboard from "./Dashboard/Dashboard.jsx";
+import Login from "./containers/Login/Login.jsx";
+import Dashboard from "./containers/Dashboard/Dashboard.jsx";
+import Hero from "./components/Hero/Hero";
+import Post from "./Post/Post.jsx";
 import { useHistory } from "react-router-dom";
+import Home from "./containers/Home/Home";
 
 const { auth } = Firebase.getInstance();
 
@@ -37,6 +40,7 @@ function App() {
   return (
     <authStore.Provider value={[isAuthenticated, setAuthentication]}>
       <Router>
+        <div>
         <Switch>
           <Route exact path="/">
             <Login />
@@ -44,13 +48,23 @@ function App() {
           <Route path="/login">
             <Login />
           </Route>
-          <Route path="/dashboard">
-            <Dashboard />
+          <Route path="/dashboard" component={Dashboard}>
+            {/* <Dashboard /> */}
           </Route>
+          <Route path="/post/:postId" component={Post}>
+            {/* <Post /> */}
+            </Route>
+            <Route path="/hero" component={Hero}>
+              {/* <Hero /> */}
+              </Route>
+              <Route path="/">
+              <Home />
+              </Route>
           <Route path="*">
             <Redirect to="/" />
           </Route>
         </Switch>
+        </div>
       </Router>
     </authStore.Provider>
   );
