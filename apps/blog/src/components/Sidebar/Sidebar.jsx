@@ -29,7 +29,7 @@ export const Sidebar = (props) => {
 
             <Card style={{ marginBottom: '20px', padding: '20px', boxSizing: 'border-box' }}>
                 <div className="cardHeader">
-                    <span>About us</span>
+                    <span style={{textAlign: 'center'}}>About us</span>
                 </div>
 
                 <div className="profileImageContainer">
