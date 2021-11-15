@@ -3,9 +3,10 @@ import Hero from '../../components/Hero/Hero';
 import Navbar from '../../components/Navbar/Navbar';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Card from '../../UI/Card/Card';
+import { AllPosts } from './AllPosts/AllPosts';
+
 import "./style.css"
-import postImage1 from "../../postImage1.jpg";
-import picture4 from "../../pictures/picture4.jpg"
+
 /**
 * @author
 * @function Home
@@ -52,26 +53,7 @@ const Home = (props) => {
       </Card>
 
       <section className="HomeContainer">
-        <div style={{width: '70%'}}>
-        <Card style={{ marginBottom: '20px' }}>
-          <div className="postImageWrapper">
-          <img src={picture4} alt=""/>
-          </div>
-
-          <div style={{textAlign: 'center'}}>
-            <h2>Sunt aut facere repellat provident occaecati excepturi optio reprehenderit</h2>
-            <span>Quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas
-               totam\nnostrum rerum est autem sunt rem eveniet architecto</span><br></br>
-               <button>Read More</button>
-          </div>
-          
-        </Card>
-
-        <Card style={{ marginBottom: '20px' }}>
-          Post 2
-        </Card>
-        </div>
-
+        <AllPosts style={{width: '70%'}}/>
         <Sidebar />
       </section>
     </div>
