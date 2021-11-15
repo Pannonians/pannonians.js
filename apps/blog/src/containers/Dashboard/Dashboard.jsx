@@ -110,11 +110,11 @@ function App() {
 
           {console.log(currentUser)}
         </div>
-        <div>
+        {/* <div>
           <pre>
             <code>{JSON.stringify(posts, "", 2)}</code>
           </pre>
-        </div>
+        </div> */}
       </header>
 
     <div>
