@@ -28,7 +28,7 @@ const Home = (props) => {
 
         <div className="galleryPost" style={galleryStyle}>
           <section style={{ width: '70%' }}>
-            <div>
+            <div className="postImageWrapper"> 
               <img src="https://pannonians.com/wp-content/uploads/2021/08/Slika-3.jpg" alt="" />
             </div>
           </section>
