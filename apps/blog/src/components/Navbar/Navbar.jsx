@@ -32,7 +32,7 @@ const Navbar = (props) => {
                     <NavLink to="/home">Home</NavLink>
                     <NavLink to="/about-us">About Us</NavLink>
                     <NavLink to="/post">Posts</NavLink>
-                    <NavLink to="/contact-us">Contact Us</NavLink>
+                    <a href="https://pannonians.com/#contact">Contact Us</a>
 
                 </li>
             </ul>
