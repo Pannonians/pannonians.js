@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import blogPost from "../../posts.json"
 import { NavLink } from 'react-router-dom';
 import { Link as RouterLink, useNavigate, useParams } from 'react-router-dom';
+import { postCreate } from '../../API/jsonplaceholder';
 
 /**
 * @author
@@ -13,6 +14,7 @@ import { Link as RouterLink, useNavigate, useParams } from 'react-router-dom';
 
 export const Sidebar = (props) => {
 
+  
 
     const [posts, setPosts] = useState([]);
 
@@ -57,7 +59,7 @@ export const Sidebar = (props) => {
 
             <Card style={{ marginBottom: '20px', padding: '20px', boxSizing: 'border-box' }}>
                 <div className="cardHeader">
-                    <span>Social network</span>
+                    <NavLink to="/createPage">CREATE NEW POST</NavLink>
 
                 </div>
             </Card>
