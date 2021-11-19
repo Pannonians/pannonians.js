@@ -26,7 +26,7 @@ const PostForm = (props) => {
         // const CollDatabase = instance.collectionDb;
         // console.log(CollDatabase)
         const database = instance.db;
-        const docRef = await addDoc(collection(database,"posts"), {
+        const docRef = await addDoc(collection(database, "posts"), {
             title: title,
             post: post
         })
@@ -35,42 +35,42 @@ const PostForm = (props) => {
         setPost("");
         alert("Post is submitted successfuly")
         console.log(docRef)
-        
-
-        
-      }
 
 
 
-
-  return(
-
-    
-      <div className="formContainer">
-          <Hero />
-    <form className="form" onSubmit={handleSubmit}>
-     
-        <h1> Create Post</h1>
-
-        <label >Title</label>
-        <input placeholder="Title" 
-        value = {title}
-        onChange = {(e) => setTitle(e.target.value) }
-        
-        />
-
-        <label>Post</label>
-        <textarea placeholder="Post"
-        value = {post}
-        onChange = {(e) => setPost(e.target.value)}
-        
-        ></textarea>
+    }
 
 
-    <button type="submit">Submit</button>
 
-    </form>
-    </div>
-   )
-  }
+
+    return (
+
+
+        <div className="formContainer">
+
+            <form className="form" onSubmit={handleSubmit}>
+
+                <h1> Create Post</h1>
+
+                <label >Title</label>
+                <input placeholder="Title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+
+                />
+
+                <label>Post</label>
+                <textarea placeholder="Post"
+                    value={post}
+                    onChange={(e) => setPost(e.target.value)}
+
+                ></textarea>
+
+
+                <button type="submit">Submit</button>
+
+            </form>
+        </div>
+    )
+}
 export default PostForm;

@@ -17,6 +17,7 @@ import Post from "./Post/Post.jsx";
 import { useHistory } from "react-router-dom";
 import Home from "./containers/Home/Home";
 import { CreatePage } from "./containers/Home/Sections/CreatePage";
+import PostForm from "./components/PostForm/PostForm.jsx"
 
 const { auth } = Firebase.getInstance();
 
@@ -58,9 +59,8 @@ function App() {
             <Route path="/hero" component={Hero}>
               {/* <Hero /> */}
               </Route>
-              <Route path="/createPage">
-              <CreatePage />
-              </Route>
+              <Route path="/postForm" component={PostForm}>
+               </Route>
               <Route path="/">
               <Home />
               </Route>
