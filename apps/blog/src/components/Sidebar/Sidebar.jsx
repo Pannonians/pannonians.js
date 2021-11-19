@@ -59,7 +59,7 @@ export const Sidebar = (props) => {
 
             <Card style={{ marginBottom: '20px', padding: '20px', boxSizing: 'border-box' }}>
                 <div className="cardHeader">
-                    <NavLink to="/createPage">CREATE NEW POST</NavLink>
+                    <NavLink to="/postForm">CREATE NEW POST</NavLink>
 
                 </div>
             </Card>
