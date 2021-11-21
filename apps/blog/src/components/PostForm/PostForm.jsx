@@ -45,19 +45,16 @@ const PostForm = (props) => {
 
     return (
 
-
-        <div className="formContainer">
+        <><Hero /><div className="formContainer">
 
             <form className="form" onSubmit={handleSubmit}>
 
                 <h1> Create Post</h1>
 
-                <label >Title</label>
+                <label>Title</label>
                 <input placeholder="Title"
                     value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-
-                />
+                    onChange={(e) => setTitle(e.target.value)} />
 
                 <label>Post</label>
                 <textarea placeholder="Post"
@@ -67,10 +64,10 @@ const PostForm = (props) => {
                 ></textarea>
 
 
-                <button type="submit">Submit</button>
+                <button className ="medium-btn" type="submit" style={{"margin-left": '740px'}}>Submit</button>
 
             </form>
-        </div>
+        </div></>
     )
 }
 export default PostForm;
