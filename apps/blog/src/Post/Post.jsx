@@ -22,14 +22,17 @@ const Post = (props) => {
 // console.log(mapPost);
   
   return(
-    <section className="container margin">
+    <><Hero /><Card style={{"background-color" : 'rgb(188, 211, 204)'}}>
+      <section className="container margin">
 
-     
-      <BlogPost {...props} />
-      <Sidebar {...props}/>
-      
-   
-    </section>
+
+        <BlogPost {...props} />
+        <Sidebar {...props} />
+
+
+      </section>
+    </Card></>
+    
    );
   
     }
