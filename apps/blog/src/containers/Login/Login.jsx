@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { Redirect } from "react-router-dom";
-import authStore from "../store/authStore";
-import Firebase from "../firebase";
+import authStore from "../../store/authStore";
+import Firebase from "../../firebase";
 import { GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
-import Skoljka_color from "../Skoljka_color.png";
+import Skoljka_color from "../../Skoljka_color.png";
+
+
 
 const { auth, signInWithPopup } = Firebase.getInstance();
 
@@ -39,14 +41,14 @@ export default function Signup() {
           className="Google"
           onClick={(event) => signup(event, GoogleAuthProvider)}
         >
-          <i className="fa fa-google"></i>
+          <i className="fab fa-google"></i>
           Login with Google
         </button>
         <button
           className="Github"
           onClick={(event) => signup(event, GithubAuthProvider)}
         >
-          <i className="fa fa-github"></i>
+          <i className="fab fa-github"></i>
           Login with Github
         </button>
       </div>

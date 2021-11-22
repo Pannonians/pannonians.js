@@ -1,33 +1,30 @@
-import "../App.css";
+import "../../App.css";
 import { useContext, useEffect, useState } from "react";
 
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import Firebase from "../firebase";
-import authStore from "../store/authStore";
+import Firebase from "../../firebase";
+import authStore from "../../store/authStore";
+import picture1 from "../../picture1.jpg"
+import Hero from "../../components/Hero/Hero";
+import Post from "../../Post/Post";
+import Card from "../../UI/Card/Card";
+import posts from "../../posts.json"
+
+
 
 const BASE_URL = "https://jsonplaceholder.typicode.com";
 const POSTS_URL = `${BASE_URL}/posts`;
 
 function App() {
   const [posts, setPosts] = useState([]);
-  const [search, setSearch] = useState(false);
-  // const [newPost, setNewPost] = useState("")
-
-  const fetchPosts = async () => {
-    const data = await getPosts();
-    console.log("data", data);
-    const singlePost = await postShow(1);
-    console.log("singlePost", singlePost);
-    const newPost = await postCreate();
-    console.log("newPost", newPost);
-    const editPost = await postUpdate(1, {"title": "tijana"});
-    console.log("editPost", editPost);
+  // const [search, setSearch] = useState(false);
 
   const getPosts = async () => {
     const { data } = await axios.get(POSTS_URL);
-
+    
     setPosts(data);
+   
   };
  
   // const destroyPost = async (id) => {
@@ -37,32 +34,20 @@ function App() {
 
  
 
-  useEffect(() => {
-    getPosts();
-  }, []);
+  // useEffect(() => {
+  //   getPosts();
+  // }, []);
 
-  const submitSearch = (e) =>{
-    e.preventDefault();
-    alert("Searched");
-  }
+  // const submitSearch = (e) =>{
+  //   e.preventDefault();
+  //   alert("Searched");
+  // }
 
-  const openSearch = () =>{
-    setSearch (true);
-  }
+  // const openSearch = () =>{
+  //   setSearch (true);
+  // }
 
-  const searchClass = search ?'searchInput active': 'searchInput';
-
-
-  const submitSearch = (e) =>{
-    e.preventDefault();
-    alert("Searched");
-  }
-
-  const openSearch = () =>{
-    setSearch (true);
-  }
-
-  const searchClass = search ?'searchInput active': 'searchInput';
+  // const searchClass = search ?'searchInput active': 'searchInput';
 
   const history = useHistory();
   const { auth } = Firebase.getInstance();
@@ -80,14 +65,18 @@ function App() {
     history.push("/login");
   };
 
+
+
+  
   if (!isAuthenticated) return <div></div>;
   return (
+    
     <div className="App App-header">
       <header className="App-header">
         <nav className="headerMenu">
-          <a href="#">About Us</a>
+          {/* <a href="#">About Us</a>
           <a href="#">Posts</a>
-          <a href="#">Contact Us</a>
+          <a href="#">Contact Us</a> */}
           <div className="userInfo link">
             <a href="#">
               <i class="fa fa-facebook-square"></i>
@@ -127,11 +116,22 @@ function App() {
           </pre>
         </div>
       </header>
+
+    <div>
+      {/* <div className="posts">
+        <img src={picture1}/>
+      </div> */}
+    
+      <Hero />
+      <Post />
+      
+      </div>        
+
+
+
     </div>
     
-    
   );
-}
 }
 
 export default App;
