@@ -2,6 +2,7 @@ import React from 'react'
 import Logo from '../../components/Logo/Logo'
 import Card from '../../UI/Card/Card'
 import Navbar from '../Navbar/Navbar'
+import Firebase from '../../firebase'
 
 /**
 * @author
@@ -9,6 +10,8 @@ import Navbar from '../Navbar/Navbar'
 **/
 
 export const Hero = (props) => {
+
+  
   return(
     <div className="hero">
         <Card>

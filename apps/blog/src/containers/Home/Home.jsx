@@ -3,9 +3,10 @@ import Hero from '../../components/Hero/Hero';
 import Navbar from '../../components/Navbar/Navbar';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Card from '../../UI/Card/Card';
+import { AllPosts } from './AllPosts/AllPosts';
+
 import "./style.css"
-import postImage1 from "../../postImage1.jpg";
-import picture4 from "../../pictures/picture4.jpg"
+
 /**
 * @author
 * @function Home
@@ -28,7 +29,7 @@ const Home = (props) => {
 
         <div className="galleryPost" style={galleryStyle}>
           <section style={{ width: '70%' }}>
-            <div>
+            <div className="postImageWrapper"> 
               <img src="https://pannonians.com/wp-content/uploads/2021/08/Slika-3.jpg" alt="" />
             </div>
           </section>
@@ -52,19 +53,7 @@ const Home = (props) => {
       </Card>
 
       <section className="HomeContainer">
-        <div style={{width: '70%'}}>
-        <Card style={{ marginBottom: '20px' }}>
-          <div className="postImageWrapper">
-          <img src={picture4} alt=""/>
-          </div>
-          
-        </Card>
-
-        <Card style={{ marginBottom: '20px' }}>
-          Post 2
-        </Card>
-        </div>
-
+        <AllPosts style={{width: '70%'}}/>
         <Sidebar />
       </section>
     </div>

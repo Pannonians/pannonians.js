@@ -30,9 +30,9 @@ const Navbar = (props) => {
             <ul className="navbarMenu">
                 <li>
                     <NavLink to="/home">Home</NavLink>
-                    <NavLink to="/about-us">About Us</NavLink>
-                    <NavLink to="/post">Posts</NavLink>
-                    <NavLink to="/contact-us">Contact Us</NavLink>
+                    {/* <NavLink to="/about-us">About Us</NavLink> */}
+                    <NavLink to="/postForm">Create Post</NavLink>
+                    <a href="https://pannonians.com/#contact">Contact Us</a>
 
                 </li>
             </ul>
