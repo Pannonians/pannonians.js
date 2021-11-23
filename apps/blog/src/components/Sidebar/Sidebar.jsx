@@ -6,6 +6,11 @@ import blogPost from "../../posts.json"
 import { NavLink } from 'react-router-dom';
 import { Link as RouterLink, useNavigate, useParams } from 'react-router-dom';
 import { postCreate } from '../../API/jsonplaceholder';
+import { getDoc, doc, getDocs, query } from '@firebase/firestore';
+import Firebase from '../../firebase';
+import { collection } from '@firebase/firestore';
+import { async } from '@firebase/app/node_modules/@firebase/util';
+import AllPostsFirestore from '../../containers/AllPostsFirestore/AllPostsFirestore';
 
 /**
 * @author
@@ -14,24 +19,74 @@ import { postCreate } from '../../API/jsonplaceholder';
 
 export const Sidebar = (props) => {
 
-  
+
 
     const [posts, setPosts] = useState([]);
 
-    useEffect(() => {
-        const posts = blogPost.data;
+    const handleAllPosts = async (e) => {
+        const instance = Firebase.getInstance();
+        const db = instance.db;
+        // const docRef = doc(db, "posts", "3p2qrmWsfF49ZB03rB8u");
+
+
+        const queryPosts = query(collection(db, "posts"));
+
+        const querySnapshot = await getDocs(queryPosts);
+        console.log(querySnapshot);
+        // querySnapshot.map((doc) => {
+        //     // doc.data() is never undefined for query doc snapshots
+        //     console.log(doc.data().title, " => ", doc.data());
+        //   });
+          
+          
+
+        // const snapDoc = await getDoc(docRef);
 
         setPosts(posts);
 
-        console.log(posts)
-    }, [posts]);
+
+
+    }
+
+
+    // useEffect(() => {
+
+    //     void async function fetchData() {
+    //         const instance = Firebase.getInstance();
+    //         const db = instance.db;
+    //         const docRef = doc(collection(db, "posts"))
+
+    //         const snapDoc = await getDoc(docRef);
+
+    //         setPosts(posts);
+
+    //         console.log(snapDoc)
+
+    //     }();
+
+    // const posts = blogPost.data;
+
+    //Firebase database
+    // const instance = Firebase.getInstance();
+    // const db = instance.db;
+    // const docRef = doc(collection(db, "posts"), {
+    //     title: posts.title,
+    //     post: posts.post
+    // })
+
+    // const snapDoc = await getDoc(docRef);
+
+    // setPosts(posts);
+
+    // console.log(posts)
+    // }, [posts]);
 
     return (
         <div className="sidebarContainer">
 
             <Card style={{ marginBottom: '20px', padding: '20px', boxSizing: 'border-box' }}>
                 <div className="cardHeader">
-                    <span style={{textAlign: 'center'}}>About us</span>
+                    <span style={{ textAlign: 'center' }}>About us</span>
                 </div>
 
                 <div className="profileImageContainer">
@@ -66,10 +121,11 @@ export const Sidebar = (props) => {
 
             <Card style={{ marginBottom: '20px', padding: '20px', boxSizing: 'border-box' }}>
                 <div className="cardHeader">
-                    <span>All posts</span>
+                    <NavLink to="/allPosts">ALL POSTS</NavLink>
+                    <button onClick={handleAllPosts}>All posts</button>
                 </div>
 
-                <div className="recentPosts">
+                <div className="allPosts">
 
                     {
                         posts.map(post => {

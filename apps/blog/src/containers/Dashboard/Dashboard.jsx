@@ -122,7 +122,6 @@ function App() {
         <img src={picture1}/>
       </div> */}
     
-      <Hero />
       <Post />
       
       </div>        

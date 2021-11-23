@@ -17,7 +17,8 @@ import Post from "./Post/Post.jsx";
 import { useHistory } from "react-router-dom";
 import Home from "./containers/Home/Home";
 import { CreatePage } from "./containers/Home/Sections/CreatePage";
-import PostForm from "./components/PostForm/PostForm.jsx"
+import PostForm from "./components/PostForm/PostForm.jsx";
+import AllPostsFirestore from "./containers/AllPostsFirestore/AllPostsFirestore.jsx";
 
 const { auth } = Firebase.getInstance();
 
@@ -60,6 +61,9 @@ function App() {
               {/* <Hero /> */}
               </Route>
               <Route path="/postForm" component={PostForm}>
+               </Route>
+               <Route path="/allPosts">
+                 <AllPostsFirestore />
                </Route>
               <Route path="/">
               <Home />
