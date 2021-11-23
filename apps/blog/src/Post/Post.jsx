@@ -3,6 +3,8 @@ import './style.css';
 import Card from '../UI/Card/Card';
 import BlogPost from '../components/BlogPost/BlogPost';
 import Sidebar from '../components/Sidebar/Sidebar';
+import Hero from '../components/Hero/Hero';
+import Navbar from '../components/Navbar/Navbar';
 
 
 
@@ -20,10 +22,17 @@ const Post = (props) => {
 // console.log(mapPost);
   
   return(
-    <section className="container margin">
-      <BlogPost {...props} />
-      <Sidebar {...props}/>
-    </section>
+    <><Hero /><Card style={{"background-color" : 'rgb(188, 211, 204)'}}>
+      <section className="container margin">
+
+
+        <BlogPost {...props} />
+        <Sidebar {...props} />
+
+
+      </section>
+    </Card></>
+    
    );
   
     }

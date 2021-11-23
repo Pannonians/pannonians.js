@@ -4,6 +4,7 @@ import "./style.css"
 import postImage1 from "../../postImage1.jpg";
 import blogPost from "../../posts.json"
 import { useEffect, useState } from 'react';
+import Hero from '../Hero/Hero';
 
 
 /**
@@ -32,7 +33,9 @@ const BlogPost = (props) => {
 
     return (
         <div className="blogPostContainer">
+             {/* <Hero style={{"margin-bottom": '50px'}}/> */}
             <Card>
+              
                 <div className="blogHeader">
                     <h2 className="postTitle">{post.title}</h2>
 
@@ -44,7 +47,7 @@ const BlogPost = (props) => {
 
                 <div className="postContent">
                     {/* <h3>Post title</h3>
-                    <p>Lorem ipsum</p> */}
+    <p>Lorem ipsum</p> */}
                     <span className="blogCategory">{post.body}</span>
                 </div>
             </Card>

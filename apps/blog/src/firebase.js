@@ -28,6 +28,8 @@ const Firebase = (function () {
     const analytics = getAnalytics(app);
     const auth = getAuth(app);
     const db = getFirestore(app);
+
+    
     return {
       app,
       analytics,
@@ -43,8 +45,9 @@ const Firebase = (function () {
         instance = createInstance();
       }
       return instance;
+    
     },
   };
 })();
-
+console.log(Firebase)
 export default Firebase;
