@@ -34,7 +34,7 @@ export const Sidebar = (props) => {
         const querySnapshot = await getDocs(queryPosts);
         console.log(querySnapshot);
         // querySnapshot.map((doc) => {
-        //     // doc.data() is never undefined for query doc snapshots
+            // doc.data() is never undefined for query doc snapshots
         //     console.log(doc.data().title, " => ", doc.data());
         //   });
           
@@ -49,37 +49,15 @@ export const Sidebar = (props) => {
     }
 
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     void async function fetchData() {
-    //         const instance = Firebase.getInstance();
-    //         const db = instance.db;
-    //         const docRef = doc(collection(db, "posts"))
+        handleAllPosts();
+    // const postssss = blogPost.data;
 
-    //         const snapDoc = await getDoc(docRef);
-
-    //         setPosts(posts);
-
-    //         console.log(snapDoc)
-
-    //     }();
-
-    // const posts = blogPost.data;
-
-    //Firebase database
-    // const instance = Firebase.getInstance();
-    // const db = instance.db;
-    // const docRef = doc(collection(db, "posts"), {
-    //     title: posts.title,
-    //     post: posts.post
-    // })
-
-    // const snapDoc = await getDoc(docRef);
-
-    // setPosts(posts);
+    // setPosts(postssss);
 
     // console.log(posts)
-    // }, [posts]);
+    }, [posts]);
 
     return (
         <div className="sidebarContainer">
