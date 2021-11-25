@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import Firebase from '../../firebase';
-import { query, collection, getDocs, doc } from '@firebase/firestore';
+import { query, collection, getDocs, doc, deleteDoc } from '@firebase/firestore';
 import { useEffect } from 'react';
 import { async } from '@firebase/app/node_modules/@firebase/util';
 import picture3 from "../../pictures/Slika-3.jpg"
@@ -13,22 +13,24 @@ import Hero from '../../components/Hero/Hero';
 * @function AllPostsFirestore
 **/
 
+const instance = Firebase.getInstance();
+const db = instance.db;
+const arrayPosts = [];
+
 const AllPostsFirestore = (props) => {
 
   const [posts, setPosts] = useState([]);
+  const [post, setPost] = useState()
+
 
   const handleAllPosts = async (e) => {
-    const instance = Firebase.getInstance();
-    const db = instance.db;
-    // const docRef = doc(db, "posts", "3p2qrmWsfF49ZB03rB8u");
-
 
     const queryPosts = query(collection(db, "posts"));
 
     const querySnapshot = await getDocs(queryPosts);
-    const arrayPosts = [];
+   
 
-
+   
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
       console.log(doc.id, " => ", doc.data().title);
@@ -39,10 +41,25 @@ const AllPostsFirestore = (props) => {
     })
 
     setPosts(arrayPosts);
-    // console.log(arrayPosts)
+    console.log(arrayPosts)
 
 
   }
+
+  let postId;
+
+
+
+  const deletePost = async (id) => {
+  const postDocument = doc(db, "posts", id)
+  await deleteDoc(postDocument);
+
+  }
+
+  
+  
+
+
   useEffect(() => {
 
     handleAllPosts();
@@ -58,10 +75,9 @@ const AllPostsFirestore = (props) => {
 
 
 
-
-  console.log(posts)
+  // console.log(posts)
   const displayPosts = posts.map(post => {
-
+    console.log(post.id)
     return (
       <Card style={{ marginBottom: '20px' }}>
 
@@ -71,28 +87,21 @@ const AllPostsFirestore = (props) => {
         <div>
           <h2 className="spanPosts">{post.title}</h2>
           <span>{post.post}</span><br></br>
-          <button>Delete Post</button>
-          <button>Edit post</button>
-
+          <button onClick={() => deletePost (post.id)} >Delete Post</button>
+          <button >Edit post</button>
+         
         </div>
       </Card>
 
     );
   })
-
+  
   return (
     <><Hero />
       <div style={{ textAlign: 'center' }}>
 
-
-        
-          <h1>Posts</h1>
-
-
-          {displayPosts}
-
-
-        
+        <h1>Posts</h1>
+        {displayPosts}
 
       </div>
     </>
