@@ -100,9 +100,9 @@ export const Sidebar = (props) => {
             <Card style={{ marginBottom: '20px', padding: '20px', boxSizing: 'border-box' }}>
                 <div className="cardHeader">
                     <NavLink to="/allPosts">ALL POSTS</NavLink>
-                    <button onClick={handleAllPosts}>All posts</button>
+                    {/* <button onClick={handleAllPosts}>All posts</button> */}
                 </div>
-
+                </Card>
                 <div className="allPosts">
 
                     {
@@ -127,7 +127,7 @@ export const Sidebar = (props) => {
 
 
                 </div>
-            </Card>
+            
         </div>
 
 

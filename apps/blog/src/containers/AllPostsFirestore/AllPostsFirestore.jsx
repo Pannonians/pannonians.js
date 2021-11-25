@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import Firebase from '../../firebase';
-import { query, collection, getDocs, doc, deleteDoc } from '@firebase/firestore';
+import { query, collection, getDocs, doc, deleteDoc, updateDoc } from '@firebase/firestore';
 import { useEffect } from 'react';
 import { async } from '@firebase/app/node_modules/@firebase/util';
 import picture3 from "../../pictures/Slika-3.jpg"
@@ -20,17 +20,13 @@ const arrayPosts = [];
 const AllPostsFirestore = (props) => {
 
   const [posts, setPosts] = useState([]);
-  const [post, setPost] = useState()
 
 
   const handleAllPosts = async (e) => {
 
     const queryPosts = query(collection(db, "posts"));
-
     const querySnapshot = await getDocs(queryPosts);
-   
-
-   
+      
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
       console.log(doc.id, " => ", doc.data().title);
@@ -46,31 +42,23 @@ const AllPostsFirestore = (props) => {
 
   }
 
-  let postId;
-
-
-
   const deletePost = async (id) => {
   const postDocument = doc(db, "posts", id)
   await deleteDoc(postDocument);
 
   }
 
-  
-  
+  const updatePost = async (id, title) => {
+    const postDoc = doc(db, "posts", id)
+    const postChange = {title: "something is added"}
 
+    await updateDoc(postDoc, postChange)
+  }
 
   useEffect(() => {
 
     handleAllPosts();
-
-
-    // querySnapshot.map((doc) => {
-    // doc.data() is never undefined for query doc snapshots
-    //   console.log(doc.id, " => ", doc.data());
-    // });
-
-    // const snapDoc = await getDoc(docRef); 
+   
   }, []);
 
 
@@ -87,8 +75,10 @@ const AllPostsFirestore = (props) => {
         <div>
           <h2 className="spanPosts">{post.title}</h2>
           <span>{post.post}</span><br></br>
-          <button onClick={() => deletePost (post.id)} >Delete Post</button>
-          <button >Edit post</button>
+          <button onClick={() => deletePost (post.id)
+          .then(() => {window.location.reload()})
+          } >Delete Post</button>
+          <button onClick={() => {updatePost (post.title, post.id)}}>Edit post</button>
          
         </div>
       </Card>
