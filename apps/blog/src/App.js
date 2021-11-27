@@ -16,7 +16,6 @@ import Hero from "./components/Hero/Hero";
 import Post from "./Post/Post.jsx";
 import { useHistory } from "react-router-dom";
 import Home from "./containers/Home/Home";
-import { CreatePage } from "./containers/Home/Sections/CreatePage";
 import PostForm from "./components/PostForm/PostForm.jsx";
 import AllPostsFirestore from "./containers/AllPostsFirestore/AllPostsFirestore.jsx";
 
@@ -65,6 +64,9 @@ function App() {
                <Route path="/allPosts">
                  <AllPostsFirestore />
                </Route>
+               {/* <Route path="/post/:postId">
+                 <EditPost />
+                 </Route> */}
               <Route path="/">
               <Home />
               </Route>

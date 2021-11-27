@@ -4,7 +4,6 @@ import "./style.css"
 import postImage1 from "../../postImage1.jpg";
 import blogPost from "../../posts.json"
 import { useEffect, useState } from 'react';
-import Hero from '../Hero/Hero';
 
 
 /**
@@ -14,28 +13,27 @@ import Hero from '../Hero/Hero';
 
 const BlogPost = (props) => {
 
-     console.log(props)
+    console.log(props)
 
     const [post, setPost] = useState({});
     const [postId, setPostId] = useState("");
 
-     useEffect(() => {
+    useEffect(() => {
         const postId = props.match?.params.postId
-        const post = !postId ? blogPost.data[0] : blogPost.data.find(post =>  post.id == postId);
+        const post = !postId ? blogPost.data[0] : blogPost.data.find(post => post.id == postId);
 
-    
+
         setPost(post);
         setPostId(postId);
 
         console.log(post)
-     }, [post, props]);
+    }, [post, props]);
 
 
     return (
         <div className="blogPostContainer">
-             {/* <Hero style={{"margin-bottom": '50px'}}/> */}
             <Card>
-              
+
                 <div className="blogHeader">
                     <h2 className="postTitle">{post.title}</h2>
 
@@ -46,8 +44,6 @@ const BlogPost = (props) => {
                 </div>
 
                 <div className="postContent">
-                    {/* <h3>Post title</h3>
-    <p>Lorem ipsum</p> */}
                     <span className="blogCategory">{post.body}</span>
                 </div>
             </Card>
