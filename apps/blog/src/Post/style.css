@@ -1,0 +1,18 @@
+.container{
+    display: flex;
+    color: rgb(14, 5, 5);
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+
+
+.margin{
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+
+.marginSidebar{
+    /* margin-top: 100px; */
+}

@@ -1,0 +1,28 @@
+.home{
+    color: white;
+    margin-left: 100px;
+    margin-right: 100px;
+    
+}
+
+.galleryPost{
+    display: flex;
+    justify-content: space-between;
+ }
+
+ .sideImageWrapper div{
+     width: 100%;
+     height: 450px;
+ }
+
+ .sideImageWrapper img{
+     max-width: 100%;
+   
+     object-fit: cover;
+ }
+
+ .HomeContainer{
+     display: flex;
+     justify-content: space-between;
+     margin: 20px 0;
+ }

@@ -18,6 +18,8 @@ const firebaseConfig = {
   measurementId: "G-8E7QNMP4TR",
 };
 
+// This is a singleton.
+// https://en.wikipedia.org/wiki/Singleton_pattern
 const Firebase = (function () {
   let instance;
 
@@ -26,6 +28,8 @@ const Firebase = (function () {
     const analytics = getAnalytics(app);
     const auth = getAuth(app);
     const db = getFirestore(app);
+
+    
     return {
       app,
       analytics,
@@ -41,8 +45,9 @@ const Firebase = (function () {
         instance = createInstance();
       }
       return instance;
+    
     },
   };
 })();
-
+console.log(Firebase)
 export default Firebase;
