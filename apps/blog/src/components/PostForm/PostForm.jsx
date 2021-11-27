@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "./style.css"
 import Firebase from '../../firebase'
-import { doc, setDoc, addDoc, collection } from '@firebase/firestore'
+import { addDoc, collection } from '@firebase/firestore'
 import Hero from '../Hero/Hero'
 
 
@@ -20,11 +20,9 @@ const PostForm = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(e)
 
         const instance = Firebase.getInstance();
-        // console.log(instance)
-        // const CollDatabase = instance.collectionDb;
-        // console.log(CollDatabase)
         const database = instance.db;
         const docRef = await addDoc(collection(database, "posts"), {
             title: title,
@@ -33,7 +31,7 @@ const PostForm = (props) => {
 
         setTitle("");
         setPost("");
-        alert("Post is submitted successfuly")
+        alert("Post is submitted successfully")
         console.log(docRef)
 
 

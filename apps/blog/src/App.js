@@ -19,6 +19,7 @@ import Home from "./containers/Home/Home";
 import { CreatePage } from "./containers/Home/Sections/CreatePage";
 import PostForm from "./components/PostForm/PostForm.jsx";
 import AllPostsFirestore from "./containers/AllPostsFirestore/AllPostsFirestore.jsx";
+import EditPost from "./containers/EditPost/EditPost";
 
 const { auth } = Firebase.getInstance();
 
@@ -65,6 +66,9 @@ function App() {
                <Route path="/allPosts">
                  <AllPostsFirestore />
                </Route>
+               {/* <Route path="/post/:postId">
+                 <EditPost />
+                 </Route> */}
               <Route path="/">
               <Home />
               </Route>
