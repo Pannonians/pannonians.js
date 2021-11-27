@@ -31,7 +31,8 @@ const AllPostsFirestore = (props) => {
 
   const handleShow = (post) => {
     setPost(post)
-    setShow(true);}
+    setShow(true);
+  }
 
 
 
@@ -104,6 +105,7 @@ const AllPostsFirestore = (props) => {
   const displayPosts = posts.map(post => {
 
     return (
+
       <Card style={{ marginBottom: '20px' }}>
 
         <div className="postImageWrapper">
@@ -120,45 +122,41 @@ const AllPostsFirestore = (props) => {
 
           <button onClick={() => handleShow(post)}>Edit</button>
 
-          {/* <NavLink key={post.id} to={`/post/${post.id}`}>
-            <button onClick={() => handlePost (posts.id)}>Edit Post</button>
-            </NavLink> */}
-          {/* <button onClick={() => {updatePost (post.id, post.post, post.title)
-          .then(() => {window.location.reload()})
-          }}>Edit post</button> */}
+            {/* <NavLink key={post.id} to={`/post/${post.id}`}>
+             <button onClick={() => handlePost (posts.id)}>Edit Post</button>
+              </NavLink> */}
+            {/* <button onClick={() => {updatePost (post.id, post.post, post.title)
+            .then(() => {window.location.reload()})
+             }}>Edit post</button> */}
 
         </div>
-
-        
 
       </Card>
 
 
     );
-  } )
-console.log(displayPosts)
+  })
+  console.log(displayPosts)
 
 
   return (
-    <><Hero />
-    
-    <Modal show={show} >
-        
-        {/* const showPost = () => {
 
-        } */}
-          <EditPost postInfo={post} />
-        
+
+    <><Hero />
+
+      <Modal show={show} >
+
+        <EditPost postInfo={post} />
+
       </Modal>
 
       <div style={{ textAlign: 'center' }}>
-      
+
         <h1>Posts</h1>
-          {displayPosts}
+        {displayPosts}
 
       </div>
     </>
-
 
   )
 

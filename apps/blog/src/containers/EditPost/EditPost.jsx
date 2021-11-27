@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Hero from '../../components/Hero/Hero';
-import {doc, updateDoc, setDoc, addDoc, collection} from '@firebase/firestore';
+import { doc, updateDoc, setDoc, addDoc, collection } from '@firebase/firestore';
 import Firebase from '../../firebase';
 
 /**
@@ -12,50 +12,49 @@ import Firebase from '../../firebase';
 const instance = Firebase.getInstance();
 const db = instance.db;
 
-const EditPost = ({postInfo}) => {
+const EditPost = ({ postInfo }) => {
 
-const postId = postInfo.id
-const postPost = postInfo.post
-const postTitle = postInfo.title
+    const postId = postInfo.id
+    const postPost = postInfo.post
+    const postTitle = postInfo.title
 
-console.log(postInfo)
+    console.log(postInfo)
 
-const [title, setTitle] = useState(postInfo.title);
-const [post, setPost] = useState(postInfo.post);
-
-
-const updatePost = async (postId, postPost, postTitle) => {
-    const postDoc = doc(db, "posts", postId)
-    console.log(postDoc)
-    const postChange = { post: post, title: title}
-    console.log(postChange)
-
-    await updateDoc(postDoc, postChange);
-
-       
-  }
+    const [title, setTitle] = useState(postInfo.title);
+    const [post, setPost] = useState(postInfo.post);
 
 
+    const updatePost = async (postId, postPost, postTitle) => {
+        const postDoc = doc(db, "posts", postId)
+        console.log(postDoc)
+        const postChange = { post: post, title: title }
+        console.log(postChange)
 
-    return(
-    <><Hero /><div className="formContainer">
+        await updateDoc(postDoc, postChange);
+
+    }
+
+
+
+    return (
+        <><Hero /><div className="formContainer">
 
             <form className="form" onSubmit={updatePost(postId, postPost, postTitle)}>
 
                 <h1> Edit Post</h1>
 
                 <label>Title</label>
-                <input 
+                <input
                     type="text"
                     name="title"
                     placeholder="Title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                                                                              
-                     />
+
+                />
 
                 <label>Post</label>
-                <textarea 
+                <textarea
                     type="text"
                     name="post"
                     placeholder="Post"
@@ -65,14 +64,14 @@ const updatePost = async (postId, postPost, postTitle) => {
                 ></textarea>
 
 
-                <button className ="medium-btn" type="submit" style={{"margin-left": '740px'}}>Save</button>
+                <button className="medium-btn" type="submit" style={{ "margin-left": '740px' }}>Save</button>
 
             </form>
 
-            
+
         </div></>
-       
-   )
-   
-  }
- export default EditPost;
+
+    )
+
+}
+export default EditPost;
