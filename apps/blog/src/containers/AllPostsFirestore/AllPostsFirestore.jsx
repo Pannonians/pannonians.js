@@ -73,18 +73,7 @@ const AllPostsFirestore = (props) => {
     console.log(arrayForOnePost);
   };
 
-  const updatePost = async (id, title, post) => {
-    const postDoc = doc(db, "posts", id);
-    console.log(postDoc);
-    const postChange = { post: "da li sada radi" };
-    console.log(postChange);
-
-    await updateDoc(postDoc, postChange).catch(() =>
-      setDoc(postDoc, postChange)
-    );
-  };
-
-  const deletePost = async (id) => {
+    const deletePost = async (id) => {
     const postDocument = doc(db, "posts", id);
     await deleteDoc(postDocument);
   };
@@ -104,7 +93,7 @@ const AllPostsFirestore = (props) => {
           <h2 className="spanPosts">{post.title}</h2>
           <span>{post.post}</span>
           <br></br>
-          
+
           <button
             onClick={() =>
               deletePost(post.id).then(() => {
