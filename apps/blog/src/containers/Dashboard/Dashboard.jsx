@@ -10,6 +10,7 @@ import Hero from "../../components/Hero/Hero";
 import Post from "../../Post/Post";
 import Card from "../../UI/Card/Card";
 import posts from "../../posts.json"
+import { NavLink } from "react-router-dom";
 
 
 
@@ -88,7 +89,20 @@ function App() {
               <i class="fa fa-instagram"></i>
             </a>
           </div>
+          
+          <ul> 
+                <li className="listSTyle">
+                    <NavLink to="/home">Home</NavLink>
+                    <a href="https://pannonians.com/#contact">Contact Us</a>
+                    <NavLink to="/postForm">Create New Post</NavLink>
+                    <NavLink to="/allPosts">All Posts</NavLink>
+
+                </li>
+            </ul>
+
+         
         </nav>
+      
         {/* <form className="searchForm" onSubmit={submitSearch}>
         <div className="userInfo link">
             <input className={searchClass} type="text" placeholder="Search"/><i onClick={openSearch} className="fa fa-search searchIcon"></i>
@@ -116,7 +130,7 @@ function App() {
           </pre>
         </div> */}
       </header>
-
+  
     <div>
       {/* <div className="posts">
         <img src={picture1}/>

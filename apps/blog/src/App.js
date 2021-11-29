@@ -60,7 +60,7 @@ function App() {
               {/* <Hero /> */}
               </Route>
               <Route path="/postForm" component={PostForm}>
-               </Route>
+                </Route>
                <Route path="/allPosts">
                  <AllPostsFirestore />
                </Route>

@@ -9,7 +9,7 @@ import Card from '../../UI/Card/Card';
 import Hero from '../../components/Hero/Hero';
 import { NavLink } from 'react-router-dom';
 import EditPost from '../EditPost/EditPost';
-import { Modal, EditForm } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 
 /**
 * @author
