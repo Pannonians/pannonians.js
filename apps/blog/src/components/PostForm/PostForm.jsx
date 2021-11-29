@@ -3,6 +3,8 @@ import "./style.css"
 import Firebase from '../../firebase'
 import { addDoc, collection } from '@firebase/firestore'
 import Hero from '../Hero/Hero'
+import { useHistory } from "react-router-dom";
+
 
 
 
@@ -16,7 +18,7 @@ const PostForm = (props) => {
 
     const [title, setTitle] = useState("");
     const [post, setPost] = useState("");
-
+    const history = useHistory();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,16 +28,15 @@ const PostForm = (props) => {
         const database = instance.db;
         const docRef = await addDoc(collection(database, "posts"), {
             title: title,
-            post: post
-        })
-
+            post: post,
+        } )
+        
         setTitle("");
         setPost("");
         alert("Post is submitted successfully")
+        history.push("/allPosts")
+        
         console.log(docRef)
-
-
-
     }
 
 
@@ -45,7 +46,7 @@ const PostForm = (props) => {
 
         <><Hero /><div className="formContainer">
 
-            <form className="form" onSubmit={handleSubmit}>
+            <form className="form" onSubmit={handleSubmit} >
 
                 <h1> Create Post</h1>
 
@@ -63,6 +64,7 @@ const PostForm = (props) => {
 
 
                 <button className ="medium-btn" type="submit" style={{"margin-left": '740px'}}>Submit</button>
+            
 
             </form>
         </div></>

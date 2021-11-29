@@ -24,17 +24,10 @@ const arrayPosts = [];
 
 const Post = (props) => {
 
-    const [title, setTitle] = useState("");
-    const [post, setPost] = useState("");
+  const [title, setTitle] = useState("");
+  const [post, setPost] = useState("");
 
-    const updatePost = async (id, title, post) => {
-        const postDoc = doc(db, "posts", id)
-        console.log(postDoc)
-        const postChange = {post: "edit me"}
-        console.log(postChange)
-    
-        await updateDoc(postDoc, postChange).catch(() => setDoc(postDoc, postChange));
-      }
+
 
 
 
@@ -42,36 +35,8 @@ const Post = (props) => {
     <Card style={{ "background-color": 'rgb(188, 211, 204)' }}>
       <section className="container margin">
 
-        {/* <BlogPost {...props} />
-        <Sidebar {...props} /> */}
-
-        <div className="formContainer">
-        <AllPostsFirestore />
-
-          <form className="form" onSubmit={updatePost}>
-        
-            <h1> Edit Post</h1>
-
-            <label>Title</label>
-            <input placeholder="Title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)} />
-
-            <label>Post</label>
-            <textarea placeholder="Post"
-              value={post}
-              onChange={(e) => setPost(e.target.value)}
-
-            ></textarea>
-
-
-            <button className="medium-btn" type="submit" style={{ "margin-left": '740px' }}>Submit</button>
-
-          </form>
-        </div>
-
-
-        
+        <BlogPost {...props} />
+        <Sidebar {...props} />
 
       </section>
     </Card>
