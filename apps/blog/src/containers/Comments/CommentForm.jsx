@@ -7,7 +7,7 @@ const CommentForm = ({ postId }) => {
   const [text, setText] = useState("");
   console.log(postId);
   const handleSubmit = async (e) => {
-    e.preventDefault();``
+    e.preventDefault();
 
     const instance = Firebase.getInstance();
     const database = instance.db;
