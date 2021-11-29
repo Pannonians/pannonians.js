@@ -54,7 +54,7 @@ const AllPostsFirestore = (props) => {
       arrayPosts.push(document);
     });
     setPosts(arrayPosts);
-    console.log(arrayPosts);
+    // console.log(arrayPosts);
   };
 
   const handlePost = async (id) => {
