@@ -37,9 +37,6 @@ const PostForm = (props) => {
         history.push("/allPosts")
         
         console.log(docRef)
-
-
-
     }
 
 

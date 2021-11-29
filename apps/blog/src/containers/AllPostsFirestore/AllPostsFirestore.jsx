@@ -12,9 +12,9 @@ import EditPost from '../EditPost/EditPost';
 import { Modal } from 'react-bootstrap';
 
 /**
-* @author
-* @function AllPostsFirestore
-**/
+ * @author
+ * @function AllPostsFirestore
+ **/
 
 const instance = Firebase.getInstance();
 const db = instance.db;
@@ -22,7 +22,6 @@ const arrayPosts = [];
 const arrayForOnePost = [];
 
 const AllPostsFirestore = (props) => {
-
   const [posts, setPosts] = useState([]);
   const [post, setPost] = useState("");
   const [title, setTitle] = useState("");
@@ -42,9 +41,8 @@ const AllPostsFirestore = (props) => {
     const querySnapshot = await getDocs(queryPosts);
 
     querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
       console.log(doc.id, " => ", doc.data().title);
-      let document = doc.data()
+      let document = doc.data();
       document.id = doc.id;
       arrayPosts.push(document)
 
@@ -113,6 +111,18 @@ const AllPostsFirestore = (props) => {
         </div>
         <div>
           <h2 className="spanPosts">{post.title}</h2>
+          <span>{post.post}</span>
+          <br></br>
+          <button>Delete Post </button>
+          <button>Edit post</button>
+        <div>  
+          <CommentForm postId={post.id}/>
+          <div className="comment-right-part">
+          
+        
+          <AllCommentsFirestore postId={post.id}/> 
+          </div>
+        </div>
           <span>{post.post}</span><br></br>
 
           <button onClick={() => deletePost(post.id)
