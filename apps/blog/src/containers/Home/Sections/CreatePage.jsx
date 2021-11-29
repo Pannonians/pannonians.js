@@ -8,7 +8,7 @@ import jsonPostsFile from "../../../posts.json"
 import "../../Home/style.css";
 import Sidebar from '../../../components/Sidebar/Sidebar';
 import Hero from '../../../components/Hero/Hero';
-import { postCreate } from '../../../API';
+
 
 
 

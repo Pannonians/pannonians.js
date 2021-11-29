@@ -35,9 +35,6 @@ const PostForm = (props) => {
         setPost("");
         alert("Post is submitted successfuly")
         console.log(docRef)
-
-
-
     }
 
 
