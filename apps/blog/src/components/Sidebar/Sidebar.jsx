@@ -34,11 +34,11 @@ export const Sidebar = (props) => {
         const querySnapshot = await getDocs(queryPosts);
         console.log(querySnapshot);
         // querySnapshot.map((doc) => {
-            // doc.data() is never undefined for query doc snapshots
+        // doc.data() is never undefined for query doc snapshots
         //     console.log(doc.data().title, " => ", doc.data());
         //   });
-          
-          
+
+
 
         // const snapDoc = await getDoc(docRef);
 
@@ -52,11 +52,11 @@ export const Sidebar = (props) => {
     useEffect(() => {
 
         handleAllPosts();
-    // const postssss = blogPost.data;
+        // const postssss = blogPost.data;
 
-    // setPosts(postssss);
+        // setPosts(postssss);
 
-    // console.log(posts)
+        // console.log(posts)
     }, [posts]);
 
     return (
@@ -100,34 +100,34 @@ export const Sidebar = (props) => {
             <Card style={{ marginBottom: '20px', padding: '20px', boxSizing: 'border-box' }}>
                 <div className="cardHeader">
                     <NavLink to="/allPosts">ALL POSTS</NavLink>
-                    <button onClick={handleAllPosts}>All posts</button>
-                </div>
-
-                <div className="allPosts">
-
-                    {
-                        posts.map(post => {
-                            return (
-
-                                <NavLink key={post.id} to={`/post/${post.id}`}>
-                                    <div className="recentPost">
-                                        <h3>{post.title}</h3>
-                                        <span>Nov 5, 2021</span>
-
-                                    </div>
-                                </NavLink>
-
-
-                            );
-                        })
-                    }
-
-
-
-
-
+                    {/* <button onClick={handleAllPosts}>All posts</button> */}
                 </div>
             </Card>
+            <div className="allPosts">
+
+                {
+                    posts.map(post => {
+                        return (
+
+                            <NavLink key={post.id} to={`/post/${post.id}`}>
+                                <div className="recentPost">
+                                    <h3>{post.title}</h3>
+                                    <span>Nov 5, 2021</span>
+
+                                </div>
+                            </NavLink>
+
+
+                        );
+                    })
+                }
+
+
+
+
+
+            </div>
+
         </div>
 
 

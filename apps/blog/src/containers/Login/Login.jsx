@@ -29,12 +29,12 @@ export default function Signup() {
 
     <div className="mainContainer">
       <div className="Text"><h className="Title">Pannonians Blog</h>
-      <p className="subtitle">Learning React and JS</p></div>
-     
-      
+        <p className="subtitle">Learning React and JS</p></div>
+
+
       <div className="loginContainer">
         <div className="Logo">
-          <img src={Skoljka_color} alt ="" />
+          <img src={Skoljka_color} alt="" />
         </div>
 
         <button
