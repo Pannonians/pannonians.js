@@ -36,7 +36,7 @@ const PostForm = (props) => {
         alert("Post is submitted successfully")
         history.push("/allPosts")
         
-        console.log(docRef)
+        
 
 
 
