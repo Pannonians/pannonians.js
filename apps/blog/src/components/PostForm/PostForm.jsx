@@ -4,6 +4,8 @@ import Firebase from '../../firebase'
 import { addDoc, collection } from '@firebase/firestore'
 import Hero from '../Hero/Hero'
 import { useHistory } from "react-router-dom";
+import "react-quill/dist/quill.snow.css";
+import ReactQuill from "react-quill";
 
 
 
@@ -39,6 +41,20 @@ const PostForm = (props) => {
         console.log(docRef)
     }
 
+    const modules = {
+        toolbar: [
+          [{ font: [] }],
+          [{ header: [1, 2, 3, 4, 5, 6, false] }],
+          ["bold", "italic", "underline", "strike"],
+          [{ color: [] }, { background: [] }],
+          [{ script: "sub" }, { script: "super" }],
+          ["blockquote", "code-block"],
+          [{ list: "ordered" }, { list: "bullet" }],
+          [{ indent: "-1" }, { indent: "+1" }, { align: [] }],
+          ["link", "image", "video"],
+          ["clean"],
+        ],
+      };
 
 
 
@@ -54,13 +70,13 @@ const PostForm = (props) => {
                 <input placeholder="Title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)} />
-
-                <label>Post</label>
-                <textarea placeholder="Post"
-                    value={post}
-                    onChange={(e) => setPost(e.target.value)}
-
-                ></textarea>
+<ReactQuill 
+          modules={modules}
+          theme="snow"
+          onChange={setPost}
+          placeholder="Content goes here..."
+        />
+                
 
 
                 <button className ="medium-btn" type="submit" style={{"margin-left": '740px'}}>Submit</button>
@@ -71,3 +87,4 @@ const PostForm = (props) => {
     )
 }
 export default PostForm;
+

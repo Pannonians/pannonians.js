@@ -91,7 +91,7 @@ const AllPostsFirestore = (props) => {
         </div>
         <div>
           <h2 className="spanPosts">{post.title}</h2>
-          <span>{post.post}</span>
+          <span dangerouslySetInnerHTML={{ __html: post.post} } />
           <br></br>
 
           <button
