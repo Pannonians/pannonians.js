@@ -4,7 +4,9 @@ import Firebase from '../../firebase'
 import { addDoc, collection } from '@firebase/firestore'
 import Hero from '../Hero/Hero'
 import { useHistory } from "react-router-dom";
-
+import ReactQuill from 'react-quill'
+import QuillToolbar, {modules, formats} from "../QuillToolbar/QuillToolbar"
+import "react-quill/dist/quill.snow.css";
 
 
 
@@ -41,7 +43,6 @@ const PostForm = (props) => {
 
 
 
-
     return (
 
         <><Hero /><div className="formContainer">
@@ -55,12 +56,24 @@ const PostForm = (props) => {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)} />
 
-                <label>Post</label>
+
+            <QuillToolbar toolbarId={'t1'}/>
+            <ReactQuill
+              theme="snow"
+              value={post}
+              onChange={(e) => setPost(e)}
+              placeholder={"Write something awesome..."}
+              modules={modules('t1')}
+              formats={formats}
+            />
+
+
+                {/* <label>Post</label>
                 <textarea placeholder="Post"
                     value={post}
                     onChange={(e) => setPost(e.target.value)}
 
-                ></textarea>
+                ></textarea> */}
 
 
                 <button className ="medium-btn" type="submit" style={{"margin-left": '740px'}}>Submit</button>
