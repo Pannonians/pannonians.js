@@ -20,7 +20,7 @@ const CommentForm = ({ postId }) => {
       postId: postId
     })
     .then (() => {
-      window.location.assign("http://localhost:3000/allPosts")
+      window.location.assign("/allPosts")
     }) ;
 
     setText("");
