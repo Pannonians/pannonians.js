@@ -1,20 +1,28 @@
 import React, { useState } from "react";
 import Firebase from "../../firebase";
-import { addDoc, collection } from "@firebase/firestore";
+import { addDoc, collection, query, getDocs } from "@firebase/firestore";
+
+
+const instance = Firebase.getInstance();
 
 const CommentForm = ({ postId }) => {
   
   const [text, setText] = useState("");
   console.log(postId);
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const instance = Firebase.getInstance();
     const database = instance.db;
     const commRef = await addDoc(collection(database, "comments"), {
       text: text,
       postId: postId
-    });
+    })
+    .then (() => {
+      window.location.assign("http://localhost:3000/allPosts")
+    }) ;
+
     setText("");
     alert("Comment is submitted successfuly");
     console.log(commRef);
