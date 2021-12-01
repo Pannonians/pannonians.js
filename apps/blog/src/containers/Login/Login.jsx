@@ -24,7 +24,7 @@ export default function Signup() {
   }
 
   if (isAuthenticated === null) return null;
-  if (isAuthenticated === true) return <Redirect to="/dashboard" />;
+  if (isAuthenticated === true) return <Redirect to="/home" />;
   return (
 
     <div className="mainContainer">
@@ -41,14 +41,14 @@ export default function Signup() {
           className="Google"
           onClick={(event) => signup(event, GoogleAuthProvider)}
         >
-          <i className="fab fa-google"></i>
+          <i className="fa fa-google"></i>
           Login with Google
         </button>
         <button
           className="Github"
           onClick={(event) => signup(event, GithubAuthProvider)}
         >
-          <i className="fab fa-github"></i>
+          <i className="fa fa-github"></i>
           Login with Github
         </button>
       </div>
