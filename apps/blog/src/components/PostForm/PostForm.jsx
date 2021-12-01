@@ -57,7 +57,6 @@ const PostForm = (props) => {
       };
 
 
-
     return (
 
         <><Hero /><div className="formContainer">
