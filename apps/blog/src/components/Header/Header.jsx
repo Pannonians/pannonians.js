@@ -50,7 +50,7 @@ export default function Header() {
           <div className="profile">
             <button onClick={onClick} className="menu-trigger">
               <img
-                src="https://lh3.googleusercontent.com/a-/AOh14GgNHoYZqhvWb8ZRTXVnGKOyBr2b_hPhYJJNGyj1=s96-c"
+                src={currentUser.photoURL}
                 alt="profile"
               />
             </button>
