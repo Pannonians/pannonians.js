@@ -57,7 +57,6 @@ const PostForm = (props) => {
       };
 
 
-
     return (
 
         <><Hero /><div className="formContainer">
@@ -66,11 +65,11 @@ const PostForm = (props) => {
 
                 <h1> Create Post</h1>
 
-                <label>Title</label>
-                <input placeholder="Title"
+                <label style ={{width:'80%'}}>Title</label>
+                <input style={{width: '1500px'}} placeholder="Title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)} />
-<ReactQuill 
+<ReactQuill style={{fontFamily:"Montserrat", backgroundColor:"white"}}
           modules={modules}
           theme="snow"
           onChange={setPost}
@@ -79,7 +78,7 @@ const PostForm = (props) => {
                 
 
 
-                <button className ="medium-btn" type="submit" style={{"margin-left": '740px'}}>Submit</button>
+                <button className ="medium-btn" type="submit" style={{"margin-left": '750px', "margin-top": '50px'}}>Submit</button>
             
 
             </form>

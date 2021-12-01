@@ -64,8 +64,8 @@
   .formContainer{
     display: flex;
     flex-direction: column;
-    margin-left: 150px;
-    margin-right: 150px;
+    margin: auto;
+    width: 100%;
     
   }
 
