@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "./style.css"
 import Firebase from '../../firebase'
-import { addDoc, collection } from '@firebase/firestore'
+import { addDoc, collection, serverTimestamp } from '@firebase/firestore'
 import Hero from '../Hero/Hero'
 import { useHistory } from "react-router-dom";
 
@@ -29,16 +29,17 @@ const PostForm = (props) => {
         const docRef = await addDoc(collection(database, "posts"), {
             title: title,
             post: post,
-        } )
-        
+            createdAt: serverTimestamp()
+        })
+        console.log()
         setTitle("");
         setPost("");
         alert("Post is submitted successfully")
         history.push("/allPosts")
         
-        console.log(docRef)
+        
     }
-
+    
 
 
 
@@ -54,6 +55,7 @@ const PostForm = (props) => {
                 <input placeholder="Title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)} />
+               
 
                 <label>Post</label>
                 <textarea placeholder="Post"
