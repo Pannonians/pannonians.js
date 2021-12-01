@@ -97,11 +97,17 @@ const AllPostsFirestore = (props) => {
         </div>
         <div>
           <h2 className="spanPosts">{post.title}</h2>
-          <span>{post.post}</span>
+          
+          <span dangerouslySetInnerHTML={{ __html: post.post} } />
+          
           <br></br>
+
           <span><SimpleDateTime dateSeparator="." timeSeparator=":" dateFormat="DMY" showTime="0">{post.createdAt.seconds}</SimpleDateTime></span>
           <br></br>
        {console.log("post.createdAt", post.createdAt)}
+
+          
+
           <button
             onClick={() =>
               deletePost(post.id).then(() => {

@@ -40,6 +40,7 @@ function App() {
   }, []);
 
   return (
+    <div className="App">
     <authStore.Provider value={[isAuthenticated, setAuthentication]}>
       <Router>
         <div>
@@ -78,6 +79,7 @@ function App() {
         </div>
       </Router>
     </authStore.Provider>
+    </div>
   );
 }
 

@@ -91,10 +91,17 @@ export const Sidebar = (props) => {
             </Card>
 
             <Card style={{ marginBottom: '20px', padding: '20px', boxSizing: 'border-box' }}>
-                <div className="cardHeader">
-                    <NavLink to="/postForm">CREATE NEW POST</NavLink>
-
-                </div>
+            <div className="userInfo link">
+            <a href="#">
+              <i class="fa fa-facebook-square"></i>
+            </a>
+            <a href="#">
+              <i class="fa fa-twitter"></i>
+            </a>
+            <a href="#">
+              <i class="fa fa-instagram"></i>
+            </a>
+          </div>
             </Card>
 
             <Card style={{ marginBottom: '20px', padding: '20px', boxSizing: 'border-box' }}>

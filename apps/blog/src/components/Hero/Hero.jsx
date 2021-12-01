@@ -3,6 +3,7 @@ import Logo from '../../components/Logo/Logo'
 import Card from '../../UI/Card/Card'
 import Navbar from '../Navbar/Navbar'
 import Firebase from '../../firebase'
+import Header from '../Header/Header'
 
 /**
 * @author
@@ -16,9 +17,10 @@ export const Hero = (props) => {
     <div className="hero">
         <Card>
           <div style={{padding: '50px 0'}}>
-            <Logo />
+            <Header />
+            
           </div>
-          <Navbar />
+         
         </Card>
     </div>
    )
