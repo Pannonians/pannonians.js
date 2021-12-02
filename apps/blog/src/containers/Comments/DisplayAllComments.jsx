@@ -1,17 +1,18 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Firebase from "../../firebase";
-import { query, collection, getDocs, where } from "@firebase/firestore";
+import { query, collection, getDocs, where, orderBy } from "@firebase/firestore";
+import SimpleDateTime from "react-simple-timestamp-to-date";
 
 
-const AllCommentsFirestore = ({postId}) => {
+const AllCommentsFirestore = ({postId, createdAt}) => {
   const [comments, setComments] = useState([]);
   
   const handleAllComments = async (e) => {
     const instance = Firebase.getInstance();
     const db = instance.db;
 
-    const queryComments = query(collection(db, "comments"), where ("postId", "==", postId))
+    const queryComments = query(collection(db, "comments"), where ("postId", "==", postId), orderBy("createdAt", "desc"))
 
     const querySnapshot = await getDocs(queryComments);
     const arrayComments = [];
@@ -40,9 +41,15 @@ const AllCommentsFirestore = ({postId}) => {
         <div>
           <h2 className="spanPosts">{comment.text}</h2>
           <span>{comment.comment}</span>
+
           <br></br>
+
+          <span><SimpleDateTime dateSeparator="." timeSeparator=":" dateFormat="DMY" showTime="0">{comment.createdAt.seconds}</SimpleDateTime></span>
+
+          <br></br>
+          {console.log("comment.createdAt", comment.createdAt.seconds)}
         </div>
-    
+   
     );
   });
 
