@@ -57,9 +57,7 @@ function App() {
           <Route path="/post/:postId" component={Post}>
             {/* <Post /> */}
             </Route>
-            <Route path="/hero" component={Hero}>
-              {/* <Hero /> */}
-              </Route>
+            
               <Route path="/postForm" component={PostForm}>
                 </Route>
                <Route path="/allPosts">
