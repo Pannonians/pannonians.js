@@ -9,7 +9,6 @@ import { postCreate } from '../../API/jsonplaceholder';
 import { getDoc, doc, getDocs, query } from '@firebase/firestore';
 import Firebase from '../../firebase';
 import { collection } from '@firebase/firestore';
-import { async } from '@firebase/app/node_modules/@firebase/util';
 import AllPostsFirestore from '../../containers/AllPostsFirestore/AllPostsFirestore';
 
 /**
