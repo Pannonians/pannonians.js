@@ -14,6 +14,10 @@
     
 }
 
+.navbar ul a:hover {
+    color:rgb(4, 75, 182);
+}
+
 .navbar ul li{
     list-style: none;
     display: flex;
@@ -37,9 +41,9 @@
 
 .searchInput{
     width: 10px;
-    border-color: cyan;
+    /* border-color: cyan; */
     transition: width 0.2sec ease-in;
-    background-color: rgb(186, 189, 224);
+    /* background-color: rgb(186, 189, 224); */
 }
 
 .searchForm{

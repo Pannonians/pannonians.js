@@ -33,16 +33,16 @@ const CommentForm = ({ postId }) => {
     <div>
       <br />
 
-      <form style={{ display: "flex" }} onSubmit={handleSubmit}>
+      <form style={{ display: "flex", width:"60%", margin:"auto"  }} onSubmit={handleSubmit}>
         <input
-          style={{ width: "100%", borderRadius: "5px" }}
+          style={{ width: "100%", borderRadius: "5px", paddingLeft:"20px", borderWidth: "thin", fontFamily: "Montserrat"}}
           onChange={(e) => setText(e.target.value)}
           value={text}
           placeholder="write comment"
         />
 
         <br />
-        <button style={{ width: "20%", height: "50px" }}>Post comment</button>
+        <button style={{ width: "20%", height: "50px", fontFamily: "Montserrat" }}>Post comment</button>
       </form>
     </div>
   );

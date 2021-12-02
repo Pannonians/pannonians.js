@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Firebase from "../../firebase";
 import { query, collection, getDocs, where } from "@firebase/firestore";
+import "../Comments/style.css"
 
 
 const AllCommentsFirestore = ({postId}) => {
@@ -38,9 +39,11 @@ const AllCommentsFirestore = ({postId}) => {
      
         
         <div>
-          <h2 className="spanPosts">{comment.text}</h2>
+          <form className= "commentForm" >
+          <h className="spanPosts">{comment.text}</h>
           <span>{comment.comment}</span>
           <br></br>
+          </form>
         </div>
     
     );
@@ -48,7 +51,7 @@ const AllCommentsFirestore = ({postId}) => {
 
   return (
     <>
-      <div style={{ textAlign: "center"}}>
+      <div style={{ textAlign: "center", fontFamily: "Montserrat"}}>
         <h1>Comments</h1>
 
         {displayComments}

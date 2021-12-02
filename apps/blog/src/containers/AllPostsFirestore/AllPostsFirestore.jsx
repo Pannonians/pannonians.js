@@ -21,6 +21,8 @@ import EditPost from "../EditPost/EditPost";
 import { Modal } from "react-bootstrap";
 import CommentForm from "../Comments/CommentForm";
 import AllCommentsFirestore from "../Comments/DisplayAllComments";
+import "../AllPostsFirestore/style.css"
+import ReactQuill from "react-quill";
 
 /**
  * @author
@@ -135,7 +137,7 @@ const AllPostsFirestore = (props) => {
         <EditPost postInfo={post} />
       </Modal>
 
-      <div style={{ textAlign: "center" }}>
+      <div style={{ textAlign: "center", fontFamily: "Montserrat"}}>
         <h1>Posts</h1>
         {displayPosts}
       </div>
