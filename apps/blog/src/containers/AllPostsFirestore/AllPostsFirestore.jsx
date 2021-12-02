@@ -80,6 +80,8 @@ const AllPostsFirestore = (props) => {
     await deleteDoc(postDocument);
   };
 
+  
+
   useEffect(() => {
     handleAllPosts();
   }, []);
@@ -110,6 +112,7 @@ const AllPostsFirestore = (props) => {
           </button>
 
           <button onClick={() => handleShow(post)}>Edit</button>
+          
 
           {/* <NavLink key={post.id} to={`/post/${post.id}`}>
    <button onClick={() => handlePost (posts.id)}>Edit Post</button>
