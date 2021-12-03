@@ -89,7 +89,7 @@ const AllPostsFirestore = (props) => {
   console.log(posts);
   const displayPosts = posts.map((post) => {
     return (
-      <Card style={{ marginBottom: "20px" }}>
+      <Card style={{ marginBottom: "20px", width:"80%", margin:"auto" }}>
         <div className="postImageWrapper">
           <img src={picture3} alt="" />
         </div>

@@ -15,8 +15,8 @@ export const Hero = (props) => {
   
   return(
     <div className="hero">
-        <Card>
-          <div style={{paddingBottom:"50px", paddingTop: "20px"}}>
+        <Card style={{width:"80%", margin:"auto"}}>
+          <div style={{padding: '50px 0'}}>
             <Header />
             
           </div>
