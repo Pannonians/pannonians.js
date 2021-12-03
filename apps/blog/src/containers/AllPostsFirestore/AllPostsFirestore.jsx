@@ -11,9 +11,10 @@ import {
   setDoc,
   getDoc,
   orderBy,
+  writeBatch,
+  where
 } from "@firebase/firestore";
 import { useEffect } from "react";
-import { async } from "@firebase/app/node_modules/@firebase/util";
 import picture3 from "../../pictures/Slika-3.jpg";
 import Card from "../../UI/Card/Card";
 import Hero from "../../components/Hero/Hero";
@@ -110,9 +111,18 @@ const AllPostsFirestore = (props) => {
 
           <button
             onClick={() =>
-              deletePost(post.id).then(() => {
-                window.location.reload();
+              deletePost(post.id).then(async() => {
+                // window.location.reload();
+                const queryComments = query(collection(db, "comments"), where("postId", "==", post.id));
+                const querySnapshotComments = await getDocs(queryComments)
+                const batch = writeBatch(db);
+
+                querySnapshotComments.forEach((doc) => {
+                  batch.delete(doc.ref);
+                });
+                await batch.commit();
               })
+              
              
             }
            
