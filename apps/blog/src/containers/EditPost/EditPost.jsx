@@ -81,7 +81,7 @@ const EditPost = ({ postInfo }) => {
             name="post"
             placeholder="Post"
             value={post}
-            onChange={(e) => setPost(e.target.value)}
+            onChange={setPost}
           />
 
           <button
