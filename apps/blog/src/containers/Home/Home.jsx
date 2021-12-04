@@ -53,9 +53,13 @@ const Home = (props) => {
       </Card>
 
       <section className="HomeContainer">
-        <AllPosts style={{width: '70%'}}/>
+        
         <Sidebar />
       </section>
+      <div style={{marginTop: '-735px'}}>
+      <AllPosts style={{width: '70%'}}/>
+      </div>
+      
     </div>
 
   );

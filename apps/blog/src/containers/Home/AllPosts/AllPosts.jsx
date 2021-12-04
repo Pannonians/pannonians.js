@@ -6,6 +6,7 @@ import picture3 from "../../../pictures/Slika-3.jpg"
 import Firebase from '../../../firebase';
 import { query, collection, getDocs, orderBy, where } from 'firebase/firestore'
 import { useState, useEffect } from 'react';
+import SimpleDateTime from 'react-simple-timestamp-to-date';
 
 
 /**
@@ -61,49 +62,14 @@ return null
           <div style={{ textAlign: 'center' }}>
             <h2>{post.title}</h2>
 
-            <span>{post.post}</span><br></br>
-            <span>{post.createdAt.seconds}</span><br></br>
+            <span dangerouslySetInnerHTML={{ __html: post.post} } />
+            <span><SimpleDateTime dateSeparator="." timeSeparator=":" dateFormat="DMY" showTime="0">{post.createdAt.seconds}</SimpleDateTime></span><br></br>
  
             <button>Read More</button>
           </div>
-
-
         </Card>
 
-        <Card style={{ marginBottom: '20px' }}>
-          <div className="postImageWrapper">
-            <img src={picture3} alt="" />
-          </div>
-
-          <div style={{ textAlign: 'center' }}>
-            <h2>Sunt aut facere repellat provident occaecati excepturi optio reprehenderit</h2>
-
-            <span>Quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas
-              totam\nnostrum rerum est autem sunt rem eveniet architecto</span><br></br>
-
-            <button>Read More</button>
-          </div>
-
-
-        </Card>
-
-
-        <Card style={{ marginBottom: '20px' }}>
-          <div className="postImageWrapper">
-            <img src="https://images.unsplash.com/photo-1587955415524-bb264e518428?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80" alt="" />
-          </div>
-
-          <div style={{ textAlign: 'center' }}>
-            <h2>Sunt aut facere repellat provident occaecati excepturi optio reprehenderit</h2>
-
-            <span>Quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas
-              totam\nnostrum rerum est autem sunt rem eveniet architecto</span><br></br>
-
-            <button>Read More</button>
-          </div>
-
-
-        </Card>
+        
 
       </div>
     )
