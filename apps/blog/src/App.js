@@ -18,6 +18,7 @@ import { useHistory } from "react-router-dom";
 import Home from "./containers/Home/Home";
 import PostForm from "./components/PostForm/PostForm.jsx";
 import AllPostsFirestore from "./containers/AllPostsFirestore/AllPostsFirestore.jsx";
+import { AllPosts } from "./containers/Home/AllPosts/AllPosts";
 
 const { auth } = Firebase.getInstance();
 
@@ -51,7 +52,7 @@ function App() {
           <Route path="/login">
             <Login />
           </Route>
-          <Route path="/dashboard" component={Dashboard}>
+          <Route path="/home" component={Home}>
             {/* <Dashboard /> */}
           </Route>
           <Route path="/post/:postId" component={Post}>
@@ -69,7 +70,6 @@ function App() {
               <Route path="/">
               <Home />
               </Route>
-              
           <Route path="*">
             <Redirect to="/" />
           </Route>

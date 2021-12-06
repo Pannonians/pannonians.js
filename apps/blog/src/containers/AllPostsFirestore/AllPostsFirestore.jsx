@@ -7,8 +7,6 @@ import {
   getDocs,
   doc,
   deleteDoc,
-  updateDoc,
-  setDoc,
   getDoc,
   orderBy,
   writeBatch,
@@ -112,7 +110,7 @@ const AllPostsFirestore = (props) => {
           <button
             onClick={() =>
               deletePost(post.id).then(async() => {
-                // window.location.reload();
+                
                 const queryComments = query(collection(db, "comments"), where("postId", "==", post.id));
                 const querySnapshotComments = await getDocs(queryComments)
                 const batch = writeBatch(db);
@@ -121,6 +119,7 @@ const AllPostsFirestore = (props) => {
                   batch.delete(doc.ref);
                 });
                 await batch.commit();
+                window.location.reload();
               })
               
              
