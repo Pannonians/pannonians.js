@@ -7,6 +7,9 @@ import Firebase from '../../../firebase';
 import { query, collection, getDocs, orderBy, where } from 'firebase/firestore'
 import { useState, useEffect } from 'react';
 import SimpleDateTime from 'react-simple-timestamp-to-date';
+import { ReadMore } from '../../../components/ReadMore/ReadMore';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import refresh from 'react-infinite-scroll-component'
 
 
 /**
@@ -27,7 +30,7 @@ export const AllPosts = (props) => {
   const arrayPosts = [];
 
   const handleAllPosts = async (e) => {
-   
+
     const queryPosts = query(collection(db, "posts"), orderBy("createdAt", "desc"));
     const querySnapshot = await getDocs(queryPosts);
 
@@ -48,35 +51,58 @@ export const AllPosts = (props) => {
     handleAllPosts();
   }, []);
 
-if (posts == [] ) {
-return null
-}
-  return posts.map((post) => (
-  
-      <div style={props.style}>
-        <Card style={{ marginBottom: '20px' }}>
-          <div className="postImageWrapper">
-            <img src={pictures4} alt="" />
-          </div>
+  if (posts == []) {
+    return null
+  }
+  return (
+    <InfiniteScroll
+      dataLength={posts.length}
+      next={handleAllPosts}
+      hasMore={true}
+      loader={<h4>Loading...</h4>}
+      endMessage={
+        <p style={{ textAlign: 'center' }}>
+          <b>Yay! You have seen it all</b>
+        </p>
+      }
+    
+    >
+      {posts.map((post) => (
 
-          <div style={{ textAlign: 'center' }}>
-            <h2>{post.title}</h2>
 
-            <span dangerouslySetInnerHTML={{ __html: post.post} } />
-            <span><SimpleDateTime dateSeparator="." timeSeparator=":" dateFormat="DMY" showTime="0">{post.createdAt.seconds}</SimpleDateTime></span><br></br>
- 
-            <button>Read More</button>
-          </div>
-        </Card>
+        <div style={props.style}>
+          <Card style={{ marginBottom: '20px' }}>
+            <div className="postImageWrapper">
+              <img src={pictures4} alt="" />
+            </div>
 
-        
+            <div style={{ textAlign: 'center' }}>
 
-      </div>
-    )
+              <h2>{post.title}</h2>
 
-    // eslint-disable-next-line no-unreachable
-   
+              <ReadMore textPost={post.post}>
+                {/* <ReadMore> */}
+                <span dangerouslySetInnerHTML={{ __html: post.post }} />
+              </ReadMore>
+              <span><SimpleDateTime dateSeparator="." timeSeparator=":" dateFormat="DMY" showTime="0">{post.createdAt.seconds}</SimpleDateTime></span><br></br>
+
+            </div>
+          </Card>
+
+
+        </div>
+
+
+      )
+
+
+
+      )
+      }
+     
+    </InfiniteScroll>
   )
+
 
 
 
