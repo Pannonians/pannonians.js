@@ -1,8 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Firebase from "../../firebase";
+
+import { query, collection, getDocs, where } from "@firebase/firestore";
+import "../Comments/style.css"
+
 import { query, collection, getDocs, where, orderBy } from "@firebase/firestore";
 import SimpleDateTime from "react-simple-timestamp-to-date";
+
 
 
 const AllCommentsFirestore = ({postId, createdAt}) => {
@@ -39,7 +44,8 @@ const AllCommentsFirestore = ({postId, createdAt}) => {
      
         
         <div>
-          <h2 className="spanPosts">{comment.text}</h2>
+          <form className= "commentForm" >
+          <h className="spanPosts">{comment.text}</h>
           <span>{comment.comment}</span>
 
           <br></br>
@@ -47,7 +53,9 @@ const AllCommentsFirestore = ({postId, createdAt}) => {
           <span><SimpleDateTime dateSeparator="." timeSeparator=":" dateFormat="DMY" showTime="0">{comment.createdAt.seconds}</SimpleDateTime></span>
 
           <br></br>
-          {console.log("comment.createdAt", comment.createdAt.seconds)}
+
+          </form>
+
         </div>
    
     );
@@ -55,7 +63,7 @@ const AllCommentsFirestore = ({postId, createdAt}) => {
 
   return (
     <>
-      <div style={{ textAlign: "center"}}>
+      <div style={{ textAlign: "center", fontFamily: "Montserrat"}}>
         <h1>Comments</h1>
 
         {displayComments}
