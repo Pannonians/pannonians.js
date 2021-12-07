@@ -7,9 +7,11 @@ import {
   addDoc,
   collection,
 } from "@firebase/firestore";
+import { useHistory } from "react-router-dom";
 import Firebase from "../../firebase";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
+
 
 /**
  * @author
@@ -37,11 +39,21 @@ const EditPost = ({ postInfo }) => {
   const postId = postInfo.id;
   const postPost = postInfo.post;
   const postTitle = postInfo.title;
+  
+ 
+
+   
 
   console.log(postInfo);
 
   const [title, setTitle] = useState(postInfo.title);
   const [post, setPost] = useState(postInfo.post);
+  const history = useHistory();
+
+  const routeChange = () => {
+    let path = "/allPosts";
+    history.push(path);
+  };
 
   const updatePost = async (postId, postPost, postTitle) => {
     const postDoc = doc(db, "posts", postId);
@@ -49,16 +61,21 @@ const EditPost = ({ postInfo }) => {
     const postChange = { post: post, title: title };
     console.log(postChange);
 
+    
+
     await updateDoc(postDoc, postChange);
+
+   
+
+    
   };
 
   return (
     <>
-      <Hero />
       <div className="formContainer">
         <form
           className="form"
-          onSubmit={updatePost(postId, postPost, postTitle)}
+          
         >
           <h1> Edit Post</h1>
 
@@ -81,14 +98,32 @@ const EditPost = ({ postInfo }) => {
             placeholder="Post"
             value={post}
           />
-
-          <button
-            className="medium-btn"
-            type="submit"
-            style={{ "margin-left": "740px" }}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              paddingTop: "120px",
+            }}
           >
-            Save
-          </button>
+            <button
+              className="medium-btn"
+              type="submit"
+              onSubmit={updatePost(postId, postPost, postTitle)}
+              // style={{ "margin-top": '150px', width:"50%"}}
+            >
+              Save
+            </button>
+
+            <button
+              className="medium-btn"
+              type="submit"
+              // style={{marginLeft: '200px', width:"50%" }}
+              onClick={routeChange}
+            >
+              Cancel
+            </button>
+          </div>
         </form>
       </div>
     </>

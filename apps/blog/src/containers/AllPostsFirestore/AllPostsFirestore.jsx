@@ -134,9 +134,9 @@ const AllPostsFirestore = (props) => {
 
   return (
     <>
-      <Hero />
+      <Hero  />
 
-      <Modal show={show}>
+      <Modal show={show} >
         <EditPost postInfo={post} />
       </Modal>
 
