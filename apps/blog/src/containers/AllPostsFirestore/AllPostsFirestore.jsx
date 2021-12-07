@@ -16,7 +16,7 @@ import { useEffect } from "react";
 import picture3 from "../../pictures/Slika-3.jpg";
 import Card from "../../UI/Card/Card";
 import Hero from "../../components/Hero/Hero";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import EditPost from "../EditPost/EditPost";
 import { Modal } from "react-bootstrap";
 import CommentForm from "../Comments/CommentForm";
@@ -34,11 +34,13 @@ const db = instance.db;
 const arrayPosts = [];
 const arrayForOnePost = [];
 
+
 const AllPostsFirestore = (props) => {
   const [posts, setPosts] = useState([]);
   const [post, setPost] = useState("");
   const [title, setTitle] = useState("");
   const [show, setShow] = useState(false);
+  const history = useHistory();
 
   const handleShow = (post) => {
     setPost(post);
@@ -61,27 +63,13 @@ const AllPostsFirestore = (props) => {
     // console.log(arrayPosts);
   };
 
-  const handlePost = async (id) => {
-    const queryPost = doc(db, "posts", id);
-    console.log(queryPost);
-    const querySnapshot = await getDoc(queryPost);
-
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data().title);
-      let document = doc.data();
-      document.id = doc.id;
-
-      arrayForOnePost.push(document);
-    });
-    setPost(arrayForOnePost);
-    console.log(arrayForOnePost);
-  };
-
+  
     const deletePost = async (id) => {
-    const postDocument = doc(db, "posts", id);
+     const postDocument = doc(db, "posts", id);
     await deleteDoc(postDocument);
+  
   };
+
 
   useEffect(() => {
     handleAllPosts();
@@ -120,6 +108,7 @@ const AllPostsFirestore = (props) => {
                 });
                 await batch.commit();
                 window.location.reload();
+               
               })
               
              

@@ -8,7 +8,7 @@ import AllPosts from '../../containers/Home/AllPosts/AllPosts';
 **/
 
 export const ReadMore = ({textPost}) => {
-    var myComponentString = renderToString(AllPosts);
+    var postToString = renderToString(AllPosts);
     // const text = myComponentString;
     const [isReadMore, setIsReadMore] = useState(true)
     const toggleReadMore = () => {
@@ -17,7 +17,7 @@ export const ReadMore = ({textPost}) => {
 
     return (
         <p className="text">
-            {isReadMore ? myComponentString.slice(0, 100) : myComponentString}<br></br>
+            {isReadMore ? postToString.slice(0, 100) : postToString}<br></br>
             <button onClick={toggleReadMore} className="read-or-hide">Read More</button>
             {/* {isReadMore ? "...read more" : " show less"} */}
         </p>

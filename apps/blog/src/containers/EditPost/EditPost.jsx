@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Hero from '../../components/Hero/Hero';
 import { doc, updateDoc, setDoc, addDoc, collection } from '@firebase/firestore';
 import Firebase from '../../firebase';
+import { useHistory } from 'react-router-dom';
 
 /**
 * @author
@@ -17,11 +18,14 @@ const EditPost = ({ postInfo }) => {
     const postId = postInfo.id
     const postPost = postInfo.post
     const postTitle = postInfo.title
+    // const history = useHistory();
 
     console.log(postInfo)
 
     const [title, setTitle] = useState(postInfo.title);
     const [post, setPost] = useState(postInfo.post);
+ 
+
 
 
     const updatePost = async (postId, postPost, postTitle) => {
@@ -31,15 +35,15 @@ const EditPost = ({ postInfo }) => {
         console.log(postChange)
 
         await updateDoc(postDoc, postChange);
-
+        // history.push("/allPosts")
     }
-
-
+    
+    
 
     return (
         <><Hero /><div className="formContainer">
 
-            <form className="form" onSubmit={updatePost(postId, postPost, postTitle)}>
+            <form className="form" onSubmit={updatePost(postId, postPost, postTitle)} >
 
                 <h1> Edit Post</h1>
 
@@ -50,6 +54,7 @@ const EditPost = ({ postInfo }) => {
                     placeholder="Title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
+
 
                 />
 
@@ -67,11 +72,12 @@ const EditPost = ({ postInfo }) => {
                 <button className="medium-btn" type="submit" style={{ "margin-left": '740px' }}>Save</button>
 
             </form>
-
+           
 
         </div></>
 
     )
 
 }
+
 export default EditPost;

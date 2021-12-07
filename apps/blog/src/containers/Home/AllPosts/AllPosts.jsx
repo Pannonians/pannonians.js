@@ -24,7 +24,8 @@ import refresh from 'react-infinite-scroll-component'
 
 export const AllPosts = (props) => {
 
-  const [posts, setPosts] = useState([]);
+  var postsPerPage = 3;
+  const [posts, setPosts] = useState([...Array(postsPerPage).keys()]);
   const instance = Firebase.getInstance();
   const db = instance.db;
   const arrayPosts = [];
@@ -84,7 +85,7 @@ export const AllPosts = (props) => {
                 {/* <ReadMore> */}
                 <span dangerouslySetInnerHTML={{ __html: post.post }} />
               </ReadMore>
-              <span><SimpleDateTime dateSeparator="." timeSeparator=":" dateFormat="DMY" showTime="0">{post.createdAt.seconds}</SimpleDateTime></span><br></br>
+              <span><SimpleDateTime dateSeparator="." timeSeparator=":" dateFormat="DMY" showTime="0">{post.createdAt}</SimpleDateTime></span><br></br>
 
             </div>
           </Card>
