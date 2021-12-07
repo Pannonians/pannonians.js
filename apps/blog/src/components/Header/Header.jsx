@@ -58,9 +58,9 @@ export default function Header() {
               ref={dropdownRef}
               className={`menu ${isActive ? "active" : "inactive"}`}>
               <ul>
-                <li>{currentUser.displayName}</li>
-                <li>{currentUser.email}</li>
-                <button onClick={logout} style={{fontFamily:"Montserrat", marginLeft:"10px"}}>Sign out</button>
+                <li style={{ fontWeight: 'bold', textAlign: 'center', fontSize: '15px' }}>{currentUser.displayName}</li>
+                <li style={{ textAlign: 'center', fontSize: '13px' }}>{currentUser.email}</li>
+                <button onClick={logout} style={{ fontFamily: "Montserrat", marginLeft: "100px" }}>Sign out</button>
               </ul>
             </div>
           </div>
