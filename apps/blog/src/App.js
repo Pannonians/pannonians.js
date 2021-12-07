@@ -19,6 +19,8 @@ import Home from "./containers/Home/Home";
 import PostForm from "./components/PostForm/PostForm.jsx";
 import AllPostsFirestore from "./containers/AllPostsFirestore/AllPostsFirestore.jsx";
 
+require("dotenv").config();
+
 const { auth } = Firebase.getInstance();
 
 function App() {
@@ -41,42 +43,41 @@ function App() {
 
   return (
     <div className="App">
-    <authStore.Provider value={[isAuthenticated, setAuthentication]}>
-      <Router>
-        <div>
-        <Switch>
-          <Route exact path="/">
-            <Login />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/dashboard" component={Dashboard}>
-            {/* <Dashboard /> */}
-          </Route>
-          <Route path="/post/:postId" component={Post}>
-            {/* <Post /> */}
-            </Route>
-            
-              <Route path="/postForm" component={PostForm}>
-                </Route>
-               <Route path="/allPosts">
-                 <AllPostsFirestore />
-               </Route>
-               {/* <Route path="/post/:postId">
+      <authStore.Provider value={[isAuthenticated, setAuthentication]}>
+        <Router>
+          <div>
+            <Switch>
+              <Route exact path="/">
+                <Login />
+              </Route>
+              <Route path="/login">
+                <Login />
+              </Route>
+              <Route path="/dashboard" component={Dashboard}>
+                {/* <Dashboard /> */}
+              </Route>
+              <Route path="/post/:postId" component={Post}>
+                {/* <Post /> */}
+              </Route>
+
+              <Route path="/postForm" component={PostForm}></Route>
+              <Route path="/allPosts">
+                <AllPostsFirestore />
+              </Route>
+              {/* <Route path="/post/:postId">
                  <EditPost />
                  </Route> */}
               <Route path="/">
-              <Home />
+                <Home />
               </Route>
-              
-          <Route path="*">
-            <Redirect to="/" />
-          </Route>
-        </Switch>
-        </div>
-      </Router>
-    </authStore.Provider>
+
+              <Route path="*">
+                <Redirect to="/" />
+              </Route>
+            </Switch>
+          </div>
+        </Router>
+      </authStore.Provider>
     </div>
   );
 }
