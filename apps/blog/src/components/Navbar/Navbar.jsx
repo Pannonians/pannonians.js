@@ -41,7 +41,7 @@ const Navbar = (props) => {
             <div className="search">
                 <form onSubmit={submitSearch}>
                     <div className="userInfo link">
-                        <input className={searchClass} type="text" placeholder="Search" /><i onClick={openSearch} className="fa fa-search searchIcon"></i>
+                        <input className={searchClass} type="text" placeholder="   Search" /><i onClick={openSearch} className="fa fa-search searchIcon"></i>
                     </div>
                 </form>
             </div>
