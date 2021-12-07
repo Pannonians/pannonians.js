@@ -20,6 +20,8 @@ import PostForm from "./components/PostForm/PostForm.jsx";
 import AllPostsFirestore from "./containers/AllPostsFirestore/AllPostsFirestore.jsx";
 import { AllPosts } from "./containers/Home/AllPosts/AllPosts";
 
+require("dotenv").config();
+
 const { auth } = Firebase.getInstance();
 
 function App() {
@@ -42,6 +44,7 @@ function App() {
 
   return (
     <div className="App">
+
     <authStore.Provider value={[isAuthenticated, setAuthentication]}>
       <Router>
         <div>
@@ -65,11 +68,17 @@ function App() {
                  <AllPostsFirestore />
                </Route>
                {/* <Route path="/post/:postId">
+
                  <EditPost />
                  </Route> */}
               <Route path="/">
-              <Home />
+                <Home />
               </Route>
+
+              <Route path="*">
+                <Redirect to="/" />
+              </Route>
+
           <Route path="*">
             <Redirect to="/" />
           </Route>
@@ -77,6 +86,7 @@ function App() {
         </div>
       </Router>
     </authStore.Provider>
+
     </div>
   );
 }
