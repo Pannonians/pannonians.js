@@ -21,7 +21,12 @@ import EditPost from "../EditPost/EditPost";
 import { Modal } from "react-bootstrap";
 import CommentForm from "../Comments/CommentForm";
 import AllCommentsFirestore from "../Comments/DisplayAllComments";
+
+import "../AllPostsFirestore/style.css"
+import ReactQuill from "react-quill";
+
 import SimpleDateTime from "react-simple-timestamp-to-date";
+
 
 
 /**
@@ -71,6 +76,7 @@ const AllPostsFirestore = (props) => {
   };
 
 
+
   useEffect(() => {
     handleAllPosts();
   }, []);
@@ -78,7 +84,7 @@ const AllPostsFirestore = (props) => {
   console.log(posts);
   const displayPosts = posts.map((post) => {
     return (
-      <Card style={{ marginBottom: "20px" }}>
+      <Card style={{ marginBottom: "20px", width:"80%", margin:"auto" }}>
         <div className="postImageWrapper">
           <img src={picture3} alt="" />
         </div>
@@ -119,6 +125,7 @@ const AllPostsFirestore = (props) => {
           </button>
 
           <button onClick={() => handleShow(post)}>Edit</button>
+          
 
           {/* <NavLink key={post.id} to={`/post/${post.id}`}>
    <button onClick={() => handlePost (posts.id)}>Edit Post</button>
@@ -140,13 +147,13 @@ const AllPostsFirestore = (props) => {
 
   return (
     <>
-      <Hero />
+      <Hero  />
 
-      <Modal show={show}>
+      <Modal show={show} >
         <EditPost postInfo={post} />
       </Modal>
 
-      <div style={{ textAlign: "center" }}>
+      <div style={{ textAlign: "center", fontFamily: "Montserrat"}}>
         <h1>Posts</h1>
         {displayPosts}
       </div>
