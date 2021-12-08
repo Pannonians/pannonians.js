@@ -24,8 +24,7 @@ import refresh from 'react-infinite-scroll-component'
 
 export const AllPosts = (props) => {
 
-  var postsPerPage = 3;
-  const [posts, setPosts] = useState([...Array(postsPerPage).keys()]);
+  const [posts, setPosts] = useState([]);
   const instance = Firebase.getInstance();
   const db = instance.db;
   const arrayPosts = [];
@@ -68,7 +67,7 @@ export const AllPosts = (props) => {
       }
     
     >
-      {posts.map((post) => (
+      {posts.slice(0,3).map((post) => (
 
 
         <div style={props.style}>
