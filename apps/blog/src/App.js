@@ -45,6 +45,33 @@ function App() {
   return (
     <div className="App">
 
+      <authStore.Provider value={[isAuthenticated, setAuthentication]}>
+        <Router>
+          <div>
+            <Switch>
+              <Route exact path="/">
+                <Login />
+              </Route>
+              <Route path="/login">
+                <Login />
+              </Route>
+              <Route path="/home" component={Home}>
+                {/* <Dashboard /> */}
+              </Route>
+              <Route path="/allPosts">
+                <AllPostsFirestore />
+              </Route>
+              <Route path="/post/:postId" component={Post}>
+                {/* <Post /> */}
+              </Route>
+              <Route path="/hero" component={Hero}>
+                {/* <Hero /> */}
+              </Route>
+              <Route path="/postForm" component={PostForm}>
+              </Route>
+
+
+
     <authStore.Provider value={[isAuthenticated, setAuthentication]}>
       <Router>
         <div>
@@ -69,10 +96,21 @@ function App() {
                </Route>
                {/* <Route path="/post/:postId">
 
+
                  <EditPost />
                  </Route> */}
               <Route path="/">
                 <Home />
+
+              </Route>
+              <Route path="*">
+                <Redirect to="/" />
+              </Route>
+            </Switch>
+          </div>
+        </Router>
+      </authStore.Provider>
+
               </Route>
 
               <Route path="*">
@@ -86,6 +124,7 @@ function App() {
         </div>
       </Router>
     </authStore.Provider>
+
 
     </div>
   );
