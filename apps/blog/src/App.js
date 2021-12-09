@@ -48,7 +48,7 @@ function App() {
       <authStore.Provider value={[isAuthenticated, setAuthentication]}>
         <Router>
           <div>
-            <Switch>
+            {/* <Switch> */}
               <Route exact path="/">
                 <Login />
               </Route>
@@ -72,61 +72,36 @@ function App() {
 
 
 
-    <authStore.Provider value={[isAuthenticated, setAuthentication]}>
-      <Router>
-        <div>
-        <Switch>
-          <Route exact path="/">
-            <Login />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/home" component={Home}>
-            {/* <Dashboard /> */}
-          </Route>
-          <Route path="/post/:postId" component={Post}>
-            {/* <Post /> */}
-            </Route>
-            
-              <Route path="/postForm" component={PostForm}>
-                </Route>
-               <Route path="/allPosts">
-                 <AllPostsFirestore />
-               </Route>
-               {/* <Route path="/post/:postId">
+              
+                      {/* <Route path="/post/:postId">
 
 
                  <EditPost />
                  </Route> */}
-              <Route path="/">
-                <Home />
+                      <Route path="/">
+                        <Home />
 
-              </Route>
-              <Route path="*">
-                <Redirect to="/" />
-              </Route>
-            </Switch>
-          </div>
-        </Router>
-      </authStore.Provider>
+                      </Route>
+                      <Route path="*">
+                        <Redirect to="/" />
+                      </Route>
+                    {/* </Switch> */}
+                  </div>
+                </Router>
+              </authStore.Provider>
 
-              </Route>
+            {/* </Route> */}
 
-              <Route path="*">
-                <Redirect to="/" />
-              </Route>
-
-          <Route path="*">
-            <Redirect to="/" />
-          </Route>
-        </Switch>
+            {/* <Route path="*">
+              <Redirect to="/" />
+            </Route> */}
+          {/* </Switch> */}
         </div>
-      </Router>
-    </authStore.Provider>
+    //   </Router>
+    // </authStore.Provider>
 
 
-    </div>
+    // </div >
   );
 }
 

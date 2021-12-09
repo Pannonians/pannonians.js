@@ -2,10 +2,9 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Firebase from "../../firebase";
 
-import { query, collection, getDocs, where } from "@firebase/firestore";
+import { query, collection, getDocs, where, orderBy } from "@firebase/firestore";
 import "../Comments/style.css"
 
-import { query, collection, getDocs, where, orderBy } from "@firebase/firestore";
 import SimpleDateTime from "react-simple-timestamp-to-date";
 
 
