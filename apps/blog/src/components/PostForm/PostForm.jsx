@@ -6,6 +6,8 @@ import Hero from '../Hero/Hero'
 import { useHistory } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
+import { logEvent } from '@firebase/analytics'
+import analytics from '../../firebase.js'
 
 
 
@@ -33,6 +35,11 @@ const PostForm = (props) => {
             post: post,
             createdAt: serverTimestamp()
         })
+        logEvent(analytics, 'create_post', {
+            title: title,
+            // post: post,
+           
+          })
         console.log()
         setTitle("");
         setPost("");
