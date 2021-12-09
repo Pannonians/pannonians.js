@@ -9,7 +9,6 @@ import { postCreate } from '../../API/jsonplaceholder';
 import { getDoc, doc, getDocs, query } from '@firebase/firestore';
 import Firebase from '../../firebase';
 import { collection } from '@firebase/firestore';
-import { async } from '@firebase/app/node_modules/@firebase/util';
 import AllPostsFirestore from '../../containers/AllPostsFirestore/AllPostsFirestore';
 
 /**
@@ -91,10 +90,17 @@ export const Sidebar = (props) => {
             </Card>
 
             <Card style={{ marginBottom: '20px', padding: '20px', boxSizing: 'border-box' }}>
-                <div className="cardHeader">
-                    <NavLink to="/postForm">CREATE NEW POST</NavLink>
-
-                </div>
+            <div className="userInfo link">
+            <a href="#">
+              <i class="fa fa-facebook-square"></i>
+            </a>
+            <a href="#">
+              <i class="fa fa-twitter"></i>
+            </a>
+            <a href="#">
+              <i class="fa fa-instagram"></i>
+            </a>
+          </div>
             </Card>
 
             <Card style={{ marginBottom: '20px', padding: '20px', boxSizing: 'border-box' }}>

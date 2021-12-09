@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import Firebase from "../../firebase";
 import {
   query,
@@ -10,9 +10,11 @@ import {
   updateDoc,
   setDoc,
   getDoc,
+  orderBy,
+  writeBatch,
+  where
 } from "@firebase/firestore";
 import { useEffect } from "react";
-import { async } from "@firebase/app/node_modules/@firebase/util";
 import picture3 from "../../pictures/Slika-3.jpg";
 import Card from "../../UI/Card/Card";
 import Hero from "../../components/Hero/Hero";
@@ -21,6 +23,8 @@ import EditPost from "../EditPost/EditPost";
 import { Modal } from "react-bootstrap";
 import CommentForm from "../Comments/CommentForm";
 import AllCommentsFirestore from "../Comments/DisplayAllComments";
+import SimpleDateTime from "react-simple-timestamp-to-date";
+
 
 /**
  * @author
@@ -44,7 +48,7 @@ const AllPostsFirestore = (props) => {
   };
 
   const handleAllPosts = async (e) => {
-    const queryPosts = query(collection(db, "posts"));
+    const queryPosts = query(collection(db, "posts"), orderBy("createdAt", "desc"));
     const querySnapshot = await getDocs(queryPosts);
 
     querySnapshot.forEach((doc) => {
@@ -52,9 +56,11 @@ const AllPostsFirestore = (props) => {
       let document = doc.data();
       document.id = doc.id;
       arrayPosts.push(document);
+
+      console.log(doc.timestamp);
     });
     setPosts(arrayPosts);
-    console.log(arrayPosts);
+    // console.log(arrayPosts);
   };
 
   const handlePost = async (id) => {
@@ -67,6 +73,7 @@ const AllPostsFirestore = (props) => {
       console.log(doc.id, " => ", doc.data().title);
       let document = doc.data();
       document.id = doc.id;
+
       arrayForOnePost.push(document);
     });
     setPost(arrayForOnePost);
@@ -91,15 +98,34 @@ const AllPostsFirestore = (props) => {
         </div>
         <div>
           <h2 className="spanPosts">{post.title}</h2>
-          <span>{post.post}</span>
+          
+          <span dangerouslySetInnerHTML={{ __html: post.post} } />
+          
           <br></br>
+
+          <span><SimpleDateTime dateSeparator="." timeSeparator=":" dateFormat="DMY" showTime="0">{post.createdAt.seconds}</SimpleDateTime></span>
+          <br></br>
+       {console.log("post.createdAt", post.createdAt)}
+
+          
 
           <button
             onClick={() =>
-              deletePost(post.id).then(() => {
-                window.location.reload();
+              deletePost(post.id).then(async() => {
+                // window.location.reload();
+                const queryComments = query(collection(db, "comments"), where("postId", "==", post.id));
+                const querySnapshotComments = await getDocs(queryComments)
+                const batch = writeBatch(db);
+
+                querySnapshotComments.forEach((doc) => {
+                  batch.delete(doc.ref);
+                });
+                await batch.commit();
               })
+              
+             
             }
+           
           >
             Delete
           </button>
@@ -122,7 +148,7 @@ const AllPostsFirestore = (props) => {
       </Card>
     );
   });
-  console.log(displayPosts);
+ 
 
   return (
     <>
