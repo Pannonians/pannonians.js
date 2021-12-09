@@ -26,6 +26,9 @@ const Firebase = (function () {
   function createInstance() {
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
+
+    
+
     const auth = getAuth(app);
     const db = getFirestore(app);
 
@@ -36,7 +39,6 @@ const Firebase = (function () {
       auth,
       db,
       signInWithPopup,
-      logEvent
     };
   }
 
