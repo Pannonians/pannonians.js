@@ -54,11 +54,10 @@ const Home = (props) => {
 
 
       <section className="HomeContainer" style={{width:"80%", margin:"auto"}}>
-        <AllPosts style={{width: '70%'}}/>
 
         <Sidebar />
       </section>
-      <div style={{marginTop: '-735px'}}>
+      <div style={{marginTop: '-810px', width: '80%', marginLeft: '190px'}}>
       <AllPosts style={{width: '70%'}}/>
       </div>
       

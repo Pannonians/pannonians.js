@@ -78,13 +78,13 @@ function App() {
 
                  <EditPost />
                  </Route> */}
-                      <Route path="/">
+                      {/* <Route path="/">
                         <Home />
 
                       </Route>
                       <Route path="*">
                         <Redirect to="/" />
-                      </Route>
+                      </Route> */}
                     {/* </Switch> */}
                   </div>
                 </Router>
