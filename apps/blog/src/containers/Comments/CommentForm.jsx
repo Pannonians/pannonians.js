@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Firebase from "../../firebase";
 import { addDoc, collection, query, getDocs, serverTimestamp } from "@firebase/firestore";
-import { logEvent } from "@firebase/analytics";
 
 
 const instance = Firebase.getInstance();
@@ -16,10 +15,6 @@ const CommentForm = ({ postId }) => {
     e.preventDefault();
     const instance = Firebase.getInstance();
     const database = instance.db;
-    const analytics = instance.analytics;
-
-
-    
     const commRef = await addDoc(collection(database, "comments"), {
       text: text,
       postId: postId,
@@ -33,10 +28,6 @@ const CommentForm = ({ postId }) => {
     alert("Comment is submitted successfuly");
     console.log(commRef);
     console.log(e);
-
-    logEvent(analytics, 'comment_post', {
-        text: text
-    })
   };
 
   return (
