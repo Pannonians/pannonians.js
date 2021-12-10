@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import { logEvent } from '@firebase/analytics'
-import analytics from '../../firebase.js'
+
 
 
 
@@ -30,6 +30,7 @@ const PostForm = (props) => {
 
         const instance = Firebase.getInstance();
         const database = instance.db;
+        const analytics = instance.analytics;
         const docRef = await addDoc(collection(database, "posts"), {
             title: title,
             post: post,
