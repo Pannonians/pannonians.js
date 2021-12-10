@@ -29,6 +29,12 @@ const CommentForm = ({ postId }) => {
       window.location.assign("/allPosts")
     }) ;
 
+    logEvent(analytics, 'comment_post', {
+      text: text,
+      // post: post,
+     
+    })
+
     setText("");
     alert("Comment is submitted successfuly");
     console.log(commRef);
