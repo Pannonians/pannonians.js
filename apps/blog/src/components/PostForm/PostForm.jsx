@@ -11,6 +11,7 @@ import { logEvent } from '@firebase/analytics'
 
 
 
+
 /**
 * @author
 * @function PostForm
@@ -29,7 +30,9 @@ const PostForm = (props) => {
         const instance = Firebase.getInstance();
         const database = instance.db;
         const analytics = instance.analytics;
+
         console.log(analytics)
+
         const docRef = await addDoc(collection(database, "posts"), {
             title: title,
             post: post,

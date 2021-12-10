@@ -14,7 +14,7 @@ const CommentForm = ({ postId }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const instance = Firebase.getInstance();
+    
     const database = instance.db;
     const analytics = instance.analytics;
 
