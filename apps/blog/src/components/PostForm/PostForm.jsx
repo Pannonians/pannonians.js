@@ -12,7 +12,6 @@ import { logEvent } from '@firebase/analytics'
 
 
 
-
 /**
 * @author
 * @function PostForm
@@ -31,20 +30,25 @@ const PostForm = (props) => {
         const instance = Firebase.getInstance();
         const database = instance.db;
         const analytics = instance.analytics;
+
+        console.log(analytics)
+
         const docRef = await addDoc(collection(database, "posts"), {
             title: title,
             post: post,
             createdAt: serverTimestamp()
         })
+        
+        console.log()
+        setTitle("");
+        setPost("");
+        alert("Post is submitted successfully")
+
         logEvent(analytics, 'create_post', {
             title: title,
             // post: post,
            
           })
-        console.log()
-        setTitle("");
-        setPost("");
-        alert("Post is submitted successfully")
         history.push("/allPosts")
         
 

@@ -17,6 +17,9 @@ const CommentForm = ({ postId }) => {
     
     const database = instance.db;
     const analytics = instance.analytics;
+
+
+    
     const commRef = await addDoc(collection(database, "comments"), {
       text: text,
       postId: postId,
@@ -37,7 +40,9 @@ const CommentForm = ({ postId }) => {
     console.log(commRef);
     console.log(e);
 
-    
+    logEvent(analytics, 'comment_post', {
+        text: text
+    })
   };
 
   return (
