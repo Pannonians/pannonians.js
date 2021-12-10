@@ -6,6 +6,7 @@ import { query, collection, getDocs, where, orderBy } from "@firebase/firestore"
 import "../Comments/style.css"
 
 import SimpleDateTime from "react-simple-timestamp-to-date";
+import ReplyForm from "./ReplyForm";
 
 
 
@@ -48,6 +49,8 @@ const AllCommentsFirestore = ({postId, createdAt}) => {
           <span>{comment.comment}</span>
 
           <br></br>
+
+          <ReplyForm comment={comment}/>
 
           <span><SimpleDateTime dateSeparator="." timeSeparator=":" dateFormat="DMY" showTime="0">{comment.createdAt.seconds}</SimpleDateTime></span>
 
