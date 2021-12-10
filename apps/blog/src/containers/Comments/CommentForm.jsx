@@ -23,6 +23,7 @@ const CommentForm = ({ postId }) => {
     const commRef = await addDoc(collection(database, "comments"), {
       text: text,
       postId: postId,
+      comments: [{text: "", createdAt:}],
       createdAt: serverTimestamp()
     })
     .then (() => {

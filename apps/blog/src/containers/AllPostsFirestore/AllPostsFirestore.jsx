@@ -20,12 +20,13 @@ import { NavLink, useHistory } from "react-router-dom";
 import EditPost from "../EditPost/EditPost";
 import { Modal } from "react-bootstrap";
 import CommentForm from "../Comments/CommentForm";
-import AllCommentsFirestore from "../Comments/DisplayAllComments";
+import AllCommentsFirestore from "../Comments/AllCommentsFirestore";
 
 import "../AllPostsFirestore/style.css"
 import ReactQuill from "react-quill";
 
 import SimpleDateTime from "react-simple-timestamp-to-date";
+import ReplyForm from "../Comments/ReplyForm";
 
 
 
@@ -138,6 +139,7 @@ const AllPostsFirestore = (props) => {
           <CommentForm postId={post.id} />
           <div className="comment-right-part">
             <AllCommentsFirestore postId={post.id} />
+            {/* <ReplyForm /> */}
           </div>
         </div>
       </Card>

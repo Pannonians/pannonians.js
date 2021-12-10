@@ -46,11 +46,11 @@ const AllCommentsFirestore = ({postId, createdAt}) => {
         <div>
           <form className= "commentForm" >
           <h className="spanPosts">{comment.text}</h>
-          <span>{comment.comment}</span>
+          {/* <span>{comment.comment}</span> */}
 
           <br></br>
 
-          <ReplyForm comment={comment}/>
+          <ReplyForm  replay={comment.replay} />
 
           <span><SimpleDateTime dateSeparator="." timeSeparator=":" dateFormat="DMY" showTime="0">{comment.createdAt.seconds}</SimpleDateTime></span>
 
