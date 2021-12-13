@@ -4,6 +4,9 @@
     overflow: hidden;
     margin-left: 100px;
     margin-right: 100px;
+    width: 100%;
+    margin: auto;
+    
     
 
 }
@@ -15,15 +18,20 @@
 }
 
 .spanPosts{
-    margin-top: 50px;
+    /* margin-top: 0px;
     margin-bottom: 50px;
     padding-top: 100px;
-    padding-bottom: 100px;
+    padding-bottom: 100px; */
+    font-family: Montserrat;
+    
+    
 }
 
 .postsFirestore{
-    padding-top: 50px;
-    padding-bottom: 50px;
+    /* padding-top: 50px;
+    padding-bottom: 50px; */
     display: flex;
     flex-direction: column;
+    font-family: Montserrat;
+    
 }

@@ -6,6 +6,7 @@ import Hero from '../Hero/Hero'
 import { useHistory } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
+import { logEvent } from '@firebase/analytics'
 
 
 
@@ -28,18 +29,29 @@ const PostForm = (props) => {
 
         const instance = Firebase.getInstance();
         const database = instance.db;
+        const analytics = instance.analytics;
+
+        console.log(analytics)
+
         const docRef = await addDoc(collection(database, "posts"), {
             title: title,
             post: post,
             createdAt: serverTimestamp()
         })
+        
         console.log()
         setTitle("");
         setPost("");
         alert("Post is submitted successfully")
+
+        logEvent(analytics, 'create_post', {
+            title: title,
+            // post: post,
+           
+          })
         history.push("/allPosts")
         
-        
+
     }
 
     
