@@ -3,6 +3,13 @@ import "./style.css";
 import Card from '../../../UI/Card/Card';
 import pictures4 from "../../../pictures/picture4.jpg"
 import picture3 from "../../../pictures/Slika-3.jpg"
+import Firebase from '../../../firebase';
+import { query, collection, getDocs, orderBy, where } from 'firebase/firestore'
+import { useState, useEffect } from 'react';
+import SimpleDateTime from 'react-simple-timestamp-to-date';
+import { ReadMore } from '../../../components/ReadMore/ReadMore';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import refresh from 'react-infinite-scroll-component'
 
 
 /**
@@ -10,62 +17,94 @@ import picture3 from "../../../pictures/Slika-3.jpg"
 * @function AllPosts
 **/
 
+
+
+
+
+
 export const AllPosts = (props) => {
-  return(
-    <div style={ props.style}>
-    <Card style={{ marginBottom: '20px' }}>
-      <div className="postImageWrapper">
-      <img src={pictures4} alt=""/>
-      </div>
 
-      <div style={{textAlign: 'center'}}>
-        <h2>Sunt aut facere repellat provident occaecati excepturi optio reprehenderit</h2>
+  const [posts, setPosts] = useState([]);
+  const instance = Firebase.getInstance();
+  const db = instance.db;
+  const arrayPosts = [];
 
-        <span>Quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas
-           totam\nnostrum rerum est autem sunt rem eveniet architecto</span><br></br>
+  const handleAllPosts = async (e) => {
 
-           <button>Read More</button>
-      </div>
+    const queryPosts = query(collection(db, "posts"), orderBy("createdAt", "desc"));
+    const querySnapshot = await getDocs(queryPosts);
 
-         
-    </Card>
+    querySnapshot.forEach((doc) => {
+      console.log(doc.id, " => ", doc.data().title);
+      let document = doc.data();
+      document.id = doc.id;
+      arrayPosts.push(document);
 
-    <Card style={{ marginBottom: '20px' }}>
-      <div className="postImageWrapper">
-      <img src={picture3} alt=""/>
-      </div>
+      console.log(doc.timestamp);
+    });
+    console.log("arrayPosts", arrayPosts)
+    setPosts(arrayPosts);
+    // console.log(arrayPosts);
+  };
 
-      <div style={{textAlign: 'center'}}>
-        <h2>Sunt aut facere repellat provident occaecati excepturi optio reprehenderit</h2>
+  useEffect(() => {
+    handleAllPosts();
+  }, []);
 
-        <span>Quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas
-           totam\nnostrum rerum est autem sunt rem eveniet architecto</span><br></br>
-
-           <button>Read More</button>
-      </div>
-
-         
-    </Card>
-
-
-    <Card style={{ marginBottom: '20px' }}>
-      <div className="postImageWrapper">
-      <img src="https://images.unsplash.com/photo-1587955415524-bb264e518428?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80" alt=""/>
-      </div>
-
-      <div style={{textAlign: 'center'}}>
-        <h2>Sunt aut facere repellat provident occaecati excepturi optio reprehenderit</h2>
-
-        <span>Quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas
-           totam\nnostrum rerum est autem sunt rem eveniet architecto</span><br></br>
-
-           <button>Read More</button>
-      </div>
-
-         
-    </Card>
-
-    </div>
-
-   )
+  if (posts == []) {
+    return null
   }
+  return (
+    <InfiniteScroll
+      dataLength={posts.length}
+      next={handleAllPosts}
+      hasMore={true}
+      loader={<h4>Loading...</h4>}
+      endMessage={
+        <p style={{ textAlign: 'center' }}>
+          <b>Yay! You have seen it all</b>
+        </p>
+      }
+    
+    >
+      {posts.slice(0,3).map((post) => (
+
+
+        <div style={props.style}>
+          <Card style={{ marginBottom: '20px' }}>
+            <div className="postImageWrapper">
+              <img src={pictures4} alt="" />
+            </div>
+
+            <div style={{ textAlign: 'center' }}>
+
+              <h2>{post.title}</h2>
+
+              <ReadMore textPost={post.post}>
+                {/* <ReadMore> */}
+                <span dangerouslySetInnerHTML={{ __html: post.post }} />
+              </ReadMore>
+              <span><SimpleDateTime dateSeparator="." timeSeparator=":" dateFormat="DMY" showTime="0">{post.createdAt}</SimpleDateTime></span><br></br>
+
+            </div>
+          </Card>
+
+
+        </div>
+
+
+      )
+
+
+
+      )
+      }
+     
+    </InfiniteScroll>
+  )
+
+
+
+
+}
+export default AllPosts;
