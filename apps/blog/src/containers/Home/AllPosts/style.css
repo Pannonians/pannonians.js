@@ -11,3 +11,13 @@
     height: 100%;
     object-fit: cover;
 }
+
+.buttonLoadMore{
+    border: none;
+    outline: none;
+    width: 100%; 
+    padding: 16px, 0;
+    margin: 10px, 0, 0, 0,
+
+
+}

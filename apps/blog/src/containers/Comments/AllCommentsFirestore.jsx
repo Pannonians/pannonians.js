@@ -11,6 +11,7 @@ import {
 import "../Comments/style.css";
 import SimpleDateTime from "react-simple-timestamp-to-date";
 import ReplyForm from "./ReplyForm";
+import AllReplaysFirestore from "../../containers/AllReplaysFirestore/AllReplysFirestore"
 
 
 
@@ -51,12 +52,13 @@ const AllCommentsFirestore = ({ postId, createdAt }) => {
       <div>
         <form className="commentForm">
           <h className="spanPosts">{comment.text}</h>
+       
 
-          <span>
+          {/* <span>
             {comment.comments.map((reply) => {
               return <div>{console.log(reply)}</div>;
             })};
-          </span>
+          </span> */}
 
           <br></br>
 
@@ -72,9 +74,10 @@ const AllCommentsFirestore = ({ postId, createdAt }) => {
               {comment.createdAt.seconds}
             </SimpleDateTime>
           </span>
-
+          
           <br></br>
         </form>
+        <AllReplaysFirestore commentId={comment.postId} />
       </div>
     );
   });
@@ -84,7 +87,6 @@ const AllCommentsFirestore = ({ postId, createdAt }) => {
       <div style={{ textAlign: "center", fontFamily: "Montserrat" }}>
         <h1>Comments</h1>
         {displayComments}
-        {console.log(displayComments)}
       </div>
     </>
   );

@@ -60,7 +60,7 @@ const Home = (props) => {
       <div style={{marginTop: '-810px', width: '80%', marginLeft: '190px'}}>
       <AllPosts style={{width: '70%'}}/>
       </div>
-      
+    
     </div>
 
   );

@@ -52,7 +52,7 @@ await updateDoc(commentRef, {
   return (
     <> 
     {openReplyForm ? (
-    <div onSubmit={handleSubmitReply (replyComm, commentId)} >
+    <div  >
         <div className="formGroup">
         <textarea 
         placeholder="Enter Reply..."
@@ -62,7 +62,7 @@ await updateDoc(commentRef, {
         {/* {console.log(replyComm)} */}
         </div>
         <div className="formGroup">
-        <button  type="submit">Reply</button>
+        <button onClick={handleSubmitReply (replyComm, commentId)} type="button">Reply</button>
         <button onClick={() => setOpenReplyForm(false)} type="button">Cancel</button>
         </div>
     </div>
