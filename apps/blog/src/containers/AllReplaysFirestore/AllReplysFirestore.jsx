@@ -1,7 +1,15 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Firebase from "../../firebase";
-import {collection, where, orderBy, query, getDocs} from "@firebase/firestore";
+import {
+  collection,
+  where,
+  orderBy,
+  query,
+  getDocs,
+  getDoc,
+  doc,
+} from "@firebase/firestore";
 
 /**
  * @author
@@ -9,55 +17,48 @@ import {collection, where, orderBy, query, getDocs} from "@firebase/firestore";
  **/
 
 export const AllReplaysFirestore = ({ commentId }) => {
-  const [comments, setComments] = useState([]);
-  console.log(commentId)
+  const [replayComm, setReplayComm] = useState([]);
+  console.log(commentId);
 
-  const handleAllComments = async (e) => {
+  const handleComment = async (e) => {
     const instance = Firebase.getInstance();
     const db = instance.db;
 
-    const queryComments = query(
-      collection(db, "comments", commentId),
-    //   where("id", "==", commentId),
-    //   orderBy("createdAt", "desc")
+    const docRef = doc(db, "comments", commentId);
+    const querySnapshot = await getDoc(docRef);
+
+    setReplayComm(
+      querySnapshot._document.data.value.mapValue.fields.comments.arrayValue
+        .values
     );
-
-    const querySnapshot = await getDocs(queryComments);
-    const arrayComments = [];
-
-    querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data().id);
-      let document = doc.data();
-      document.id = doc.id;
-      arrayComments.push(document);
-    });
-
-    setComments(arrayComments);
-    console.log(arrayComments);
+    console.log(
+      querySnapshot._document.data.value.mapValue.fields.comments.arrayValue
+        .values
+    );
   };
 
   useEffect(() => {
-    handleAllComments();
+    handleComment();
   }, []);
 
+    // return (
+    //     <div>
+    // {replayComm.map((replay) => (
+    //     <div key={replay}>{replay}</div>
+    // ))}
+    // </div>
+    // );
+  
 
 
-const displayReplies = comments.map((comment) => {
+return <div>{JSON.stringify(replayComm)}</div>;
 
-return (
- <div>{comment.comments.map((reply) => {
-     return <div>{console.log(reply)}</div>
-     
- })}</div>
-)
-})
-  return (
-
-      <div>
-      <h2>Replies</h2>
-      {displayReplies}
-     </div>
-      
-        )
+//   return (
+//     <div>
+//       <h2>Replies</h2>
+//       {/* {displayReplies} */}
+//     </div>
+//   );
 };
- export default AllReplaysFirestore; 
+
+export default AllReplaysFirestore;
