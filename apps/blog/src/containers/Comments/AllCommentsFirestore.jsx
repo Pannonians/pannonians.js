@@ -77,7 +77,7 @@ const AllCommentsFirestore = ({ postId, createdAt }) => {
           
           <br></br>
         </form>
-        <AllReplaysFirestore commentId={comment.postId} />
+        <AllReplaysFirestore commentId={comment.id} />
       </div>
     );
   });

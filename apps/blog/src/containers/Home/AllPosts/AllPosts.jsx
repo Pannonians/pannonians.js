@@ -54,52 +54,37 @@ export const AllPosts = (props) => {
   if (posts == []) {
     return null;
   }
-  return (
-    // <InfiniteScroll
-    //   dataLength={posts.length}
-    //   next={handleAllPosts}
-    //   hasMore={true}
-    //   loader={<h4>Loading...</h4>}
-    //   endMessage={
-    //     <p style={{ textAlign: 'center' }}>
-    //       <b>Yay! You have seen it all</b>
-    //     </p>
-    //   }
+  return posts.slice(0, visible).map((post) => (
+    <div style={props.style}>
+      <Card style={{ marginBottom: "20px" }}>
+        <div className="postImageWrapper">
+          <img src={pictures4} alt="" />
+        </div>
 
-    // >
-    posts.slice(0, visible).map((post) => (
-      <div style={props.style}>
-        <Card style={{ marginBottom: "20px" }}>
-          <div className="postImageWrapper">
-            <img src={pictures4} alt="" />
-          </div>
+        <div style={{ textAlign: "center" }}>
+          <h2>{post.title}</h2>
 
-          <div style={{ textAlign: "center" }}>
-            <h2>{post.title}</h2>
-
-            <ReadMore textPost={post.post}>
-              {/* <ReadMore> */}
-              <span dangerouslySetInnerHTML={{ __html: post.post }} />
-            </ReadMore>
-            <span>
-              <SimpleDateTime
-                dateSeparator="."
-                timeSeparator=":"
-                dateFormat="DMY"
-                showTime="0"
-              >
-                {post.createdAt}
-              </SimpleDateTime>
-            </span>
-            <br></br>
-            
-          </div>
-          <button className='buttonLoadMore' onClick={loadMore}>Load more</button>
-        </Card>
-      </div>
-    ))
-
-    // </InfiniteScroll>
-  );
+          <ReadMore textPost={post.post}>
+            <span dangerouslySetInnerHTML={{ __html: post.post }} />
+          </ReadMore>
+          <span>
+            <SimpleDateTime
+              dateSeparator="."
+              timeSeparator=":"
+              dateFormat="DMY"
+              showTime="0"
+            >
+              {post.createdAt}
+            </SimpleDateTime>
+          </span>
+          <br></br>
+        </div>
+       
+      </Card>
+       <button className="buttonLoadMore" onClick={loadMore}>
+          Load more
+        </button>
+    </div>
+  ));
 };
 export default AllPosts;

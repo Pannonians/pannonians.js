@@ -17,9 +17,9 @@ export const AllReplaysFirestore = ({ commentId }) => {
     const db = instance.db;
 
     const queryComments = query(
-      collection(db, "comments"),
-      where("postId", "==", commentId),
-      orderBy("createdAt", "desc")
+      collection(db, "comments", commentId),
+    //   where("id", "==", commentId),
+    //   orderBy("createdAt", "desc")
     );
 
     const querySnapshot = await getDocs(queryComments);
@@ -42,7 +42,7 @@ export const AllReplaysFirestore = ({ commentId }) => {
 
 
 
-const displayReplays = comments.map((comment) => {
+const displayReplies = comments.map((comment) => {
 
 return (
  <div>{comment.comments.map((reply) => {
@@ -55,7 +55,7 @@ return (
 
       <div>
       <h2>Replies</h2>
-      {displayReplays}
+      {displayReplies}
      </div>
       
         )
