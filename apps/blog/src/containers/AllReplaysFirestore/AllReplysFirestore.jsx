@@ -56,8 +56,7 @@ return (
       <div>
       <h2>Replies</h2>
       {displayReplays}
-   
-      </div>
+     </div>
       
         )
 };
