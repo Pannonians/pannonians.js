@@ -41,17 +41,17 @@ export const AllReplaysFirestore = ({ commentId }) => {
     handleComment();
   }, []);
 
-    // return (
-    //     <div>
-    // {replayComm.map((replay) => (
-    //     <div key={replay}>{replay}</div>
-    // ))}
-    // </div>
-    // );
+    return (
+        <div>
+    {replayComm.map((replay) => (
+        <div key={replay}>{replay.stringValue}</div>
+    ))}
+    </div>
+    );
   
 
 
-return <div>{JSON.stringify(replayComm)}</div>;
+// return <div>{JSON.stringify(replayComm)}</div>;
 
 //   return (
 //     <div>

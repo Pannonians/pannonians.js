@@ -7,7 +7,7 @@ import AllPosts from '../../containers/Home/AllPosts/AllPosts';
 * @function ReadMore
 **/
 
-export const ReadMore = ({textPost}) => {
+const ReadMore = ({textPost}) => {
     var postToString = renderToString(AllPosts);
     // const text = myComponentString;
     const [isReadMore, setIsReadMore] = useState(true)
@@ -23,3 +23,4 @@ export const ReadMore = ({textPost}) => {
         </p>
     )
 }
+export default ReadMore;
