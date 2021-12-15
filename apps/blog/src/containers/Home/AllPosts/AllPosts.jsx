@@ -7,7 +7,7 @@ import Firebase from "../../../firebase";
 import { query, collection, getDocs, orderBy, where } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import SimpleDateTime from "react-simple-timestamp-to-date";
-import { ReadMore } from "../../../components/ReadMore/ReadMore";
+import ReadMore from "../../../components/ReadMore/ReadMore";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 /**
@@ -81,9 +81,7 @@ export const AllPosts = (props) => {
         </div>
        
       </Card>
-       <button className="buttonLoadMore" onClick={loadMore}>
-          Load more
-        </button>
+      
     </div>
   ));
 };
