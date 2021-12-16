@@ -115,11 +115,12 @@ useEffect(() => {
         className="HomeContainer"
         style={{ width: "80%", margin: "auto" }}
       >
-        <Sidebar />
+        <Sidebar  />
       </section>
       
+      <section style={{marginTop:'-813px', marginLeft:'10%', width: "80%"}}>
       {posts.slice(0, visible).map((post) => (
-    <div style={props.style}>
+    <div style={{ width: "70%"}}>
       <Card style={{ marginBottom: "20px" }}>
         <div className="postImageWrapper">
           <img src={pictures4} alt="" />
@@ -138,17 +139,21 @@ useEffect(() => {
               dateFormat="DMY"
               showTime="0"
             >
-              {post.createdAt}
+              {post.createdAt.seconds}
             </SimpleDateTime>
           </span>
           <br></br>
+           
         </div>
-       
       </Card>
       
     </div>
+  
+
   ))};
-        <div>>
+      </section>
+
+        <div>
         {/* <AllPosts style={{ width: "70%" }} /> */}
         <button className="buttonLoadMore" onClick={loadMore}>
           Load more
