@@ -62,6 +62,9 @@ useEffect(() => {
     handleAllPosts();
   }, []);
 
+  const lengthOfPostsArray = posts.length;
+  console.log(lengthOfPostsArray)
+
   if (posts == []) {
     return null;
   }
