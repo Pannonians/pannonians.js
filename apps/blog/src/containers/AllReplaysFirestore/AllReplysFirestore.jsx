@@ -1,15 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Firebase from "../../firebase";
-import {
-  collection,
-  where,
-  orderBy,
-  query,
-  getDocs,
-  getDoc,
-  doc,
-} from "@firebase/firestore";
+import { getDoc, doc } from "@firebase/firestore";
 
 /**
  * @author
@@ -27,14 +19,16 @@ export const AllReplaysFirestore = ({ commentId }) => {
     const docRef = doc(db, "comments", commentId);
     const querySnapshot = await getDoc(docRef);
 
-    setReplayComm(
-      querySnapshot._document.data.value.mapValue.fields.comments.arrayValue
-        .values
-    );
-    console.log(
-      querySnapshot._document.data.value.mapValue.fields.comments.arrayValue
-        .values
-    );
+    console.log(querySnapshot);
+
+    // setReplayComm(
+    //   querySnapshot._document.data.value.mapValue.fields.comments.arrayValue
+    //     .values
+    // );
+    // console.log(
+    //   querySnapshot._document.data.value.mapValue.fields.comments.arrayValue
+    //     .values
+    // );
   };
 
   useEffect(() => {

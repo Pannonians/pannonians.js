@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Firebase from "../../firebase";
-
 import {
   query,
   collection,
@@ -11,9 +10,7 @@ import {
 import "../Comments/style.css";
 import SimpleDateTime from "react-simple-timestamp-to-date";
 import ReplyForm from "./ReplyForm";
-import AllReplaysFirestore from "../../containers/AllReplaysFirestore/AllReplysFirestore"
-
-
+import AllReplaysFirestore from "../../containers/AllReplaysFirestore/AllReplysFirestore";
 
 const AllCommentsFirestore = ({ postId, createdAt }) => {
   const [comments, setComments] = useState([]);
@@ -54,7 +51,7 @@ const AllCommentsFirestore = ({ postId, createdAt }) => {
           <br></br>
 
           <ReplyForm commentId={comment.id} />
-            
+
           <span>
             <SimpleDateTime
               dateSeparator="."
@@ -65,7 +62,7 @@ const AllCommentsFirestore = ({ postId, createdAt }) => {
               {comment.createdAt.seconds}
             </SimpleDateTime>
           </span>
-          
+
           <br></br>
         </form>
         <AllReplaysFirestore commentId={comment.id} />

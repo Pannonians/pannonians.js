@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Firebase from "../../firebase";
 import { addDoc, collection, serverTimestamp } from "@firebase/firestore";
 import { logEvent } from "@firebase/analytics";
-import ReplyForm from "../Comments/ReplyForm";
 
 const instance = Firebase.getInstance();
 
