@@ -25,13 +25,10 @@ const PostForm = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(e)
 
         const instance = Firebase.getInstance();
         const database = instance.db;
         const analytics = instance.analytics;
-
-        console.log(analytics)
 
         const docRef = await addDoc(collection(database, "posts"), {
             title: title,
@@ -39,22 +36,15 @@ const PostForm = (props) => {
             createdAt: serverTimestamp()
         })
         
-        console.log()
         setTitle("");
         setPost("");
         alert("Post is submitted successfully")
 
         logEvent(analytics, 'create_post', {
-            title: title,
-            // post: post,
-           
+            title: title,   
           })
         history.push("/allPosts")
-        
-
     }
-
-    
 
     const modules = {
         toolbar: [
@@ -70,8 +60,6 @@ const PostForm = (props) => {
           ["clean"],
         ],
       };
-
-
 
     return (
 
@@ -93,12 +81,7 @@ const PostForm = (props) => {
           onChange={setPost}
           placeholder="Content goes here..."
         />
-                
-
-
                 <button className ="medium-btn" type="submit" style={{"margin-left": '750px', "margin-top": '50px'}}>Submit</button>
-            
-
             </form>
         </div></>
     )

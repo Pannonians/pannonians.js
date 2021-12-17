@@ -62,11 +62,8 @@ const AllPostsFirestore = (props) => {
       let document = doc.data();
       document.id = doc.id;
       arrayPosts.push(document);
-
-      console.log(doc.timestamp);
     });
     setPosts(arrayPosts);
-    // console.log(arrayPosts);
   };
 
   
@@ -98,10 +95,6 @@ const AllPostsFirestore = (props) => {
 
           <span><SimpleDateTime dateSeparator="." timeSeparator=":" dateFormat="DMY" showTime="0">{post.createdAt.seconds}</SimpleDateTime></span>
           <br></br>
-       {console.log("post.createdAt", post.createdAt)}
-
-          
-
           <button
             onClick={() =>
               deletePost(post.id).then(async() => {
@@ -114,26 +107,13 @@ const AllPostsFirestore = (props) => {
                   batch.delete(doc.ref);
                 });
                 await batch.commit();
-                window.location.reload();
-               
-              })
-              
-             
-            }
-           
-          >
-            Delete
+                window.location.reload();   
+              })  
+            }      
+          >Delete
           </button>
 
           <button onClick={() => handleShow(post)}>Edit</button>
-          
-
-          {/* <NavLink key={post.id} to={`/post/${post.id}`}>
-   <button onClick={() => handlePost (posts.id)}>Edit Post</button>
-    </NavLink> */}
-          {/* <button onClick={() => {updatePost (post.id, post.post, post.title)
-  .then(() => {window.location.reload()})
-   }}>Edit post</button> */}
         </div>
         <div>
           <CommentForm postId={post.id} />
