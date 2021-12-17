@@ -33,8 +33,6 @@ const Home = (props) => {
   const db = instance.db;
   const arrayPosts = [];
 
-  
-
   const handleAllPosts = async (e) => {
     const queryPosts = query(
       collection(db, "posts"),
@@ -52,34 +50,20 @@ const Home = (props) => {
     });
 
     setPosts(arrayPosts);
-    console.log("posts.lenght", posts.length);
-    console.log("arrayPosts.lenght", arrayPosts.length);
-    
-  
-    
-    
   };
-  
+
   const loadMore = () => {
     setVisible((previouseValue) => previouseValue + 3);
-    
-  };
-  
-
-  const postEmpty = () => {
-    if (posts.length > visible) {    
-     loadMore();
-    }else {setIsEmpty(true)}
   };
 
-   
-    
-
-    
   useEffect(() => {
     handleAllPosts();
   }, []);
 
+  useEffect(() => {
+    setIsEmpty(!(posts.length > visible))
+  }, [visible, posts]);
+  
   if (posts == []) {
     return null;
   }
@@ -162,10 +146,9 @@ const Home = (props) => {
           </Card>
         </div>
       ))}
-      ;
       <div>
         {/* <AllPosts style={{ width: "70%" }} /> */}
-          {!isEmpty && <button className="buttonLoadMore" onClick={postEmpty}>
+          {!isEmpty && <button className="buttonLoadMore" onClick={loadMore}>
             Load more
           </button>}
           {isEmpty && "There are no more posts"}

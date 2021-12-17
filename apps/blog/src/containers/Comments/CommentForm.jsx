@@ -8,7 +8,6 @@ const instance = Firebase.getInstance();
 
 const CommentForm = ({ postId }) => {
   const [text, setText] = useState("");
-  console.log(postId);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,8 +31,6 @@ const CommentForm = ({ postId }) => {
 
     setText("");
     alert("Comment is submitted successfuly");
-    console.log(commRef);
-    console.log(e);
 
     logEvent(analytics, "comment_post", {
       text: text,

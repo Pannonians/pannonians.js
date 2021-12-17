@@ -39,26 +39,17 @@ const AllCommentsFirestore = ({ postId, createdAt }) => {
     });
 
     setComments(arrayComments);
-    console.log(arrayComments);
   };
 
   useEffect(() => {
     handleAllComments();
   }, []);
 
-  // console.log(comments.comments);
   const displayComments = comments.map((comment) => {
     return (
       <div>
         <form className="commentForm">
           <h className="spanPosts">{comment.text}</h>
-       
-
-          {/* <span>
-            {comment.comments.map((reply) => {
-              return <div>{console.log(reply)}</div>;
-            })};
-          </span> */}
 
           <br></br>
 

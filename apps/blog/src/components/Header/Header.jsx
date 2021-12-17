@@ -65,7 +65,6 @@ export default function Header() {
             </div>
           </div>
         )}
-        {console.log(currentUser)}
       </div>
 
       <div className="logo">
@@ -74,7 +73,6 @@ export default function Header() {
           src="https://pannonians.com/Pannonians_Color_Full@0.1x.png"
         ></img>
       </div>
-
       <Navbar />
     </header>
   );
