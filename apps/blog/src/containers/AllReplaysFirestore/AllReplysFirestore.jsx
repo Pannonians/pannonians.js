@@ -20,7 +20,7 @@ export const AllReplaysFirestore = ({ commentId }) => {
     const querySnapshot = await getDoc(docRef);
 
     if (
-      querySnapshot._document.data.value.mapValue.fields.comments.arrayValue == []
+      querySnapshot._document.data.value.mapValue.fields.comments.arrayValue == ![]
     ) {
       setReplayComm(
         querySnapshot._document.data.value.mapValue.fields.comments.arrayValue
