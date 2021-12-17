@@ -119,7 +119,7 @@ const Home = (props) => {
         <Sidebar  />
       </section>
 
- <section style={{marginTop:'-813px', marginLeft:'10%', width: "80%"}}>
+      <section style={{marginTop:'-810px', marginLeft:'10%', width: "60%"}}>
       {posts.slice(0, visible).map((post, index) => (
         <div style={props.style}>
           <Card style={{ marginBottom: "20px" }}>
@@ -149,14 +149,12 @@ const Home = (props) => {
         </div>
       ))}
      </section>
-      <div>
-
-        {/* <AllPosts style={{ width: "70%" }} /> */}
+      <div style={{width:"10%", marginLeft: "650px"}}>
           {!isEmpty && <button className="buttonLoadMore" onClick={loadMore}>
             Load more
-          </button>}
-          {isEmpty && "There are no more posts"}
-      </div>
+          </button>}</div>
+    <div style={{width:"10%", marginLeft: "650px", backgroundColor: "grey"}}>   {isEmpty && "There are no more posts"}</div>
+      
     </div>
   );
 };
