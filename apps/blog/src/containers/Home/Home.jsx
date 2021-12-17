@@ -23,7 +23,6 @@ const Home = (props) => {
     height: galleryHeight + "px",
     overflow: "hidden",
   };
-  
 
   const sideImageHeight = galleryHeight / 3;
   const [posts, setPosts] = useState([]);
@@ -72,6 +71,9 @@ const Home = (props) => {
      loadMore();
     }else {setIsEmpty(true)}
   };
+
+   
+    
 
     
   useEffect(() => {
