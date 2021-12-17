@@ -2,14 +2,14 @@ import React from 'react';
 import Card from '../../UI/Card/Card';
 import "./style.css";
 import { useEffect, useState } from 'react';
-import blogPost from "../../posts.json"
+
 import { NavLink } from 'react-router-dom';
-import { Link as RouterLink, useNavigate, useParams } from 'react-router-dom';
-import { postCreate } from '../../API/jsonplaceholder';
-import { getDoc, doc, getDocs, query } from '@firebase/firestore';
+
+
+import { getDocs, query } from '@firebase/firestore';
 import Firebase from '../../firebase';
 import { collection } from '@firebase/firestore';
-import AllPostsFirestore from '../../containers/AllPostsFirestore/AllPostsFirestore';
+
 
 /**
 * @author
