@@ -64,21 +64,14 @@ const Home = (props) => {
     setVisible((previouseValue) => previouseValue + 3);
     
   };
-  
-
-  const postEmpty = () => {
-    if (posts.length > visible) {    
-     loadMore();
-    }else {setIsEmpty(true)}
-  };
-
-   
-    
-
     
   useEffect(() => {
     handleAllPosts();
   }, []);
+
+  useEffect(() => {
+    setIsEmpty(posts.length < visible)
+  }, [posts, visible])
 
   const lengthOfPostsArray = posts.length;
   console.log(lengthOfPostsArray)
@@ -172,7 +165,7 @@ const Home = (props) => {
       <div>
 
         {/* <AllPosts style={{ width: "70%" }} /> */}
-          {!isEmpty && <button className="buttonLoadMore" onClick={postEmpty}>
+          {!isEmpty && <button className="buttonLoadMore" onClick={loadMore}>
             Load more
           </button>}
           {isEmpty && "There are no more posts"}
