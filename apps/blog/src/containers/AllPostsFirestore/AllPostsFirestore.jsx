@@ -1,5 +1,5 @@
 import React from "react";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import Firebase from "../../firebase";
 import {
   query,
@@ -7,28 +7,23 @@ import {
   getDocs,
   doc,
   deleteDoc,
-  getDoc,
   orderBy,
   writeBatch,
-  where
+  where,
 } from "@firebase/firestore";
 import { useEffect } from "react";
 import picture3 from "../../pictures/Slika-3.jpg";
 import Card from "../../UI/Card/Card";
 import Hero from "../../components/Hero/Hero";
-import { NavLink, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import EditPost from "../EditPost/EditPost";
 import { Modal } from "react-bootstrap";
 import CommentForm from "../Comments/CommentForm";
 import AllCommentsFirestore from "../Comments/AllCommentsFirestore";
 
-import "../AllPostsFirestore/style.css"
-import ReactQuill from "react-quill";
+import "../AllPostsFirestore/style.css";
 
 import SimpleDateTime from "react-simple-timestamp-to-date";
-import ReplyForm from "../Comments/ReplyForm";
-
-
 
 /**
  * @author
@@ -39,7 +34,6 @@ const instance = Firebase.getInstance();
 const db = instance.db;
 const arrayPosts = [];
 const arrayForOnePost = [];
-
 
 const AllPostsFirestore = (props) => {
   const [posts, setPosts] = useState([]);
@@ -54,7 +48,10 @@ const AllPostsFirestore = (props) => {
   };
 
   const handleAllPosts = async (e) => {
-    const queryPosts = query(collection(db, "posts"), orderBy("createdAt", "desc"));
+    const queryPosts = query(
+      collection(db, "posts"),
+      orderBy("createdAt", "desc")
+    );
     const querySnapshot = await getDocs(queryPosts);
 
     querySnapshot.forEach((doc) => {
@@ -66,14 +63,10 @@ const AllPostsFirestore = (props) => {
     setPosts(arrayPosts);
   };
 
-  
-    const deletePost = async (id) => {
-     const postDocument = doc(db, "posts", id);
+  const deletePost = async (id) => {
+    const postDocument = doc(db, "posts", id);
     await deleteDoc(postDocument);
-  
   };
-
-
 
   useEffect(() => {
     handleAllPosts();
@@ -82,25 +75,38 @@ const AllPostsFirestore = (props) => {
   console.log(posts);
   const displayPosts = posts.map((post) => {
     return (
-      <Card style={{ marginBottom: "20px", width:"80%", margin:"auto" }}>
+      <Card style={{ marginBottom: "20px", width: "80%", margin: "auto" }}>
         <div className="postImageWrapper">
           <img src={picture3} alt="" />
         </div>
         <div>
           <h2 className="spanPosts">{post.title}</h2>
-          
-          <span dangerouslySetInnerHTML={{ __html: post.post} } />
-          
+
+          <span dangerouslySetInnerHTML={{ __html: post.post }} />
+
           <br></br>
 
-          <span><SimpleDateTime dateSeparator="." timeSeparator=":" dateFormat="DMY" showTime="0">{post.createdAt.seconds}</SimpleDateTime></span>
+          <span>
+            <SimpleDateTime
+              dateSeparator="."
+              timeSeparator=":"
+              dateFormat="DMY"
+              showTime="0"
+            >
+              {post.createdAt.seconds}
+            </SimpleDateTime>
+          </span>
           <br></br>
+          {console.log("post.createdAt", post.createdAt)}
+
           <button
             onClick={() =>
-              deletePost(post.id).then(async() => {
-                
-                const queryComments = query(collection(db, "comments"), where("postId", "==", post.id));
-                const querySnapshotComments = await getDocs(queryComments)
+              deletePost(post.id).then(async () => {
+                const queryComments = query(
+                  collection(db, "comments"),
+                  where("postId", "==", post.id)
+                );
+                const querySnapshotComments = await getDocs(queryComments);
                 const batch = writeBatch(db);
 
                 querySnapshotComments.forEach((doc) => {
@@ -125,17 +131,16 @@ const AllPostsFirestore = (props) => {
       </Card>
     );
   });
- 
 
   return (
     <>
-      <Hero  />
+      <Hero />
 
-      <Modal show={show} >
+      <Modal show={show}>
         <EditPost postInfo={post} />
       </Modal>
 
-      <div style={{ textAlign: "center", fontFamily: "Montserrat"}}>
+      <div style={{ textAlign: "center", fontFamily: "Montserrat" }}>
         <h1>Posts</h1>
         {displayPosts}
       </div>
