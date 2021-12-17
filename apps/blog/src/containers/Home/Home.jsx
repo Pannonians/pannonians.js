@@ -63,7 +63,7 @@ const Home = (props) => {
   useEffect(() => {
     setIsEmpty(!(posts.length > visible))
   }, [visible, posts]);
-  
+
   if (posts == []) {
     return null;
   }
@@ -116,8 +116,10 @@ const Home = (props) => {
         className="HomeContainer"
         style={{ width: "80%", margin: "auto" }}
       >
-        <Sidebar />
+        <Sidebar  />
       </section>
+
+ <section style={{marginTop:'-813px', marginLeft:'10%', width: "80%"}}>
       {posts.slice(0, visible).map((post, index) => (
         <div style={props.style}>
           <Card style={{ marginBottom: "20px" }}>
@@ -146,7 +148,9 @@ const Home = (props) => {
           </Card>
         </div>
       ))}
+     </section>
       <div>
+
         {/* <AllPosts style={{ width: "70%" }} /> */}
           {!isEmpty && <button className="buttonLoadMore" onClick={loadMore}>
             Load more

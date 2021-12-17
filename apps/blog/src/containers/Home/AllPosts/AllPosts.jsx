@@ -43,9 +43,6 @@ export const AllPosts = (props) => {
     // console.log(arrayPosts);
   };
 
-  const loadMore = () => {
-    setVisible((previouseValue) => previouseValue + 3);
-  };
 
   useEffect(() => {
     handleAllPosts();
