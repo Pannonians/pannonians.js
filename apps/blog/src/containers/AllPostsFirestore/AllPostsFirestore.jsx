@@ -20,9 +20,7 @@ import EditPost from "../EditPost/EditPost";
 import { Modal } from "react-bootstrap";
 import CommentForm from "../Comments/CommentForm";
 import AllCommentsFirestore from "../Comments/AllCommentsFirestore";
-
 import "../AllPostsFirestore/style.css";
-
 import SimpleDateTime from "react-simple-timestamp-to-date";
 
 /**
@@ -33,14 +31,12 @@ import SimpleDateTime from "react-simple-timestamp-to-date";
 const instance = Firebase.getInstance();
 const db = instance.db;
 const arrayPosts = [];
-const arrayForOnePost = [];
 
 const AllPostsFirestore = (props) => {
   const [posts, setPosts] = useState([]);
   const [post, setPost] = useState("");
-  const [title, setTitle] = useState("");
+
   const [show, setShow] = useState(false);
-  const history = useHistory();
 
   const handleShow = (post) => {
     setPost(post);
@@ -113,19 +109,18 @@ const AllPostsFirestore = (props) => {
                   batch.delete(doc.ref);
                 });
                 await batch.commit();
-                window.location.reload();   
-              })  
-            }      
-          >Delete
+                window.location.reload();
+              })
+            }
+          >
+            Delete
           </button>
-
           <button onClick={() => handleShow(post)}>Edit</button>
         </div>
         <div>
           <CommentForm postId={post.id} />
           <div className="comment-right-part">
             <AllCommentsFirestore postId={post.id} />
-            {/* <ReplyForm /> */}
           </div>
         </div>
       </Card>

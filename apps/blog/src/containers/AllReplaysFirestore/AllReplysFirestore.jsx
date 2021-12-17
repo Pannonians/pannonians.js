@@ -1,15 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Firebase from "../../firebase";
-import {
-  collection,
-  where,
-  orderBy,
-  query,
-  getDocs,
-  getDoc,
-  doc,
-} from "@firebase/firestore";
+import { getDoc, doc } from "@firebase/firestore";
 
 /**
  * @author
