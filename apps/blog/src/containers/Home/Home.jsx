@@ -4,14 +4,13 @@ import Navbar from "../../components/Navbar/Navbar";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Card from "../../UI/Card/Card";
 import { AllPosts } from "./AllPosts/AllPosts";
-import {useState, useEffect} from "react"
+import { useState, useEffect } from "react";
 import "./style.css";
-import {collection, query, orderBy, getDocs} from "firebase/firestore";
+import { collection, query, orderBy, getDocs, doc } from "firebase/firestore";
 import Firebase from "../../firebase.js";
 import ReadMore from "../../components/ReadMore/ReadMore";
 import SimpleDateTime from "react-simple-timestamp-to-date";
-import pictures4 from "../../pictures/picture4.jpg"
-
+import pictures4 from "../../pictures/picture4.jpg";
 
 /**
  * @author
@@ -28,10 +27,13 @@ const Home = (props) => {
   const sideImageHeight = galleryHeight / 3;
   const [posts, setPosts] = useState([]);
   const [visible, setVisible] = useState(3);
+  const [isEmpty, setIsEmpty] = useState(false);
 
   const instance = Firebase.getInstance();
   const db = instance.db;
   const arrayPosts = [];
+
+  
 
   const handleAllPosts = async (e) => {
     const queryPosts = query(
@@ -48,17 +50,33 @@ const Home = (props) => {
 
       console.log(doc.timestamp);
     });
-    console.log("arrayPosts", arrayPosts);
-    setPosts(arrayPosts);
-    // console.log(arrayPosts);
-  };
 
+    setPosts(arrayPosts);
+    console.log("posts.lenght", posts.length);
+    console.log("arrayPosts.lenght", arrayPosts.length);
+    
+  
+    
+    
+  };
+  
   const loadMore = () => {
     setVisible((previouseValue) => previouseValue + 3);
+    
+  };
+  
+
+  const postEmpty = () => {
+    if (posts.length > visible) {    
+     loadMore();
+    }else {setIsEmpty(true)}
   };
 
+   
+    
 
-useEffect(() => {
+    
+  useEffect(() => {
     handleAllPosts();
   }, []);
 
@@ -110,53 +128,49 @@ useEffect(() => {
           </section>
         </div>
       </Card>
-
       <section
         className="HomeContainer"
         style={{ width: "80%", margin: "auto" }}
       >
         <Sidebar />
       </section>
-      
-      {posts.slice(0, visible).map((post) => (
-    <div style={props.style}>
-      <Card style={{ marginBottom: "20px" }}>
-        <div className="postImageWrapper">
-          <img src={pictures4} alt="" />
-        </div>
+      {posts.slice(0, visible).map((post, index) => (
+        <div style={props.style}>
+          <Card style={{ marginBottom: "20px" }}>
+            <div className="postImageWrapper">
+              <img src={pictures4} alt="" />
+            </div>
 
-        <div style={{ textAlign: "center" }}>
-          <h2>{post.title}</h2>
+            <div key={index} style={{ textAlign: "center" }}>
+              <h2>{post.title}</h2>
 
-          <ReadMore textPost={post.post}>
-            <span dangerouslySetInnerHTML={{ __html: post.post }} />
-          </ReadMore>
-          <span>
-            <SimpleDateTime
-              dateSeparator="."
-              timeSeparator=":"
-              dateFormat="DMY"
-              showTime="0"
-            >
-              {post.createdAt}
-            </SimpleDateTime>
-          </span>
-          <br></br>
+              <ReadMore textPost={post.post}>
+                <span dangerouslySetInnerHTML={{ __html: post.post }} />
+              </ReadMore>
+              <span>
+                <SimpleDateTime
+                  dateSeparator="."
+                  timeSeparator=":"
+                  dateFormat="DMY"
+                  showTime="0"
+                >
+                  {post.createdAt}
+                </SimpleDateTime>
+              </span>
+              <br></br>
+            </div>
+          </Card>
         </div>
-       
-      </Card>
-      
-    </div>
-  ))};
-        <div>>
+      ))}
+      ;
+      <div>
         {/* <AllPosts style={{ width: "70%" }} /> */}
-        <button className="buttonLoadMore" onClick={loadMore}>
-          Load more
-        </button>
+          {!isEmpty && <button className="buttonLoadMore" onClick={postEmpty}>
+            Load more
+          </button>}
+          {isEmpty && "There are no more posts"}
       </div>
-
     </div>
-    
   );
 };
 
