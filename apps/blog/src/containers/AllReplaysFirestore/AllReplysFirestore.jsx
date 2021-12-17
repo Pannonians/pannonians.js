@@ -1,15 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Firebase from "../../firebase";
-import {
-  collection,
-  where,
-  orderBy,
-  query,
-  getDocs,
-  getDoc,
-  doc,
-} from "@firebase/firestore";
+import { getDoc, doc } from "@firebase/firestore";
 
 /**
  * @author
@@ -27,10 +19,17 @@ export const AllReplaysFirestore = ({ commentId }) => {
     const docRef = doc(db, "comments", commentId);
     const querySnapshot = await getDoc(docRef);
 
-    setReplayComm(
-      querySnapshot._document.data.value.mapValue.fields.comments.arrayValue
-        .values
-    );
+    if (
+      querySnapshot._document.data.value.mapValue.fields.comments.arrayValue == []
+    ) {
+      setReplayComm(
+        querySnapshot._document.data.value.mapValue.fields.comments.arrayValue
+          .values
+      );} else {
+          console.log("there is no comments")
+      }
+
+
     console.log(
       querySnapshot._document.data.value.mapValue.fields.comments.arrayValue
         .values
@@ -41,24 +40,22 @@ export const AllReplaysFirestore = ({ commentId }) => {
     handleComment();
   }, []);
 
-    return (
-        <div>
-    {replayComm.map((replay) => (
-        <div key={replay}>{replay.stringValue}</div>
-    ))}
+  return (
+    <div>
+      {replayComm.map((replay, index) => (
+        <div key={index}>{replay.stringValue}</div>
+      ))}
     </div>
-    );
-  
+  );
 
+  // return <div>{JSON.stringify(replayComm)}</div>;
 
-// return <div>{JSON.stringify(replayComm)}</div>;
-
-//   return (
-//     <div>
-//       <h2>Replies</h2>
-//       {/* {displayReplies} */}
-//     </div>
-//   );
+  //   return (
+  //     <div>
+  //       <h2>Replies</h2>
+  //       {/* {displayReplies} */}
+  //     </div>
+  //   );
 };
 
 export default AllReplaysFirestore;
