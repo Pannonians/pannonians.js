@@ -9,7 +9,7 @@ import { getDoc, doc } from "@firebase/firestore";
  **/
 
 export const AllReplaysFirestore = ({ commentId }) => {
-  const [replayComm, setReplayComm] = useState([]);
+  const [replyComm, setReplyComm] = useState([]);
   console.log(commentId);
 
   const handleComment = async (e) => {
@@ -20,19 +20,21 @@ export const AllReplaysFirestore = ({ commentId }) => {
     const querySnapshot = await getDoc(docRef);
 
     if (
-      querySnapshot._document.data.value.mapValue.fields.comments.arrayValue == ![]
+      !(
+        querySnapshot._document.data.value.mapValue.fields.comments
+          .arrayValue === []
+      )
     ) {
-      setReplayComm(
+      setReplyComm(
         querySnapshot._document.data.value.mapValue.fields.comments.arrayValue
           .values
-      );} else {
-          console.log("there is no comments")
-      }
-
+      );
+    } else {
+      console.log("there is no comments");
+    }
 
     console.log(
-      querySnapshot._document.data.value.mapValue.fields.comments.arrayValue
-        .values
+      replyComm
     );
   };
 
@@ -42,20 +44,20 @@ export const AllReplaysFirestore = ({ commentId }) => {
 
   return (
     <div>
-      {replayComm.map((replay, index) => (
-        <div key={index}>{replay.stringValue}</div>
+      {replyComm.map((reply) => (
+        <div>{reply.stringValue}</div>
       ))}
     </div>
   );
 
-  // return <div>{JSON.stringify(replayComm)}</div>;
+  // return <div>{JSON.stringify(replyComm)}</div>;
 
-  //   return (
-  //     <div>
-  //       <h2>Replies</h2>
-  //       {/* {displayReplies} */}
-  //     </div>
-  //   );
+  //     return (
+  //       <div>
+  //         <h2>Replies</h2>
+  //         {/* {displayReplies} */}
+  //       </div>
+  //     );
 };
 
 export default AllReplaysFirestore;
