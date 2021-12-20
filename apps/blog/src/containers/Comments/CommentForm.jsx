@@ -18,10 +18,10 @@ const CommentForm = ({ postId }) => {
     const commRef = await addDoc(collection(database, "comments"), {
       text: text,
       postId: postId,
-      comments: [],
+      comments: null,
       createdAt: serverTimestamp(),
-    }).then(() => {
-      window.location.assign("/allPosts");
+    // }).then(() => {
+    //   window.location.assign("/allPosts");
     });
 
     logEvent(analytics, "comment_post", {
