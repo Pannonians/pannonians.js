@@ -51,7 +51,6 @@ const AllPostsFirestore = (props) => {
     const querySnapshot = await getDocs(queryPosts);
 
     querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data().title);
       let document = doc.data();
       document.id = doc.id;
       arrayPosts.push(document);
@@ -68,7 +67,6 @@ const AllPostsFirestore = (props) => {
     handleAllPosts();
   }, []);
 
-  console.log(posts);
   const displayPosts = posts.map((post) => {
     return (
       <Card style={{ marginBottom: "20px", width: "80%", margin: "auto" }}>
@@ -93,8 +91,6 @@ const AllPostsFirestore = (props) => {
             </SimpleDateTime>
           </span>
           <br></br>
-          {console.log("post.createdAt", post.createdAt)}
-
           <button
             onClick={() =>
               deletePost(post.id).then(async () => {

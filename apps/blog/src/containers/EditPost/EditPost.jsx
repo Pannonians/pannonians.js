@@ -33,8 +33,6 @@ const EditPost = ({ postInfo }) => {
   const postTitle = postInfo.title;
   const history = useHistory();
 
-  console.log(postInfo);
-
   const [title, setTitle] = useState(postInfo.title);
   const [post, setPost] = useState(postInfo.post);
 
@@ -45,9 +43,7 @@ const EditPost = ({ postInfo }) => {
 
   const updatePost = async (postId) => {
     const postDoc = doc(db, "posts", postId);
-    console.log(postDoc);
     const postChange = { post: post, title: title };
-    console.log(postChange);
     await updateDoc(postDoc, postChange);
   };
 

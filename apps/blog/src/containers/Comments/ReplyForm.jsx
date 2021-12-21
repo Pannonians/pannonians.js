@@ -11,8 +11,6 @@ export default function ReplyForm({ commentId }) {
 
   const handleSubmitReply = async (replyComm, commentId) => {
     const commentRef = doc(database, "comments", commentId);
-    console.log(commentRef);
-
     await updateDoc(commentRef, {
       comments: arrayUnion(replyComm),
     });

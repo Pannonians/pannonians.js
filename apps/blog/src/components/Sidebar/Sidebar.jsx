@@ -23,7 +23,7 @@ export const Sidebar = (props) => {
     const queryPosts = query(collection(db, "posts"));
 
     const querySnapshot = await getDocs(queryPosts);
-    console.log(querySnapshot);
+    
 
     setPosts(posts);
   };

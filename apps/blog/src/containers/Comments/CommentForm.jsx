@@ -25,7 +25,6 @@ const CommentForm = ({ postId }) => {
 
     logEvent(analytics, "comment_post", {
       text: text,
-      // post: post,
     });
 
     setText("");

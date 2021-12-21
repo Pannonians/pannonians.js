@@ -29,16 +29,11 @@ export const AllPosts = (props) => {
     const querySnapshot = await getDocs(queryPosts);
 
     querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data().title);
       let document = doc.data();
       document.id = doc.id;
       arrayPosts.push(document);
-
-      console.log(doc.timestamp);
     });
-    console.log("arrayPosts", arrayPosts);
     setPosts(arrayPosts);
-    // console.log(arrayPosts);
   };
 
   useEffect(() => {
