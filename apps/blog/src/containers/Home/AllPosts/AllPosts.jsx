@@ -2,13 +2,11 @@ import React from "react";
 import "./style.css";
 import Card from "../../../UI/Card/Card";
 import pictures4 from "../../../pictures/picture4.jpg";
-import picture3 from "../../../pictures/Slika-3.jpg";
 import Firebase from "../../../firebase";
-import { query, collection, getDocs, orderBy, where } from "firebase/firestore";
+import { query, collection, getDocs, orderBy } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import SimpleDateTime from "react-simple-timestamp-to-date";
 import ReadMore from "../../../components/ReadMore/ReadMore";
-import InfiniteScroll from "react-infinite-scroll-component";
 
 /**
  * @author
@@ -31,18 +29,12 @@ export const AllPosts = (props) => {
     const querySnapshot = await getDocs(queryPosts);
 
     querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data().title);
       let document = doc.data();
       document.id = doc.id;
       arrayPosts.push(document);
-
-      console.log(doc.timestamp);
     });
-    console.log("arrayPosts", arrayPosts);
     setPosts(arrayPosts);
-    // console.log(arrayPosts);
   };
-
 
   useEffect(() => {
     handleAllPosts();
@@ -76,9 +68,7 @@ export const AllPosts = (props) => {
           </span>
           <br></br>
         </div>
-       
       </Card>
-      
     </div>
   ));
 };

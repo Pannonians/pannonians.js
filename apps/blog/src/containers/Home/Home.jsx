@@ -1,9 +1,7 @@
 import React from "react";
 import Hero from "../../components/Hero/Hero";
-import Navbar from "../../components/Navbar/Navbar";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Card from "../../UI/Card/Card";
-import { AllPosts } from "./AllPosts/AllPosts";
 import { useState, useEffect } from "react";
 import "./style.css";
 import { collection, query, orderBy, getDocs, doc } from "firebase/firestore";
@@ -46,7 +44,6 @@ const Home = (props) => {
       document.id = doc.id;
       arrayPosts.push(document);
 
-      console.log(doc.timestamp);
     });
 
     setPosts(arrayPosts);

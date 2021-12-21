@@ -1,29 +1,22 @@
-import React from 'react'
-import Logo from '../../components/Logo/Logo'
-import Card from '../../UI/Card/Card'
-import Navbar from '../Navbar/Navbar'
-import Firebase from '../../firebase'
-import Header from '../Header/Header'
+import React from "react";
+import Card from "../../UI/Card/Card";
+import Header from "../Header/Header";
 
 /**
-* @author
-* @function Hero
-**/
+ * @author
+ * @function Hero
+ **/
 
 export const Hero = (props) => {
-
-  
-  return(
+  return (
     <div className="hero">
-        <Card style={{width:"80%", margin:"auto"}}>
-          <div style={{padding: '50px 0'}}>
-            <Header />
-            
-          </div>
-         
-        </Card>
+      <Card style={{ width: "80%", margin: "auto" }}>
+        <div style={{ padding: "50px 0" }}>
+          <Header />
+        </div>
+      </Card>
     </div>
-   )
-  }
+  );
+};
 
-  export default Hero;
+export default Hero;
