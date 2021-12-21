@@ -1,4 +1,6 @@
 .hero{
     background-color: white;
     display: flex;
+    width: 80%;
+    margin: auto;
 }

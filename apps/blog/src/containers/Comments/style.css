@@ -1,0 +1,11 @@
+.commentForm {
+    border:solid gray;
+    border-width: thin;
+    border-radius: 4px;
+    width: 60%;
+    margin:auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: Montserrat;
+
+}
