@@ -85,12 +85,21 @@ export const AllReplaysFirestore = ({ commentId }) => {
       )
     ) {
       setReplyComm(
-        querySnapshot._document.data.value.mapValue.fields.comments.arrayValue.values
+
+        querySnapshot._document.data.value.mapValue.fields.comments.arrayValue
+          .values
+
       );
     } else {
       console.log("there is no comments");
     }
-console.log(replyComm);
+
+
+
+    console.log(
+      replyComm
+    );
+
   };
 
   useEffect(() => {
