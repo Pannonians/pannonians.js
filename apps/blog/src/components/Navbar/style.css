@@ -1,0 +1,66 @@
+.navbar{
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 60px;
+    padding-left:0;
+    
+}
+
+
+.navbar ul{
+    margin: 0;
+   
+    
+}
+
+.navbar ul li{
+    list-style: none;
+    display: flex;
+}
+
+.navbar ul li a{
+    text-decoration: none;
+    display: block;
+    font-size: 20px;
+    text-transform: capitalize;
+    font-weight: 400;
+    color: #565673;
+    padding: 0 10px;
+
+}
+
+.search form{
+    display: flex;
+    margin: 0 10px;
+}
+
+.searchInput{
+    width: 10px;
+    border-color: cyan;
+    transition: width 0.2sec ease-in;
+    background-color: rgb(186, 189, 224);
+}
+
+.searchForm{
+    display: flex;
+    margin: 0px 10px;
+   
+  }
+  
+  
+  .searchIcon{
+  cursor: pointer;
+  }
+  
+  .searchInput.active{
+    width: 150px;
+  }
+  
+  .searchInput:focus{
+    outline: none;
+  }
+  
+.fa-search{
+    color: rgb(31, 31, 27);
+}

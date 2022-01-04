@@ -11,6 +11,21 @@
   ],
   "scripts": {
     "todo": "yarn workspace @pannonians/todo",
-    "blog": "yarn workspace @pannonians/blog"
+    "blog": "yarn workspace @pannonians/blog",
+    "react-redux": "yarn workspace @pannonians/react-redux"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "firebase": "^9.4.1",
+    "flag": "^4.4.0",
+    "html-react-parser": "^1.4.1",
+    "quill": "^1.3.7",
+    "react": "^17.0.2",
+    "react-bootstrap": "^2.0.2",
+    "react-icon": "^1.0.0",
+    "react-quill": "^1.3.5",
+    "react-redux": "^7.2.6",
+    "react-simple-timestamp-to-date": "^1.0.3",
+    "@reduxjs/toolkit": "^1.7.1"
   }
 }

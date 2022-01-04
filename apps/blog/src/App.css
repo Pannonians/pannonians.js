@@ -1,41 +1,25 @@
 .App {
-  background-color: #282c34;
+  background-color: rgb(206, 206, 206);
+  width: 80%;
+  margin: auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+  background: #edebe9;
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+
 
 .App-header {
-  width: 80vw;
-  margin: 0 auto;
-  
-  min-height: 100vh;
+ 
   display: flex;
   flex-direction: column;
   font-size: 12px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
 .blog-header {
   display: flex;
@@ -53,4 +37,149 @@
 .blog-header div p {
   margin: 0;
   padding: 0;
+}
+
+.mainContainer {
+  background: url(.././src/Landing\ page\ FINAL.jpg) no-repeat top center;
+  width: 100%;
+  height: 947px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginContainer {
+  width: 20%;
+  height: 400px;
+  background: rgba(113, 147, 191, 0.303);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  outline: solid;
+  outline-color: white;
+}
+
+.Google {
+  width: 250px;
+  height: 40px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  margin-top: 60px;
+  font-family: Montserrat;
+}
+
+.Github {
+  width: 250px;
+  height: 40px;
+  border-radius: 6px;
+  font-family: Montserrat;
+}
+
+.fa {
+  padding-right: 10px;
+  font-size: 20px;
+}
+
+.Logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 30%;
+}
+
+.Text {
+  color: white;
+  margin-right: 120px;
+  padding-right: 40px;
+  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.7);
+}
+
+.Title {
+  font-family: Montserrat;
+  font-size: 64px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.subtitle {
+  font-family: Montserrat;
+  font-size: 56px;
+  font-weight: 400;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-top: 10px;
+}
+
+.link {
+  font-size: 12px;
+  color: white;
+  margin: 15px 0;
+}
+
+.headerMenu a{
+  display: inline-block;
+  margin: 0 10px;
+  text-decoration: none;
+  letter-spacing: 1,2px;
+  color: white;
+
+}
+
+.userInfo{
+  float: right;
+  margin-top: 0;
+  padding: 0;
+}
+
+.searchForm{
+  display: flex;
+  margin: 0px 10px;
+ 
+}
+
+.searchInput{
+  border: 0;
+  width: 0;
+  transition: width 0.2s ease-in;
+}
+
+.searchIcon{
+cursor: pointer;
+}
+
+.searchInput.active{
+  width: 150px;
+}
+
+.searchInput:focus{
+  outline: none;
+}
+
+.headerMenu a:hover {
+  color: rgba(59, 59, 216, 0.801);
+}
+
+.App-link {
+  color: #61dafb;
+
+}
+
+
+
+.headerUserInfo{
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+}
+
+.posts{
+
+  margin-left: 100px;
+  margin-right: 100px;
+  
 }
