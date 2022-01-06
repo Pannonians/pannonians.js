@@ -6,6 +6,12 @@ import TvShows from "../src/features/TV Shows/TvShows.jsx";
 import Header from "./features/Dashboard/Header.jsx";
 import Footer from "../src/features/Dashboard/Footer.jsx";
 import "./App.css";
+import axios from "axios";
+
+require("dotenv").config();
+
+axios.defaults.baseURL = 'https://api.themoviedb.org/3';
+axios.defaults.headers.common['Authorization'] = `Bearer ${process.env.REACT_APP_BEARER_TOKEN}`;
 
 function App() {
   return (

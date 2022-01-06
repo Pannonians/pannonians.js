@@ -1,14 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
-import BaseURL from "../../BaseURL";
-
-require("dotenv").config();
+import axios from "axios";
+import { movie } from '../../api'
 
 export default function Dashboard() {
   useEffect(() => {
     const getMovies = async () => {
-      const response = await BaseURL.get();
+      const {url} = movie.get.discover
+      const response = await axios.get(url);
 
       console.log("response", response);
     };
