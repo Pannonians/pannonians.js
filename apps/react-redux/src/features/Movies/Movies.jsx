@@ -1,28 +1,40 @@
 import React from "react";
 import axios from "axios";
+import { movie } from "../../api";
 import { useEffect, useState } from "react";
 import { movie as movieApi } from "../../api";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { selectMovies } from "./movieSlice";
+import { addMovies } from "../Movies/movieSlice";
+
 
 export default function Movies() {
   const [movies, setMovies] = useState([]);
   const [movieDetail, setMovieDetail] = useState(null);
+  const allMovies = useSelector((selectMovies));
+  const dispatch = useDispatch();
 
-  const fetchData = async () => {
-    const { url } = movieApi.get.discover;
-    const { data } = await axios.get(url);
-    setMovies(data.results);
-  };
+    useEffect(() => {
+      const getMovies = async () => {
+        const { url } = movie.get.discover;
+        const response = await axios.get(url);
+        setMovies(response.data.results);
+        dispatch(addMovies(response.data.results));
+      };
+  
+      getMovies();
+    }, [dispatch]);
 
   const getDetails = async (movie) => {
     const { url } = movieApi.get.single;
     const { data: response } = await axios.get(url(movie.id));
     setMovieDetail(response);
+  
   };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
+  
+  
+    
   return (
     <div className="d-flex d-flex-start p-5">
       <div style={{ minWidth: 400 }}>
@@ -51,3 +63,5 @@ export default function Movies() {
     </div>
   );
 }
+  
+
