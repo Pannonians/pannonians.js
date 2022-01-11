@@ -1,19 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import moviesReducer from "../features/Movies/movieSlice.jsx"
+import tvShowsReducer from "../features/TV Shows/tvShowsSlice.jsx"
+
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
-  },
+    movies: moviesReducer,
+    tvShows: tvShowsReducer,
+  } 
 });
-
-
-// import { configureStore } from "@reduxjs/toolkit";
-// import moviesReducer from "./movies/movieSlice";
-
-// export const store = configureStore({
-//   reducer: {
-//     movies: moviesReducer,
-//     tvShows: tvShowsReducer
-//   },
-// });
