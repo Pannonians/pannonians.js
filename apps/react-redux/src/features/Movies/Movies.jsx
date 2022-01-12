@@ -11,10 +11,11 @@ import {
   selectedMovie,
   selectMovies,
   setSelectedMovie,
+  addMovies,
 } from "./movieSlice";
-import { addMovies } from "../Movies/mov              </div>
-))}
-{allMovies.movies.length === 0 ? <div>Loading</div> : null}ieSlice";
+          
+
+
 
 export default function Movies() {
   const allMovies = useSelector(selectMovies);
@@ -78,7 +79,7 @@ export default function Movies() {
         ) : (
           <div>
             <h2>{selectedMovieDetails.title}</h2>
-            <div>{JSON.stringify(selectedMovieDetails, null, 4)}</div>
+            <div>{JSON.stringify(selectedMovieDetails.overview, null, 4)}</div>
           </div>
         )}
       </div>
