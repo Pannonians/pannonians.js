@@ -1,23 +1,28 @@
 import React from "react";
 import axios from "axios";
 import { tv } from "../../api";
-import { useEffect, useState } from "react";
-import { tv as tvApi } from "../../api";
+import { useEffect } from "react";
+import { tv as tvApi, tvSeason } from "../../api";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { 
-  addTvShows, 
-  addSingleTvShowDetail, 
-  setSelectedTvShow, 
-  selectTvShows, 
-  selectTvDetails, 
-  selectedTvShow 
+import {
+  addTvShows,
+  addSingleTvShowDetail,
+  setSelectedTvShow,
+  selectTvShows,
+  selectTvDetails,
+  selectedTvShow,
+  addSingleSeason,
+  setSelectedSeasonDetails,
+  selectedSeasonDetails,
+  selectSeason
 } from "../TV Shows/tvShowsSlice";
 
 export default function TvShows() {
   const allTvShows = useSelector(selectTvShows);
   const singleTvShowDetails = useSelector(selectTvDetails);
   const selectedTvShowDetails = useSelector(selectedTvShow);
+  const singleSeasonDetails = useSelector(selectedSeasonDetails);
   const dispatch = useDispatch();
 
 
@@ -51,6 +56,27 @@ export default function TvShows() {
     dispatch(setSelectedTvShow(response));
   };
 
+  const setTvSeason = async (seasonNumber) => {
+    const { url } = tvSeason.get.discover;
+    const { data } = await axios.get(url(selectedTvShowDetails.id, seasonNumber));
+    dispatch(addSingleSeason({
+      tvShowId: selectedTvShowDetails.id,
+      seasonNumber, 
+      details: data,
+    }));
+    console.log(singleSeasonDetails);
+}; 
+const setSeasonDetails = async (tvSeason) => {
+  if (Object.keys(singleSeasonDetails).includes(tvSeason.id)) {
+    dispatch(setSelectedSeasonDetails(singleSeasonDetails[tvSeason.id]));
+    return;
+  }
+  const { url } = tvSeason.get.discover;
+  const { data: response } = await axios.get(url(tvSeason.seasonNumber));
+
+  dispatch(setSelectedSeasonDetails(response));
+};
+  
 
   return (
     <div className="d-flex d-flex-start p-5">
@@ -58,10 +84,11 @@ export default function TvShows() {
         <NavLink to="/">Back</NavLink>
         <div>
           {allTvShows.tvShows.length > 0 &&
-            allTvShows.tvShows.map((tvShow) => (
+            allTvShows.tvShows.map((tvShow, index) => (
               <div
                 style={{ cursor: "pointer" }}
                 onClick={() => getDetails(tvShow)}
+                key={index}
               >
                 {tvShow.name}
               </div>
@@ -75,53 +102,16 @@ export default function TvShows() {
         ) : (
           <div>
             <h2>{selectedTvShowDetails.name}</h2>
-            <div>{JSON.stringify(selectedTvShowDetails.overview, null, 4)}</div>
+            <div>{selectedTvShowDetails.overview}</div>
+            {selectedTvShowDetails.seasons.length >= 0 && selectedTvShowDetails.seasons.map((season, index) => (
+              <div key={index} onClick={() => setTvSeason(season.season_number) } >
+                <button onClick={() => setSeasonDetails(tvSeason.id)}>
+                {season.name} 
+                </button >
+              </div>))}
           </div>
         )}
       </div>
     </div>
-  );
-}
-
-  
-//   return (
-//     <div className="d-flex d-flex-start p-5">
-//       <div style={{ minWidth: 400 }}>
-//         <NavLink to="/">Back</NavLink>
-//         <div>
-//           {tvShows.map((tv) => (
-//             <div style={{ cursor: "pointer" }} onClick={() => getDetails(tv)}>
-//               {tv.name}
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//       <div className="row ms-5">
-//         {!tvShowDetail ? (
-//           "Click on a TvShow to see details"
-//         ) : (
-//           <div>
-//             <h2>{tvShowDetail.name}</h2>
-//             <div>{JSON.stringify(tvShowDetail, null, 4)}</div>
-//           </div>
-//         )}
-//       </div>
-//     </div>
-//   );
-// }
-
-// useEffect(() => {
-    //     const getTvShows = async () => {
-    //       const { url } = tv.get.discover;
-    //       const responseTv = await axios.get(url);
-    //       dispatch(addTvShows(responseTv.data.results))
-    //     };
-    
-    //     getTvShows();
-    //   }, []);
-
-    // const fetchData = async () => {
-    //     const { url } = tvApi.get.discover;
-    //     const { data } = await axios.get(url);
-    //     setTvShows(data.results);
-    //   };
+  )
+};

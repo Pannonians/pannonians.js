@@ -5,7 +5,9 @@ const initialState = {
     tvShows:[],
     tvShowDetails: {},
     selectedTvShow: null,
-    fetched: false
+    fetched: false,
+    selectedSeason: null,
+    seasonDetails: {}
 }
 
 const tvShowsSlice = createSlice ({
@@ -18,15 +20,28 @@ const tvShowsSlice = createSlice ({
         },
         addSingleTvShowDetail: (state, { payload }) => {
             state.tvShowDetails[payload.id] = payload;
-          },
-          setSelectedTvShow: (state, { payload }) => {
+        },
+        setSelectedTvShow: (state, { payload }) => {
             state.selectedTvShow = payload;
-          },
+        },
+        addSingleSeason: (state, {payload}) => {
+            const {tvShowId, seasonNumber, details} = payload
+            if (state.tvShowDetails[tvShowId].seasonDetails === undefined ) state.tvShowDetails[tvShowId].seasonDetails = {}
+            state.tvShowDetails[tvShowId].seasonDetails[seasonNumber] = details
+            state.selectedTvShow = state.tvShowDetails[tvShowId];
+            state.selectedSeason = details;
+        },
+        setSelectedSeasonDetails: (state, { payload }) => {
+            state.seasonDetails = payload.details;
+        },
+
     },
 });
 
-export const {addTvShows, addSingleTvShowDetail, setSelectedTvShow} = tvShowsSlice.actions;
+export const {addTvShows, addSingleTvShowDetail, setSelectedTvShow, addSingleSeason, setSelectedSeasonDetails} = tvShowsSlice.actions;
 export default tvShowsSlice.reducer;
 export const selectTvShows = (state) => state.tvShows;
 export const selectTvDetails = (state) => state.tvShows.tvShowDetails;
 export const selectedTvShow = (state) => state.tvShows.selectedTvShow;
+export const selectedSeasonDetails = (state) => state.tvShows.tvShowDetails.seasonDetails;
+export const selectSeason = (state) => state.tvShows.selectedTvShow.selectedSeason;

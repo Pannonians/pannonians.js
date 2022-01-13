@@ -62,8 +62,9 @@ export default function Movies() {
         <NavLink to="/">Back</NavLink>
         <div>
           {allMovies.movies.length > 0 &&
-            allMovies.movies.map((movie) => (
+            allMovies.movies.map((movie, index) => (
               <div
+                key={index}
                 style={{ cursor: "pointer" }}
                 onClick={() => getDetails(movie)}
               >
