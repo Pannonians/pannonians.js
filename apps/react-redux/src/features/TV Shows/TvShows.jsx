@@ -15,7 +15,7 @@ import {
   addSingleSeason,
   setSelectedSeasonDetails,
   selectedSeasonDetails,
-  selectSeason
+  setSelectedSeason,
 } from "../TV Shows/tvShowsSlice";
 
 export default function TvShows() {
@@ -24,7 +24,6 @@ export default function TvShows() {
   const selectedTvShowDetails = useSelector(selectedTvShow);
   const singleSeasonDetails = useSelector(selectedSeasonDetails);
   const dispatch = useDispatch();
-
 
   useEffect(() => {
     if (!dispatch) return;
@@ -41,6 +40,7 @@ export default function TvShows() {
   }, [allTvShows, dispatch]);
 
   const getDetails = async (tv) => {
+    dispatch(setSelectedSeason({}));
     if (Object.keys(singleTvShowDetails).includes(tv.id.toString())) {
       dispatch(setSelectedTvShow(singleTvShowDetails[tv.id]));
       return;
@@ -58,25 +58,34 @@ export default function TvShows() {
 
   const setTvSeason = async (seasonNumber) => {
     const { url } = tvSeason.get.discover;
-    const { data } = await axios.get(url(selectedTvShowDetails.id, seasonNumber));
-    dispatch(addSingleSeason({
-      tvShowId: selectedTvShowDetails.id,
-      seasonNumber, 
-      details: data,
-    }));
-    console.log(singleSeasonDetails);
-}; 
-const setSeasonDetails = async (tvSeason) => {
-  if (Object.keys(singleSeasonDetails).includes(tvSeason.id)) {
-    dispatch(setSelectedSeasonDetails(singleSeasonDetails[tvSeason.id]));
-    return;
-  }
-  const { url } = tvSeason.get.discover;
-  const { data: response } = await axios.get(url(tvSeason.seasonNumber));
+    const { data } = await axios.get(
+      url(selectedTvShowDetails.id, seasonNumber)
+    );
+    dispatch(
+      addSingleSeason({
+        tvShowId: selectedTvShowDetails.id,
+        seasonNumber,
+        details: data,
+      })
+    );
+  };
+  const setSeasonDetails = async (seasonNumber) => {
+    if (
+      singleSeasonDetails &&
+      Object.keys(singleSeasonDetails).includes(selectedTvShowDetails.id)
+    ) {
+      dispatch(
+        setSelectedSeasonDetails(singleSeasonDetails[selectedTvShowDetails.id])
+      );
+      return;
+    }
+    const { url } = tvSeason.get.discover;
+    const { data: response } = await axios.get(
+      url(selectedTvShowDetails.id, seasonNumber)
+    );
 
-  dispatch(setSelectedSeasonDetails(response));
-};
-  
+    dispatch(setSelectedSeasonDetails(response));
+  };
 
   return (
     <div className="d-flex d-flex-start p-5">
@@ -103,15 +112,42 @@ const setSeasonDetails = async (tvSeason) => {
           <div>
             <h2>{selectedTvShowDetails.name}</h2>
             <div>{selectedTvShowDetails.overview}</div>
-            {selectedTvShowDetails.seasons.length >= 0 && selectedTvShowDetails.seasons.map((season, index) => (
-              <div key={index} onClick={() => setTvSeason(season.season_number) } >
-                <button onClick={() => setSeasonDetails(tvSeason.id)}>
-                {season.name} 
-                </button >
-              </div>))}
+            {selectedTvShowDetails.seasons.length >= 0 &&
+              selectedTvShowDetails.seasons.map((season, index) => (
+                <div
+                  key={index}
+                  onClick={() => {
+                    setTvSeason(season.season_number);
+                    setSeasonDetails(season.season_number);
+                  }}
+                >
+                  {season.name}
+                </div>
+              ))}
+            <hr />
+            {singleSeasonDetails && singleSeasonDetails._id && (
+              <div>
+                <h2>Season {singleSeasonDetails.season_number}</h2>
+                <hr />
+                <div>
+                  <ul>
+                    {singleSeasonDetails.episodes.map((episode) => (
+                      <div>
+                        <div>
+                          <strong>Episode {episode.episode_number}</strong> -{" "}
+                          {episode.name}
+                        </div>
+                        <div>{episode.overview}</div>
+                        <hr />
+                      </div>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>
     </div>
-  )
-};
+  );
+}
