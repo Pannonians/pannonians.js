@@ -60,7 +60,7 @@ export default function Movies() {
   return (
     <div className="d-flex d-flex-start p-5">
       <div style={{ minWidth: 400 }}>
-        <NavLink to="/" type="btn" className={"btn"}>Back</NavLink>
+        <NavLink to="/" type="btn" className={"btn"}><i class="fas fa-arrow-alt-left"></i> Back</NavLink>
         <div className="movie-page">
         <div className="container">
         <div className="result-card">
@@ -116,8 +116,8 @@ export default function Movies() {
         )}
              </div>
             <div className="movie-details">{selectedMovieDetails.tagline.length !== 0 ? <div>{JSON.stringify(selectedMovieDetails.tagline, null, 4)}</div> : null}</div>
-            <div className="movie-details">Overview: <br></br>{JSON.stringify(selectedMovieDetails.overview, null, 4)}</div>
-            <div className="movie-details">Release date:
+            <div className="movie-details"><div style={{fontStyle: "italic"}}>Overview: </div>{JSON.stringify(selectedMovieDetails.overview, null, 4)}</div>
+            <div className="movie-details"><span style={{fontStyle: "italic"}}>Release date: </span>
             <span style={{paddingLeft: "10px"}}>
             <SimpleDateTime
               dateSeparator="."

@@ -91,7 +91,7 @@ export default function TvShows() {
   return (
     <div className="d-flex d-flex-start p-5">
       <div style={{ minWidth: 400 }}>
-        <NavLink to="/" type="btn" className={"btn"}>Back</NavLink>
+        <NavLink to="/" type="btn" className={"btn"}><i class="fas fa-arrow-alt-left"></i> Back</NavLink>
         <div className="movie-page">
          <div className="container">
           <div className="result-card">
@@ -145,8 +145,8 @@ export default function TvShows() {
         )}
           </div>
             <div className="movie-details">{selectedTvShowDetails.tagline.length !== 0 ? <div>{JSON.stringify(selectedTvShowDetails.tagline, null, 4)}</div> : null}</div>
-            <div className="movie-details">Overview: <br></br>{selectedTvShowDetails.overview}</div>
-            <div className="movie-details">Last air date:
+            <div className="movie-details"><div style={{fontStyle: "italic"}}>Overview: </div>{selectedTvShowDetails.overview}</div>
+            <div className="movie-details" style={{marginBottom: "15px"}}><span style={{fontStyle: "italic"}}>Last air date: </span>
             <span style={{paddingLeft: "10px"}}>
             <SimpleDateTime
               dateSeparator="."
@@ -166,7 +166,7 @@ export default function TvShows() {
                     setSeasonDetails(season.season_number);
                   }}
                 >
-                  <div>{season.name}</div>
+                  <div type="btn" className={"seasons"} style={{marginTop: "10px"}}>{season.name}</div>
                 </div>
               ))}
             <hr />
