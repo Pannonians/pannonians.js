@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom';
 
 export const Header = () => {
     return (
@@ -6,9 +7,9 @@ export const Header = () => {
       <nav className="navbar navbar-light bg-dark mb-5">
         <div className="container">
           <div className="navbar-header">
-            <a className="navbar-brand text-white text-lg brand-text" to="#">
+            <NavLink to="/" className="navbar-brand text-white text-lg brand-text">
               Movies and TV Shows Application
-            </a>
+            </NavLink>
           </div>
           
         </div>

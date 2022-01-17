@@ -44,12 +44,11 @@ body {
 }
 
 .btn {
-  padding: 10px 15px;
-  background-color: rgb(162, 162, 233);
+  padding: 5px 15px;
+  background-color: rgb(243, 231, 231);
   color: var(--primary);
   border-radius: 5px;
-  text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 600;
   display: inline-block;
   border: none;
   font-size: 1rem;
@@ -138,7 +137,6 @@ header .nav-links li:last-child {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
 }
 
 .result-card .info .title {
@@ -191,6 +189,10 @@ header .nav-links li:last-child {
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
   background-color: rgb(243, 231, 231);
+  padding-top: 35px;
+  padding-bottom: 25px;
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
 @media (min-width: 992px) {
@@ -294,18 +296,25 @@ header .nav-links li:last-child {
   text-align: center;
 }
 
-.ctrl-btn {
-  color: #fefefe;
-  background-color: transparent;
+.seasons {
+  padding: 10px 20px;
+  width: 100%;
+  background-color: rgb(243, 231, 231);
+  color: var(--primary);
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
   border: none;
+  font-size: 1rem;
   transition: all 0.3s ease;
-  font-size: 1.25rem;
-  padding: 5px;
-  margin: 0;
+  line-height: 1.1;
+  text-align: center;
 }
 
-.ctrl-btn:hover {
-  color: var(--secondary);
+.seasons:hover {
+  background-color: rgb(119, 119, 172);
+  opacity: 1;
   cursor: pointer;
 }
 
