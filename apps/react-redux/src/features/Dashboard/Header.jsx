@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
+import clapperboard24 from "../Dashboard/img/clapperboard24.png"
 
 export const Header = () => {
     return (
@@ -11,6 +12,7 @@ export const Header = () => {
               Movies and TV Shows Application
             </NavLink>
           </div>
+          <img src={clapperboard24} alt='clappeboard'></img>
           
         </div>
       </nav>
