@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { tv as tvApi, tvSeason } from "../../api";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import SimpleDateTime from "react-simple-timestamp-to-date";
 import {
   addTvShows,
   addSingleTvShowDetail,
@@ -90,28 +91,72 @@ export default function TvShows() {
   return (
     <div className="d-flex d-flex-start p-5">
       <div style={{ minWidth: 400 }}>
-        <NavLink to="/">Back</NavLink>
-        <div>
-          {allTvShows.tvShows.length > 0 &&
+        <NavLink to="/" type="btn" className={"btn"}>Back</NavLink>
+        <div className="movie-page">
+         <div className="container">
+          <div className="result-card">
+           <div className="movie-grid">
+             {allTvShows.tvShows.length > 0 &&
             allTvShows.tvShows.map((tvShow, index) => (
               <div
                 style={{ cursor: "pointer" }}
                 onClick={() => getDetails(tvShow)}
                 key={index}
               >
-                {tvShow.name}
+                <div className="poster-wrapper">
+              {tvShow.poster_path ? (
+                <img
+                  src={`https://image.tmdb.org/t/p/w200${tvShow.poster_path}`}
+                  alt={`${tvShow.title} Poster`}
+                />
+              ) : (
+                <div className="filler-poster" />
+              )}
+            </div>
+                <h5 className="movie-title">{tvShow.name}</h5>
               </div>
             ))}
           {allTvShows.tvShows.length === 0 ? <div>Loading</div> : null}
+           </div>
+          </div>
+         </div>
         </div>
       </div>
-      <div className="row ms-5">
+      <div className="row ms-6" style={{width: "50%"}}>
         {!selectedTvShowDetails ? (
-          "Click on a tvShow to see details"
+          <div style={{fontStyle: "italic"}}>"Click on a Tv Show to see details"</div>
         ) : (
-          <div>
-            <h2>{selectedTvShowDetails.name}</h2>
-            <div>{selectedTvShowDetails.overview}</div>
+          <div className="selected-movie">
+            <h3 className="selected-movie-title">{selectedTvShowDetails.name}</h3>
+            <div className="backdrop">
+            <img
+            src={`https://image.tmdb.org/t/p/w200${selectedTvShowDetails.backdrop_path}`}
+            alt={`${selectedTvShowDetails.name} Backdrop`}
+          />
+            </div>
+            <div className="poster">
+        {selectedTvShowDetails.poster_path ? (
+          <img
+            src={`https://image.tmdb.org/t/p/w200${selectedTvShowDetails.poster_path}`}
+            alt={`${selectedTvShowDetails.name} Poster`}
+          />
+         ) : (
+          <div className="filler-poster" />
+        )}
+          </div>
+            <div className="movie-details">{selectedTvShowDetails.tagline.length !== 0 ? <div>{JSON.stringify(selectedTvShowDetails.tagline, null, 4)}</div> : null}</div>
+            <div className="movie-details">Overview: <br></br>{selectedTvShowDetails.overview}</div>
+            <div className="movie-details">Last air date:
+            <span style={{paddingLeft: "10px"}}>
+            <SimpleDateTime
+              dateSeparator="."
+              timeSeparator=":"
+              dateFormat="DMY"
+              showTime="0"
+            >{selectedTvShowDetails.last_air_date}
+            </SimpleDateTime>
+            </span>
+            </div>
             {selectedTvShowDetails.seasons.length >= 0 &&
               selectedTvShowDetails.seasons.map((season, index) => (
                 <div
@@ -121,7 +166,7 @@ export default function TvShows() {
                     setSeasonDetails(season.season_number);
                   }}
                 >
-                  {season.name}
+                  <div>{season.name}</div>
                 </div>
               ))}
             <hr />
