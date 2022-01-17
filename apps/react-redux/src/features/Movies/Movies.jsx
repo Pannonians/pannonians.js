@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { movie as movieApi } from "../../api";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import SimpleDateTime from "react-simple-timestamp-to-date";
 import {
   addSingleMovieDetail,
   selectDetails,
@@ -59,27 +60,74 @@ export default function Movies() {
   return (
     <div className="d-flex d-flex-start p-5">
       <div style={{ minWidth: 400 }}>
-        <NavLink to="/">Back</NavLink>
-        <div>
+        <NavLink to="/" type="btn" className={"btn"}>Back</NavLink>
+        <div className="movie-page">
+        <div className="container">
+        <div className="result-card">
+        <div className="movie-grid">
           {allMovies.movies.length > 0 &&
             allMovies.movies.map((movie) => (
               <div
+                key={movie.id}
                 style={{ cursor: "pointer" }}
                 onClick={() => getDetails(movie)}
               >
-                {movie.title}
+                <div className="poster-wrapper">
+              {movie.poster_path ? (
+                <img
+                  src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                  alt={`${movie.title} Poster`}
+                />
+              ) : (
+                <div className="filler-poster" />
+              )}
+            </div>
+                <h5 className="movie-title">{movie.title}</h5>
+                
               </div>
             ))}
           {allMovies.movies.length === 0 ? <div>Loading</div> : null}
+          
         </div>
       </div>
-      <div className="row ms-5">
+      </div>
+      </div>
+      </div>
+      <div className="row ms-6" style={{width: "50%"}}>
         {!selectedMovieDetails ? (
-          "Click on a movie to see details"
+          <div style={{fontStyle: "italic"}}>"Click on a movie to see details"</div>
         ) : (
-          <div>
-            <h2>{selectedMovieDetails.title}</h2>
-            <div>{JSON.stringify(selectedMovieDetails.overview, null, 4)}</div>
+          <div className="selected-movie">
+              <h3 className="selected-movie-title">{selectedMovieDetails.title}</h3>
+            <div className="backdrop">
+            <img
+            src={`https://image.tmdb.org/t/p/w200${selectedMovieDetails.backdrop_path}`}
+            alt={`${selectedMovieDetails.title} Backdrop`}
+          />
+            </div>
+            <div className="poster">
+        {selectedMovieDetails.poster_path ? (
+          <img
+            src={`https://image.tmdb.org/t/p/w200${selectedMovieDetails.poster_path}`}
+            alt={`${selectedMovieDetails.title} Poster`}
+          />
+         ) : (
+          <div className="filler-poster" />
+        )}
+             </div>
+            <div className="movie-details">{selectedMovieDetails.tagline.length !== 0 ? <div>{JSON.stringify(selectedMovieDetails.tagline, null, 4)}</div> : null}</div>
+            <div className="movie-details">Overview: <br></br>{JSON.stringify(selectedMovieDetails.overview, null, 4)}</div>
+            <div className="movie-details">Release date:
+            <span style={{paddingLeft: "10px"}}>
+            <SimpleDateTime
+              dateSeparator="."
+              timeSeparator=":"
+              dateFormat="DMY"
+              showTime="0"
+            >{selectedMovieDetails.release_date}
+            </SimpleDateTime>
+            </span>
+            </div>
           </div>
         )}
       </div>
