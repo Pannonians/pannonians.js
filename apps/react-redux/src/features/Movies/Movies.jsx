@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useEffect } from "react";
-import { movie as movieApi } from "../../api";
+import { movie as movieApi } from "../../api"
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import SimpleDateTime from "react-simple-timestamp-to-date";
@@ -52,23 +52,21 @@ export default function Movies() {
     // Perform fetch to get the movie details
     const { url } = movieApi.get.single;
     const { data: response } = await axios.get(url(movie.id));
+    const { url: creditUrl } = movieApi.get.credits;
+      const { data } = await axios.get(creditUrl(movie.id));
+
+      const completeMovieDetails = {...response, credits: data};
 
     // Store in redux movie details and set selected movie
     // to be the one we just click on
-    dispatch(addSingleMovieDetail(response));
-    dispatch(setSelectedMovie(response));
+    dispatch(addSingleMovieDetail(completeMovieDetails));
+    dispatch(setSelectedMovie(completeMovieDetails));
+    console.log("etSelectedMovie", completeMovieDetails);
   };
 
-    const getCredits = async (movie) => {
-      const { url } = movieApi.get.credits;
-      const response = await axios.get(url(movie.id));
-      dispatch(addMovieCredit(response));
-    };
 
     const onClick = (movie) => {
       getDetails(movie);
-      getCredits(movie);
-      
     }
 
 
@@ -144,7 +142,7 @@ export default function Movies() {
             </SimpleDateTime>
             </span>
             </div>
-            <div className="movie-details"><div style={{fontStyle: "italic"}}>MovieCredits: </div>{JSON.stringify(selectedMovieCredits.data)}</div>
+            <div className="movie-details"><div style={{fontStyle: "italic"}}>MovieCredits: </div>{JSON.stringify(selectedMovieDetails.credits.cast, null, 4)}</div>
           </div>
         )}
       </div>

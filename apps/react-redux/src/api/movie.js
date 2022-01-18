@@ -11,7 +11,7 @@ const schema = {
         },
         credits: {
             url: (id) => `/movie/${id}/credits`
-        }
+        },
     },
     post: {},
 }
