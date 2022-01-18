@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import { movie } from "../../api";
 import { useEffect } from "react";
 import { movie as movieApi } from "../../api";
 import { NavLink } from "react-router-dom";
@@ -13,6 +12,8 @@ import {
   selectMovies,
   setSelectedMovie,
   addMovies,
+  addMovieCredit,
+  selectedCredits,
 } from "./movieSlice";
           
 
@@ -22,6 +23,7 @@ export default function Movies() {
   const allMovies = useSelector(selectMovies);
   const singleMovieDetails = useSelector(selectDetails);
   const selectedMovieDetails = useSelector(selectedMovie);
+  const selectedMovieCredits = useSelector(selectedCredits);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,7 +32,7 @@ export default function Movies() {
     // if movies are fetched, don't fetch
     if (allMovies.fetched) return;
     const getMovies = async () => {
-      const { url } = movie.get.discover;
+      const { url } = movieApi.get.discover;
       const response = await axios.get(url);
       dispatch(addMovies(response.data.results));
     };
@@ -57,6 +59,20 @@ export default function Movies() {
     dispatch(setSelectedMovie(response));
   };
 
+    const getCredits = async (movie) => {
+      const { url } = movieApi.get.credits;
+      const response = await axios.get(url(movie.id));
+      dispatch(addMovieCredit(response));
+    };
+
+    const onClick = (movie) => {
+      getDetails(movie);
+      getCredits(movie);
+      
+    }
+
+
+
   return (
     <div className="d-flex d-flex-start p-5">
       <div style={{ minWidth: 400 }}>
@@ -70,7 +86,7 @@ export default function Movies() {
               <div
                 key={movie.id}
                 style={{ cursor: "pointer" }}
-                onClick={() => getDetails(movie)}
+                onClick={() => onClick(movie)}
               >
                 <div className="poster-wrapper">
               {movie.poster_path ? (
@@ -115,7 +131,7 @@ export default function Movies() {
           <div className="filler-poster" />
         )}
              </div>
-            <div className="movie-details">{selectedMovieDetails.tagline.length !== 0 ? <div>{JSON.stringify(selectedMovieDetails.tagline, null, 4)}</div> : null}</div>
+            <div className="movie-details">{JSON.stringify(selectedMovieDetails.tagline, null, 4)}</div>
             <div className="movie-details"><div style={{fontStyle: "italic"}}>Overview: </div>{JSON.stringify(selectedMovieDetails.overview, null, 4)}</div>
             <div className="movie-details"><span style={{fontStyle: "italic"}}>Release date: </span>
             <span style={{paddingLeft: "10px"}}>
@@ -128,6 +144,7 @@ export default function Movies() {
             </SimpleDateTime>
             </span>
             </div>
+            <div className="movie-details"><div style={{fontStyle: "italic"}}>MovieCredits: </div>{JSON.stringify(selectedMovieCredits.data)}</div>
           </div>
         )}
       </div>

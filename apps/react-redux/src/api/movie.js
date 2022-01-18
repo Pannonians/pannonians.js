@@ -8,6 +8,9 @@ const schema = {
         },
         genres: {
             url: '/genre/movie/list'
+        },
+        credits: {
+            url: (id) => `/movie/${id}/credits`
         }
     },
     post: {},
