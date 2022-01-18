@@ -5,7 +5,7 @@ const initialState = {
   movieDetails: {},
   selectedMovie: null,
   fetched: false,
-  credits: [],
+  credits: {},
 };
 
 const movieSlice = createSlice({
