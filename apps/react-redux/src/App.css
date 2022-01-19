@@ -343,3 +343,10 @@ header .nav-links li:last-child {
   font-weight: bold;
   color:rgb(44, 44, 44);
 }
+
+/* .movie-credits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  
+} */

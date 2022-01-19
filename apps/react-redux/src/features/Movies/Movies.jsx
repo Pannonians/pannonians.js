@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useEffect } from "react";
-import { movie as movieApi } from "../../api"
+import { movie as movieApi } from "../../api";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import SimpleDateTime from "react-simple-timestamp-to-date";
@@ -12,18 +12,14 @@ import {
   selectMovies,
   setSelectedMovie,
   addMovies,
-  addMovieCredit,
-  selectedCredits,
 } from "./movieSlice";
-          
-
-
 
 export default function Movies() {
   const allMovies = useSelector(selectMovies);
   const singleMovieDetails = useSelector(selectDetails);
   const selectedMovieDetails = useSelector(selectedMovie);
-  const selectedMovieCredits = useSelector(selectedCredits);
+  // const visible = 6
+
   const dispatch = useDispatch();
 
   const arr = [];
@@ -42,6 +38,7 @@ export default function Movies() {
     getMovies();
   }, [allMovies, dispatch]);
 
+
   const getDetails = async (movie) => {
     // Check if the movie detail is already cached,
     // if it is, don't fetch it again, instead, use the one in
@@ -53,9 +50,7 @@ export default function Movies() {
 
     // Perform fetch to get the movie details
     const { url } = movieApi.get.single;
-    // const { data: response } = await axios.get(url(movie.id));
     const { url: creditUrl } = movieApi.get.credits;
-    // const { data } = await axios.get(creditUrl(movie.id));
 
     const responses = await Promise.all([ 
     axios.get(url(movie.id)),
@@ -63,16 +58,16 @@ export default function Movies() {
     ]);
     const [{data: response}, {data}] = responses
 
-      const completeMovieDetails = {...response, credits: data};
+
+    Promise.all([{data: response}, {data}]).then ((results) => {console.log("promise", results)});
+
+   const completeMovieDetails = { ...response, credits: data };
 
     // Store in redux movie details and set selected movie
     // to be the one we just click on
     dispatch(addSingleMovieDetail(completeMovieDetails));
-    dispatch(setSelectedMovie(completeMovieDetails));
-    
+    dispatch(setSelectedMovie(completeMovieDetails));  
   };
-
-
 
   return (
     <div className="d-flex d-flex-start p-5">
@@ -100,27 +95,26 @@ export default function Movies() {
               )}
             </div>
                 <h5 className="movie-title">{movie.title}</h5>
-                
               </div>
-            ))}
-          {allMovies.movies.length === 0 ? <div>Loading</div> : null}
-          
+            </div>
+          </div>
         </div>
       </div>
-      </div>
-      </div>
-      </div>
-      <div className="row ms-6" style={{width: "50%"}}>
+      <div className="row ms-6" style={{ width: "50%" }}>
         {!selectedMovieDetails ? (
-          <div style={{fontStyle: "italic"}}>"Click on a movie to see details"</div>
+          <div style={{ fontStyle: "italic" }}>
+            "Click on a movie to see details"
+          </div>
         ) : (
           <div className="selected-movie">
-              <h3 className="selected-movie-title">{selectedMovieDetails.title}</h3>
+            <h3 className="selected-movie-title">
+              {selectedMovieDetails.title}
+            </h3>
             <div className="backdrop">
-            <img
-            src={`https://image.tmdb.org/t/p/w200${selectedMovieDetails.backdrop_path}`}
-            alt={`${selectedMovieDetails.title} Backdrop`}
-          />
+              <img
+                src={`https://image.tmdb.org/t/p/w200${selectedMovieDetails.backdrop_path}`}
+                alt={`${selectedMovieDetails.title} Backdrop`}
+              />
             </div>
             <div className="poster">
         {selectedMovieDetails.poster_path ? (
