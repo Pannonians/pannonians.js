@@ -26,6 +26,11 @@ export default function Movies() {
   const selectedMovieCredits = useSelector(selectedCredits);
   const dispatch = useDispatch();
 
+  const arr = [];
+  for (let i = 0; i < 50; i++) {
+    arr.push(i);
+  }
+
   useEffect(() => {
     if (!dispatch) return;
 
@@ -51,22 +56,30 @@ export default function Movies() {
 
     // Perform fetch to get the movie details
     const { url } = movieApi.get.single;
-    const { data: response } = await axios.get(url(movie.id));
+    // const { data: response } = await axios.get(url(movie.id));
     const { url: creditUrl } = movieApi.get.credits;
-      const { data } = await axios.get(creditUrl(movie.id));
+    // const { data } = await axios.get(creditUrl(movie.id));
 
-      const completeMovieDetails = {...response, credits: data};
+    const promises = arr.map((i) => 
+    axios.get(url(movie.id)),
+    axios.get(creditUrl(movie.id))
+    );
+    const results = await Promise.all(promises);
+    console.log(results);
+
+      const completeMovieDetails = {...results};
 
     // Store in redux movie details and set selected movie
     // to be the one we just click on
-    dispatch(addSingleMovieDetail(completeMovieDetails));
-    dispatch(setSelectedMovie(completeMovieDetails));
-    console.log("etSelectedMovie", completeMovieDetails);
+    dispatch(addSingleMovieDetail(results));
+    dispatch(setSelectedMovie(results));
+    
   };
 
 
     const onClick = (movie) => {
       getDetails(movie);
+      console.log("singleMovieDetails", selectedMovieDetails);
     }
 
 
@@ -129,8 +142,8 @@ export default function Movies() {
           <div className="filler-poster" />
         )}
              </div>
-            <div className="movie-details">{JSON.stringify(selectedMovieDetails.tagline, null, 4)}</div>
-            <div className="movie-details"><div style={{fontStyle: "italic"}}>Overview: </div>{JSON.stringify(selectedMovieDetails.overview, null, 4)}</div>
+            <div className="movie-details">{selectedMovieDetails.tagline}</div>
+            <div className="movie-details"><div style={{fontStyle: "italic"}}>Overview: </div>{selectedMovieDetails.overview}</div>
             <div className="movie-details"><span style={{fontStyle: "italic"}}>Release date: </span>
             <span style={{paddingLeft: "10px"}}>
             <SimpleDateTime
@@ -142,8 +155,16 @@ export default function Movies() {
             </SimpleDateTime>
             </span>
             </div>
-            <div className="movie-details"><div style={{fontStyle: "italic"}}>MovieCredits: </div>{JSON.stringify(selectedMovieDetails.credits.cast, null, 4)}</div>
-          </div>
+            <div className="movie-details"><div style={{fontStyle: "italic"}}>Movie Cast: 
+            </div>{selectedMovieDetails.credits.cast.slice(0, 6).map((index) => (
+              <div
+                key={index}
+              >{index.name}<br></br>
+              <img src={`https://image.tmdb.org/t/p/w200${index.profile_path}`} alt={index.name} />
+              </div>
+            ))}
+            </div>
+           </div>
         )}
       </div>
     </div>
