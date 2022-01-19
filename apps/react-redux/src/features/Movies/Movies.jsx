@@ -18,7 +18,6 @@ export default function Movies() {
   const allMovies = useSelector(selectMovies);
   const singleMovieDetails = useSelector(selectDetails);
   const selectedMovieDetails = useSelector(selectedMovie);
-  // const visible = 6
 
   const dispatch = useDispatch();
 
@@ -47,34 +46,29 @@ export default function Movies() {
     }
 
     // Perform fetch to get the movie details
+
     const { url } = movieApi.get.single;
-    const { data: response } = await axios.get(url(movie.id));
     const { url: creditUrl } = movieApi.get.credits;
-    const { data } = await axios.get(creditUrl(movie.id));
 
-    console.log("response", response );
-    console.log("data", data);
+    const responses = await Promise.all([ 
+    axios.get(url(movie.id)),
+    axios.get(creditUrl(movie.id))
+    ]);
+    const [{data: response}, {data}] = responses
 
-    Promise.all([{data: response}, {data}]).then ((results) => {console.log("promise", results)});
-
-   const completeMovieDetails = { ...response, credits: data };
+    const completeMovieDetails = { ...response, credits: data };
 
     // Store in redux movie details and set selected movie
     // to be the one we just click on
     dispatch(addSingleMovieDetail(completeMovieDetails));
     dispatch(setSelectedMovie(completeMovieDetails));
-    console.log("SelectedMovie", completeMovieDetails.credits.cast[0]["name"]);
-  };
-
-  const onClick = (movie) => {
-    getDetails(movie);
   };
 
   return (
     <div className="d-flex d-flex-start p-5">
       <div style={{ minWidth: 400 }}>
         <NavLink to="/" type="btn" className={"btn"}>
-          <i class="fas fa-arrow-alt-left"></i> Back
+          <i className="fas fa-arrow-alt-left"></i> Back
         </NavLink>
         <div className="movie-page">
           <div className="container">
@@ -85,7 +79,7 @@ export default function Movies() {
                     <div
                       key={movie.id}
                       style={{ cursor: "pointer" }}
-                      onClick={() => onClick(movie)}
+                      onClick={() => getDetails(movie)}
                     >
                       <div className="poster-wrapper">
                         {movie.poster_path ? (
@@ -163,7 +157,6 @@ export default function Movies() {
                           </div>
                             
                            </div>
-                // </div>
               ))}
             </div>
           </div>
