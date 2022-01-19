@@ -5,7 +5,7 @@ const initialState = {
   movieDetails: {},
   selectedMovie: null,
   fetched: false,
-  credits: {},
+ 
 };
 
 const movieSlice = createSlice({
@@ -19,9 +19,7 @@ const movieSlice = createSlice({
     addSingleMovieDetail: (state, { payload }) => {
       state.movieDetails[payload.id] = payload;
     },
-    addMovieCredit: (state, { payload }) => {
-      state.credits = payload;
-  },
+
     setSelectedMovie: (state, { payload }) => {
       state.selectedMovie = payload;
     },
@@ -34,7 +32,7 @@ export const {
   addMovies,
   addSingleMovieDetail,
   setSelectedMovie,
-  addMovieCredit,
+ 
 } = movieSlice.actions;
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
@@ -42,4 +40,4 @@ export const {
 export const selectMovies = (state) => state.movies;
 export const selectDetails = (state) => state.movies.movieDetails;
 export const selectedMovie = (state) => state.movies.selectedMovie;
-export const selectedCredits = (state) => state.movies.credits;
+

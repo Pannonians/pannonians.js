@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useEffect } from "react";
-import { movie as movieApi } from "../../api"
+import { movie as movieApi } from "../../api";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import SimpleDateTime from "react-simple-timestamp-to-date";
@@ -12,18 +12,14 @@ import {
   selectMovies,
   setSelectedMovie,
   addMovies,
-  addMovieCredit,
-  selectedCredits,
 } from "./movieSlice";
-          
-
-
 
 export default function Movies() {
   const allMovies = useSelector(selectMovies);
   const singleMovieDetails = useSelector(selectDetails);
   const selectedMovieDetails = useSelector(selectedMovie);
-  const selectedMovieCredits = useSelector(selectedCredits);
+  // const visible = 6
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -40,6 +36,7 @@ export default function Movies() {
     getMovies();
   }, [allMovies, dispatch]);
 
+
   const getDetails = async (movie) => {
     // Check if the movie detail is already cached,
     // if it is, don't fetch it again, instead, use the one in
@@ -53,96 +50,122 @@ export default function Movies() {
     const { url } = movieApi.get.single;
     const { data: response } = await axios.get(url(movie.id));
     const { url: creditUrl } = movieApi.get.credits;
-      const { data } = await axios.get(creditUrl(movie.id));
+    const { data } = await axios.get(creditUrl(movie.id));
 
-      const completeMovieDetails = {...response, credits: data};
+    console.log("response", response );
+    console.log("data", data);
+
+    Promise.all([{data: response}, {data}]).then ((results) => {console.log("promise", results)});
+
+   const completeMovieDetails = { ...response, credits: data };
 
     // Store in redux movie details and set selected movie
     // to be the one we just click on
     dispatch(addSingleMovieDetail(completeMovieDetails));
     dispatch(setSelectedMovie(completeMovieDetails));
-    console.log("etSelectedMovie", completeMovieDetails);
+    console.log("SelectedMovie", completeMovieDetails.credits.cast[0]["name"]);
   };
 
-
-    const onClick = (movie) => {
-      getDetails(movie);
-    }
-
-
+  const onClick = (movie) => {
+    getDetails(movie);
+  };
 
   return (
     <div className="d-flex d-flex-start p-5">
       <div style={{ minWidth: 400 }}>
-        <NavLink to="/" type="btn" className={"btn"}><i class="fas fa-arrow-alt-left"></i> Back</NavLink>
+        <NavLink to="/" type="btn" className={"btn"}>
+          <i class="fas fa-arrow-alt-left"></i> Back
+        </NavLink>
         <div className="movie-page">
-        <div className="container">
-        <div className="result-card">
-        <div className="movie-grid">
-          {allMovies.movies.length > 0 &&
-            allMovies.movies.map((movie) => (
-              <div
-                key={movie.id}
-                style={{ cursor: "pointer" }}
-                onClick={() => onClick(movie)}
-              >
-                <div className="poster-wrapper">
-              {movie.poster_path ? (
+          <div className="container">
+            <div className="result-card">
+              <div className="movie-grid">
+                {allMovies.movies.length > 0 &&
+                  allMovies.movies.map((movie) => (
+                    <div
+                      key={movie.id}
+                      style={{ cursor: "pointer" }}
+                      onClick={() => onClick(movie)}
+                    >
+                      <div className="poster-wrapper">
+                        {movie.poster_path ? (
+                          <img
+                            src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                            alt={`${movie.title} Poster`}
+                          />
+                        ) : (
+                          <div className="filler-poster" />
+                        )}
+                      </div>
+                      <h5 className="movie-title">{movie.title}</h5>
+                    </div>
+                  ))}
+                {allMovies.movies.length === 0 ? <div>Loading</div> : null}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="row ms-6" style={{ width: "50%" }}>
+        {!selectedMovieDetails ? (
+          <div style={{ fontStyle: "italic" }}>
+            "Click on a movie to see details"
+          </div>
+        ) : (
+          <div className="selected-movie">
+            <h3 className="selected-movie-title">
+              {selectedMovieDetails.title}
+            </h3>
+            <div className="backdrop">
+              <img
+                src={`https://image.tmdb.org/t/p/w200${selectedMovieDetails.backdrop_path}`}
+                alt={`${selectedMovieDetails.title} Backdrop`}
+              />
+            </div>
+            <div className="poster">
+              {selectedMovieDetails.poster_path ? (
                 <img
-                  src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                  alt={`${movie.title} Poster`}
+                  src={`https://image.tmdb.org/t/p/w200${selectedMovieDetails.poster_path}`}
+                  alt={`${selectedMovieDetails.title} Poster`}
                 />
               ) : (
                 <div className="filler-poster" />
               )}
             </div>
-                <h5 className="movie-title">{movie.title}</h5>
-                
-              </div>
-            ))}
-          {allMovies.movies.length === 0 ? <div>Loading</div> : null}
-          
-        </div>
-      </div>
-      </div>
-      </div>
-      </div>
-      <div className="row ms-6" style={{width: "50%"}}>
-        {!selectedMovieDetails ? (
-          <div style={{fontStyle: "italic"}}>"Click on a movie to see details"</div>
-        ) : (
-          <div className="selected-movie">
-              <h3 className="selected-movie-title">{selectedMovieDetails.title}</h3>
-            <div className="backdrop">
-            <img
-            src={`https://image.tmdb.org/t/p/w200${selectedMovieDetails.backdrop_path}`}
-            alt={`${selectedMovieDetails.title} Backdrop`}
-          />
+            <div className="movie-details">{selectedMovieDetails.tagline}</div>
+            <div className="movie-details">
+              <div style={{ fontStyle: "italic" }}>Overview: </div>
+              {selectedMovieDetails.overview}
             </div>
-            <div className="poster">
-        {selectedMovieDetails.poster_path ? (
-          <img
-            src={`https://image.tmdb.org/t/p/w200${selectedMovieDetails.poster_path}`}
-            alt={`${selectedMovieDetails.title} Poster`}
-          />
-         ) : (
-          <div className="filler-poster" />
-        )}
-             </div>
-            <div className="movie-details">{JSON.stringify(selectedMovieDetails.tagline, null, 4)}</div>
-            <div className="movie-details"><div style={{fontStyle: "italic"}}>Overview: </div>{JSON.stringify(selectedMovieDetails.overview, null, 4)}</div>
-            <div className="movie-details"><span style={{fontStyle: "italic"}}>Release date: </span>
-            <span style={{paddingLeft: "10px"}}>
-            <SimpleDateTime
-              dateSeparator="."
-              timeSeparator=":"
-              dateFormat="DMY"
-              showTime="0"
-            >{selectedMovieDetails.release_date}
-            </SimpleDateTime>
-            </span>
+            <div className="movie-details">
+              <span style={{ fontStyle: "italic" }}>Release date: </span>
+              <span style={{ paddingLeft: "10px" }}>
+                <SimpleDateTime
+                  dateSeparator="."
+                  timeSeparator=":"
+                  dateFormat="DMY"
+                  showTime="0"
+                >
+                  {selectedMovieDetails.release_date}
+                </SimpleDateTime>
+              </span>
             </div>
-            <div className="movie-details"><div style={{fontStyle: "italic"}}>MovieCredits: </div>{JSON.stringify(selectedMovieDetails.credits.cast, null, 4)}</div>
+            <div style={{ fontSize: "20px", fontStyle: "italic", paddingTop: "30px" }}>
+              Cast:{" "}
+            </div>
+            <div className="movie-credits">
+              {selectedMovieDetails.credits.cast.slice(0, 6).map((index) => (
+                <div key={index}>
+                  {index.name}
+                  <div>{index.profile_path ? (<img
+                            src={`https://image.tmdb.org/t/p/w185${index.profile_path}`}/>) : (<div className="profile-poster" />
+                            )}
+                          </div>
+                            
+                           </div>
+                // </div>
+              ))}
+            </div>
           </div>
         )}
       </div>
