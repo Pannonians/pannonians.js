@@ -27,9 +27,6 @@ export default function Movies() {
   const dispatch = useDispatch();
 
   const arr = [];
-  for (let i = 0; i < 50; i++) {
-    arr.push(i);
-  }
 
   useEffect(() => {
     if (!dispatch) return;
@@ -60,34 +57,27 @@ export default function Movies() {
     const { url: creditUrl } = movieApi.get.credits;
     // const { data } = await axios.get(creditUrl(movie.id));
 
-    const promises = arr.map((i) => 
+    const responses = await Promise.all([ 
     axios.get(url(movie.id)),
     axios.get(creditUrl(movie.id))
-    );
-    const results = await Promise.all(promises);
-    console.log(results);
+    ]);
+    const [{data: response}, {data}] = responses
 
-      const completeMovieDetails = {...results};
+      const completeMovieDetails = {...response, credits: data};
 
     // Store in redux movie details and set selected movie
     // to be the one we just click on
-    dispatch(addSingleMovieDetail(results));
-    dispatch(setSelectedMovie(results));
+    dispatch(addSingleMovieDetail(completeMovieDetails));
+    dispatch(setSelectedMovie(completeMovieDetails));
     
   };
-
-
-    const onClick = (movie) => {
-      getDetails(movie);
-      console.log("singleMovieDetails", selectedMovieDetails);
-    }
 
 
 
   return (
     <div className="d-flex d-flex-start p-5">
       <div style={{ minWidth: 400 }}>
-        <NavLink to="/" type="btn" className={"btn"}><i class="fas fa-arrow-alt-left"></i> Back</NavLink>
+        <NavLink to="/" type="btn" className={"btn"}><i className="fas fa-arrow-alt-left"></i> Back</NavLink>
         <div className="movie-page">
         <div className="container">
         <div className="result-card">
@@ -97,7 +87,7 @@ export default function Movies() {
               <div
                 key={movie.id}
                 style={{ cursor: "pointer" }}
-                onClick={() => onClick(movie)}
+                onClick={() => getDetails(movie)}
               >
                 <div className="poster-wrapper">
               {movie.poster_path ? (
