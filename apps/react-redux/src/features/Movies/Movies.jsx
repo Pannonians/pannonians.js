@@ -21,6 +21,8 @@ export default function Movies() {
 
   const dispatch = useDispatch();
 
+  const arr = [];
+
   useEffect(() => {
     if (!dispatch) return;
 
@@ -49,7 +51,6 @@ export default function Movies() {
 
     const { url } = movieApi.get.single;
     const { url: creditUrl } = movieApi.get.credits;
-
     const responses = await Promise.all([ 
     axios.get(url(movie.id)),
     axios.get(creditUrl(movie.id))
@@ -62,11 +63,12 @@ export default function Movies() {
     // to be the one we just click on
     dispatch(addSingleMovieDetail(completeMovieDetails));
     dispatch(setSelectedMovie(completeMovieDetails));
-  };
+    };
 
   return (
     <div className="d-flex d-flex-start p-5">
       <div style={{ minWidth: 400 }}>
+
         <NavLink to="/" type="btn" className={"btn"}>
           <i className="fas fa-arrow-alt-left"></i> Back
         </NavLink>
@@ -95,6 +97,7 @@ export default function Movies() {
                     </div>
                   ))}
                 {allMovies.movies.length === 0 ? <div>Loading</div> : null}
+
               </div>
             </div>
           </div>
@@ -117,32 +120,27 @@ export default function Movies() {
               />
             </div>
             <div className="poster">
-              {selectedMovieDetails.poster_path ? (
-                <img
-                  src={`https://image.tmdb.org/t/p/w200${selectedMovieDetails.poster_path}`}
-                  alt={`${selectedMovieDetails.title} Poster`}
-                />
-              ) : (
-                <div className="filler-poster" />
-              )}
-            </div>
+        {selectedMovieDetails.poster_path ? (
+          <img
+            src={`https://image.tmdb.org/t/p/w200${selectedMovieDetails.poster_path}`}
+            alt={`${selectedMovieDetails.title} Poster`}
+          />
+         ) : (
+          <div className="filler-poster" />
+        )}
+             </div>
             <div className="movie-details">{selectedMovieDetails.tagline}</div>
-            <div className="movie-details">
-              <div style={{ fontStyle: "italic" }}>Overview: </div>
-              {selectedMovieDetails.overview}
-            </div>
-            <div className="movie-details">
-              <span style={{ fontStyle: "italic" }}>Release date: </span>
-              <span style={{ paddingLeft: "10px" }}>
-                <SimpleDateTime
-                  dateSeparator="."
-                  timeSeparator=":"
-                  dateFormat="DMY"
-                  showTime="0"
-                >
-                  {selectedMovieDetails.release_date}
-                </SimpleDateTime>
-              </span>
+            <div className="movie-details"><div style={{fontStyle: "italic"}}>Overview: </div>{selectedMovieDetails.overview}</div>
+            <div className="movie-details"><span style={{fontStyle: "italic"}}>Release date: </span>
+            <span style={{paddingLeft: "10px"}}>
+            <SimpleDateTime
+              dateSeparator="."
+              timeSeparator=":"
+              dateFormat="DMY"
+              showTime="0"
+            >{selectedMovieDetails.release_date}
+            </SimpleDateTime>
+            </span>
             </div>
             <div style={{ fontSize: "20px", fontStyle: "italic", paddingTop: "30px" }}>
               Cast:{" "}
@@ -155,8 +153,7 @@ export default function Movies() {
                             src={`https://image.tmdb.org/t/p/w185${index.profile_path}`}/>) : (<div className="profile-poster" />
                             )}
                           </div>
-                            
-                           </div>
+                          </div>
               ))}
             </div>
           </div>
