@@ -179,6 +179,10 @@ export default function TvShows() {
               <div style={{ fontStyle: "italic" }}>Overview: </div>
               {selectedTvShowDetails.overview}
             </div>
+            <div><div style={{fontStyle: "italic"}}>Genres: {[""]}
+            </div>{selectedTvShowDetails.genres.map(genre => <div>
+               {genre.name}</div>)}
+            </div>
             <div className="movie-details" style={{ marginBottom: "15px" }}>
               <span style={{ fontStyle: "italic" }}>Last air date: </span>
               <span style={{ paddingLeft: "10px" }}>
