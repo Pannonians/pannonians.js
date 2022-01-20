@@ -49,12 +49,22 @@ export default function TvShows() {
 
     // Perform fetch to get the tvShow details
     const { url } = tvApi.get.single;
-    const { data: response } = await axios.get(url(tv.id));
+    const { url: creditsUrl } = tvApi.get.credits;
+
+    const responses = await Promise.all([
+      await axios.get(url(tv.id)),
+      await axios.get(creditsUrl(tv.id)),
+    ]);
+    const [{ data: response }, { data }] = responses;
+    console.log("responses", responses);
+
+    const completeTvShowDetails = { ...response, credits: data };
+    console.log(completeTvShowDetails.credits.cast);
 
     // Store in redux tvShow details and set selected tvShow
     // to be the one we just click on
-    dispatch(addSingleTvShowDetail(response));
-    dispatch(setSelectedTvShow(response));
+    dispatch(addSingleTvShowDetail(completeTvShowDetails));
+    dispatch(setSelectedTvShow(completeTvShowDetails));
   };
 
   const setTvSeason = async (seasonNumber) => {
@@ -91,73 +101,110 @@ export default function TvShows() {
   return (
     <div className="d-flex d-flex-start p-5">
       <div style={{ minWidth: 400 }}>
-        <NavLink to="/" type="btn" className={"btn"}><i class="fas fa-arrow-alt-left"></i> Back</NavLink>
+        <NavLink to="/" type="btn" className={"btn"}>
+          <i className="fas fa-arrow-alt-left"></i> Back
+        </NavLink>
         <div className="movie-page">
-         <div className="container">
-          <div className="result-card">
-           <div className="movie-grid">
-             {allTvShows.tvShows.length > 0 &&
-            allTvShows.tvShows.map((tvShow, index) => (
-              <div
-                style={{ cursor: "pointer" }}
-                onClick={() => getDetails(tvShow)}
-                key={index}
-              >
-                <div className="poster-wrapper">
-              {tvShow.poster_path ? (
+          <div className="container">
+            <div className="result-card">
+              <div className="movie-grid">
+                {allTvShows.tvShows.length > 0 &&
+                  allTvShows.tvShows.map((tvShow, index) => (
+                    <div
+                      style={{ cursor: "pointer" }}
+                      onClick={() => getDetails(tvShow)}
+                      key={index}
+                    >
+                      <div className="poster-wrapper">
+                        {tvShow.poster_path ? (
+                          <img
+                            src={`https://image.tmdb.org/t/p/w200${tvShow.poster_path}`}
+                            alt={`${tvShow.title} Poster`}
+                          />
+                        ) : (
+                          <div className="filler-poster" />
+                        )}
+                      </div>
+                      <h5 className="movie-title">{tvShow.name}</h5>
+                    </div>
+                  ))}
+                {allTvShows.tvShows.length === 0 ? <div>Loading</div> : null}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="row ms-6" style={{ width: "50%" }}>
+        {!selectedTvShowDetails ? (
+          <div style={{ fontStyle: "italic" }}>
+            "Click on a Tv Show to see details"
+          </div>
+        ) : (
+          <div className="selected-movie">
+            <h3 className="selected-movie-title">
+              {selectedTvShowDetails.name}
+            </h3>
+            <div className="backdrop">
+              <img
+                src={`https://image.tmdb.org/t/p/w200${selectedTvShowDetails.backdrop_path}`}
+                alt={`${selectedTvShowDetails.name} Backdrop`}
+              />
+            </div>
+            <div className="poster">
+              {selectedTvShowDetails.poster_path ? (
                 <img
-                  src={`https://image.tmdb.org/t/p/w200${tvShow.poster_path}`}
-                  alt={`${tvShow.title} Poster`}
+                  src={`https://image.tmdb.org/t/p/w200${selectedTvShowDetails.poster_path}`}
+                  alt={`${selectedTvShowDetails.name} Poster`}
                 />
               ) : (
                 <div className="filler-poster" />
               )}
             </div>
-                <h5 className="movie-title">{tvShow.name}</h5>
-              </div>
-            ))}
-          {allTvShows.tvShows.length === 0 ? <div>Loading</div> : null}
-           </div>
-          </div>
-         </div>
-        </div>
-      </div>
-      <div className="row ms-6" style={{width: "50%"}}>
-        {!selectedTvShowDetails ? (
-          <div style={{fontStyle: "italic"}}>"Click on a Tv Show to see details"</div>
-        ) : (
-          <div className="selected-movie">
-            <h3 className="selected-movie-title">{selectedTvShowDetails.name}</h3>
-            <div className="backdrop">
-            <img
-            src={`https://image.tmdb.org/t/p/w200${selectedTvShowDetails.backdrop_path}`}
-            alt={`${selectedTvShowDetails.name} Backdrop`}
-          />
+            <div className="movie-details">
+              {selectedTvShowDetails.tagline.length !== 0 ? (
+                <div>
+                  {JSON.stringify(selectedTvShowDetails.tagline, null, 4)}
+                </div>
+              ) : null}
             </div>
-            <div className="poster">
-        {selectedTvShowDetails.poster_path ? (
-          <img
-            src={`https://image.tmdb.org/t/p/w200${selectedTvShowDetails.poster_path}`}
-            alt={`${selectedTvShowDetails.name} Poster`}
-          />
-         ) : (
-          <div className="filler-poster" />
-        )}
-          </div>
-            <div className="movie-details">{selectedTvShowDetails.tagline.length !== 0 ? <div>{JSON.stringify(selectedTvShowDetails.tagline, null, 4)}</div> : null}</div>
-            <div className="movie-details"><div style={{fontStyle: "italic"}}>Overview: </div>{selectedTvShowDetails.overview}</div>
-            <div className="movie-details" style={{marginBottom: "15px"}}><span style={{fontStyle: "italic"}}>Last air date: </span>
-            <span style={{paddingLeft: "10px"}}>
-            <SimpleDateTime
-              dateSeparator="."
-              timeSeparator=":"
-              dateFormat="DMY"
-              showTime="0"
-            >{selectedTvShowDetails.last_air_date}
-            </SimpleDateTime>
-            </span>
+            <div className="movie-details">
+              <div style={{ fontStyle: "italic" }}>Overview: </div>
+              {selectedTvShowDetails.overview}
             </div>
-            {selectedTvShowDetails.seasons.length >= 0 &&
+            <div className="movie-details" style={{ marginBottom: "15px" }}>
+              <span style={{ fontStyle: "italic" }}>Last air date: </span>
+              <span style={{ paddingLeft: "10px" }}>
+                <SimpleDateTime
+                  dateSeparator="."
+                  timeSeparator=":"
+                  dateFormat="DMY"
+                  showTime="0"
+                >
+                  {selectedTvShowDetails.last_air_date}
+                </SimpleDateTime>
+              </span>
+            </div>
+            <div
+              style={{
+                fontSize: "20px",
+                fontStyle: "italic",
+                paddingTop: "30px",
+              }}
+            >
+              Cast:{" "}
+            </div>
+            <div className="movie-credits">
+              {selectedTvShowDetails?.credits.cast.slice(0, 6).map((index) => (
+                <div key={index}>
+                  {index.name}
+                  <div>{index.profile_path ? (<img
+                            src={`https://image.tmdb.org/t/p/w185${index.profile_path}`}/>) : (<div className="profile-poster" />
+                            )}
+                          </div>
+                          </div>
+              ))}
+            </div>
+           {selectedTvShowDetails.seasons.length >= 0 &&
               selectedTvShowDetails.seasons.map((season, index) => (
                 <div
                   key={index}
@@ -166,7 +213,13 @@ export default function TvShows() {
                     setSeasonDetails(season.season_number);
                   }}
                 >
-                  <div type="btn" className={"seasons"} style={{marginTop: "10px"}}>{season.name}</div>
+                  <div
+                    type="btn"
+                    className={"seasons"}
+                    style={{ marginTop: "10px" }}
+                  >
+                    {season.name}
+                  </div>
                 </div>
               ))}
             <hr />
@@ -192,6 +245,7 @@ export default function TvShows() {
             )}
           </div>
         )}
+         
       </div>
     </div>
   );
