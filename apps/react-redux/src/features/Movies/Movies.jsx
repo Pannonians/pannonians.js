@@ -58,6 +58,7 @@ export default function Movies() {
     const [{data: response}, {data}] = responses
 
     const completeMovieDetails = { ...response, credits: data };
+    console.log(completeMovieDetails.credits.cast[0]["name"]);
 
     // Store in redux movie details and set selected movie
     // to be the one we just click on
