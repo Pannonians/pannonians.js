@@ -139,6 +139,10 @@ export default function Movies() {
              </div>
             <div className="movie-details">{selectedMovieDetails.tagline}</div>
             <div className="movie-details"><div style={{fontStyle: "italic"}}>Overview: </div>{selectedMovieDetails.overview}</div>
+            <div><div style={{fontStyle: "italic"}}>Genres: {[""]}
+            </div>{selectedMovieDetails.genres.map(gendre => <div>
+               {gendre.name}</div>)}
+            </div>
             <div className="movie-details"><span style={{fontStyle: "italic"}}>Release date: </span>
             <span style={{paddingLeft: "10px"}}>
             <SimpleDateTime
