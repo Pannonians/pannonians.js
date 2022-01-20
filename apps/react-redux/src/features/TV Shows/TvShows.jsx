@@ -6,6 +6,7 @@ import { tv as tvApi, tvSeason } from "../../api";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import SimpleDateTime from "react-simple-timestamp-to-date";
+import Slider from "react-slick";
 import {
   addTvShows,
   addSingleTvShowDetail,
@@ -25,6 +26,13 @@ export default function TvShows() {
   const selectedTvShowDetails = useSelector(selectedTvShow);
   const singleSeasonDetails = useSelector(selectedSeasonDetails);
   const dispatch = useDispatch();
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 200,
+    slidesToShow: 3,
+    slidesToScroll: 1
+  };
 
   useEffect(() => {
     if (!dispatch) return;
@@ -194,7 +202,7 @@ export default function TvShows() {
               Cast:{" "}
             </div>
             <div className="movie-credits">
-              {selectedTvShowDetails?.credits.cast.slice(0, 6).map((index) => (
+              <Slider {...settings} style={{ paddingTop:"20px", paddingBottom: "20px", paddingLeft: "80px"}}>{selectedTvShowDetails?.credits.cast.slice(0, 6).map((index) => (
                 <div key={index}>
                   {index.name}
                   <div>{index.profile_path ? (<img
@@ -202,7 +210,7 @@ export default function TvShows() {
                             )}
                           </div>
                           </div>
-              ))}
+              ))}</Slider>
             </div>
            {selectedTvShowDetails.seasons.length >= 0 &&
               selectedTvShowDetails.seasons.map((season, index) => (

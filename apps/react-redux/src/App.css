@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap");
 
+.App {
+  background-color:lightgray;
+}
+
 :root {
   --primary: #032541;
   --secondary: #21d07a;
@@ -311,6 +315,7 @@ header .nav-links li:last-child {
   transition: all 0.3s ease;
   line-height: 1.1;
   text-align: center;
+  margin-top: 0px;
 }
 
 .seasons:hover {
@@ -336,7 +341,7 @@ header .nav-links li:last-child {
 .sectionTags {
   display: flex;
   justify-content:space-between;
-  margin-left: 25%;
+  margin-left: 24%;
   margin-right: 22%;
   
   font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -344,9 +349,8 @@ header .nav-links li:last-child {
   color:rgb(44, 44, 44);
 }
 
-/* .movie-credits {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
+.movie-credits {
+  background-color:rgb(243, 231, 231);
+  border-radius: 20px;
   
-} */
+}
