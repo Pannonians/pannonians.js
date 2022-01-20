@@ -5,6 +5,7 @@ import { movie as movieApi } from "../../api";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import SimpleDateTime from "react-simple-timestamp-to-date";
+import Slider from "react-slick";
 import {
   addSingleMovieDetail,
   selectDetails,
@@ -18,8 +19,14 @@ export default function Movies() {
   const allMovies = useSelector(selectMovies);
   const singleMovieDetails = useSelector(selectDetails);
   const selectedMovieDetails = useSelector(selectedMovie);
-
   const dispatch = useDispatch();
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 200,
+    slidesToShow: 3,
+    slidesToScroll: 1
+  };
 
   const arr = [];
 
@@ -146,8 +153,9 @@ export default function Movies() {
             <div style={{ fontSize: "20px", fontStyle: "italic", paddingTop: "30px" }}>
               Cast:{" "}
             </div>
+           
             <div className="movie-credits">
-              {selectedMovieDetails.credits.cast.slice(0, 6).map((index) => (
+            <Slider {...settings} style={{ paddingTop:"20px", paddingBottom: "20px", paddingLeft: "80px"}}>{selectedMovieDetails.credits.cast.slice(0, 10).map((index) => (
                 <div key={index}>
                   {index.name}
                   <div>{index.profile_path ? (<img
@@ -155,7 +163,7 @@ export default function Movies() {
                             )}
                           </div>
                           </div>
-              ))}
+              ))}</Slider>
             </div>
           </div>
         )}
