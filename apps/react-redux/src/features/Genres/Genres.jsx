@@ -31,6 +31,8 @@ export default function Genres() {
          dispatch(addTvShowGenres(data))
          console.log("movieGenres", mgResponse);
          console.log("tvShowGenres", data);
+        console.log(allMovieGenres, "Movie");
+        console.log(allTvShowGenres, "TV");
 
      };
      getGenres();
