@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { movie as movieApi } from "../../api";
+import { tv as tvApi } from "../../api"
 import axios from "axios";
 
 const initialState = {
@@ -35,7 +36,14 @@ export const fetchMovieGenres = () => async (dispatch, getState) => {
   const allMovieGenres = selectMovieGenres(getState());
   if ( allMovieGenres.length > 0 ) return
   const { url } = movieApi.get.genres;
-  const {data} = await axios.get(url);
+  const { data } = await axios.get(url);
   dispatch(addMovieGenres(data.genres));
-}
-// export const fatchTvShowGenres =
+};
+
+export const fetchTvShowGenres = () => async (dispatch, getState) => {
+  const allTvShowGenres = selectTvShowGenres(getState());
+  if ( allTvShowGenres.length > 0 ) return
+  const { url } = tvApi.get.genres;
+  const { data } = await axios.get(url);
+  dispatch(addTvShowGenres(data.genres));
+};

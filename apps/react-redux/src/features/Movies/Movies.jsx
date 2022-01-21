@@ -6,7 +6,6 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import SimpleDateTime from "react-simple-timestamp-to-date";
 import Slider from "react-slick";
-import Genres from "../Genres/genres";
 import {
   addSingleMovieDetail,
   selectDetails,
@@ -30,8 +29,6 @@ export default function Movies() {
     slidesToShow: 3,
     slidesToScroll: 1
   };
-
-  const arr = [];
 
   useEffect(() => {
     if (!dispatch) return;
@@ -88,7 +85,6 @@ export default function Movies() {
         <NavLink to="/" type="btn" className={"btn"}>
           <i className="fas fa-arrow-alt-left"></i> Back
         </NavLink>
-        <NavLink to="/genres">GENRES</NavLink>
         <div className="movie-page">
           <div className="container">
             <div className="result-card">
@@ -127,9 +123,9 @@ export default function Movies() {
           </div>
         ) : (
           <div className="selected-movie">
-            <h3 className="selected-movie-title">
+            <h2 className="selected-movie-title">
               {selectedMovieDetails.title}
-            </h3>
+            </h2>
             <div className="backdrop">
               <img
                 src={`https://image.tmdb.org/t/p/w200${selectedMovieDetails.backdrop_path}`}
@@ -146,33 +142,38 @@ export default function Movies() {
           <div className="filler-poster" />
         )}
              </div>
-            <div className="movie-details">{selectedMovieDetails.tagline}</div>
-            <div className="movie-details"><div style={{fontStyle: "italic"}}>Overview: </div>{selectedMovieDetails.overview}</div>
-            <div><div style={{fontStyle: "italic"}}>Genres: {[""]}
-            </div>{selectedMovieDetails.genres.map(genre => <div>
-              {movieGenresList.find((g) => genre.id === g.id).name}</div>)}
+            <div className="movie-details"><h3>{selectedMovieDetails.tagline}</h3></div>
+            <div className="movie-details"><div style={{fontStyle: "italic"}}><h4>Overview: </h4></div>{selectedMovieDetails.overview}</div>
+            <div>
+              <div className="movie-details"><div style={{fontStyle: "italic"}}><h4>Genres: {[""]}</h4></div>
+            </div>{selectedMovieDetails.genres.map((genre) => <ul><div><li key={genre.id}><h5>
+              {movieGenresList.find((g) => genre.id === g.id).name}</h5></li></div></ul>)}
             </div>
-            <div className="movie-details"><span style={{fontStyle: "italic"}}>Release date: </span>
-            <span style={{paddingLeft: "10px"}}>
-            <SimpleDateTime
-              dateSeparator="."
-              timeSeparator=":"
-              dateFormat="DMY"
-              showTime="0"
-            >{selectedMovieDetails.release_date}
-            </SimpleDateTime>
-            </span>
+            <div className="movie-details"><span style={{ fontStyle: "italic", fontSize: "24px" }}>Release date: </span>
+              <span style={{ paddingLeft: "10px" }}>
+                <SimpleDateTime
+                  dateSeparator="."
+                  timeSeparator=":"
+                  dateFormat="DMY"
+                  showTime="0"
+                >{selectedMovieDetails.release_date}
+                </SimpleDateTime>
+              </span>
             </div>
-            <div style={{ fontSize: "20px", fontStyle: "italic", paddingTop: "30px" }}>
-              Cast:{" "}
+            <div className="movie-details">
+               {selectedMovieDetails.credits.cast.length !== 0 ? (
+                <div style={{fontStyle: "italic", paddingBottom: "20px"}}>
+                  <h4>Cast:{" "}</h4>
+                </div>
+              ) : null}
             </div>
            
             <div className="movie-credits">
-            <Slider {...settings} style={{ paddingTop:"20px", paddingBottom: "20px", paddingLeft: "80px"}}>{selectedMovieDetails.credits.cast.slice(0, 10).map((index) => (
-                <div key={index}>
+            <Slider {...settings} style={{ paddingTop:"20px", paddingBottom: "20px", paddingLeft: "80px"}}>{selectedMovieDetails?.credits.cast.slice(0, 10).map((index) => (
+                <div key={index.id}>
                   {index.name}
                   <div>{index.profile_path ? (<img
-                            src={`https://image.tmdb.org/t/p/w185${index.profile_path}`}/>) : (<div className="profile-poster" />
+                            src={`https://image.tmdb.org/t/p/w185${index.profile_path}`} alt={`${index.name}`}/>) : (<div className="profile-poster" />
                             )}
                           </div>
                           </div>

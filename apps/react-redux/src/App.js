@@ -7,7 +7,7 @@ import Header from "./features/Dashboard/Header.jsx";
 import Footer from "../src/features/Dashboard/Footer.jsx";
 import "./App.css";
 import axios from "axios";
-import Genres from "./features/Genres/genres";
+
 
 require("dotenv").config();
 
@@ -23,7 +23,6 @@ function App() {
           <Route path="/" element={<Dashboard />}></Route>
           <Route path="/movies" element={<Movies />} />
           <Route path="/tvshows" element={<TvShows />} />
-          <Route path="/genres" element={<Genres />} />
         </Routes>
         <Footer />
       </BrowserRouter>

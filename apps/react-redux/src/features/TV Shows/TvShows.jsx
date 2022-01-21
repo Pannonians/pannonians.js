@@ -19,12 +19,15 @@ import {
   selectedSeasonDetails,
   setSelectedSeason,
 } from "../TV Shows/tvShowsSlice";
+import { fetchTvShowGenres, selectTvShowGenres } from "../Genres/genresSlice";
+
 
 export default function TvShows() {
   const allTvShows = useSelector(selectTvShows);
   const singleTvShowDetails = useSelector(selectTvDetails);
   const selectedTvShowDetails = useSelector(selectedTvShow);
   const singleSeasonDetails = useSelector(selectedSeasonDetails);
+  const tvShowGenresList = useSelector(selectTvShowGenres);
   const dispatch = useDispatch();
   const settings = {
     dots: false,
@@ -36,6 +39,7 @@ export default function TvShows() {
 
   useEffect(() => {
     if (!dispatch) return;
+    dispatch(fetchTvShowGenres());
 
     // if tvShows are fetched, don't fetch
     if (allTvShows.fetched) return;
@@ -112,17 +116,16 @@ export default function TvShows() {
         <NavLink to="/" type="btn" className={"btn"}>
           <i className="fas fa-arrow-alt-left"></i> Back
         </NavLink>
-        <NavLink to="/genres" type="btn" className={"btn"}>GENRES</NavLink>
         <div className="movie-page">
           <div className="container">
             <div className="result-card">
               <div className="movie-grid">
                 {allTvShows.tvShows.length > 0 &&
-                  allTvShows.tvShows.map((tvShow, index) => (
+                  allTvShows.tvShows.map((tvShow) => (
                     <div
                       style={{ cursor: "pointer" }}
                       onClick={() => getDetails(tvShow)}
-                      key={index}
+                      key={tvShow.id}
                     >
                       <div className="poster-wrapper">
                         {tvShow.poster_path ? (
@@ -150,9 +153,9 @@ export default function TvShows() {
           </div>
         ) : (
           <div className="selected-movie">
-            <h3 className="selected-movie-title">
+            <h2 className="selected-movie-title">
               {selectedTvShowDetails.name}
-            </h3>
+            </h2>
             <div className="backdrop">
               <img
                 src={`https://image.tmdb.org/t/p/w200${selectedTvShowDetails.backdrop_path}`}
@@ -172,20 +175,20 @@ export default function TvShows() {
             <div className="movie-details">
               {selectedTvShowDetails.tagline.length !== 0 ? (
                 <div>
-                  {JSON.stringify(selectedTvShowDetails.tagline, null, 4)}
+                  <h3>{selectedTvShowDetails.tagline}</h3>
                 </div>
               ) : null}
             </div>
             <div className="movie-details">
-              <div style={{ fontStyle: "italic" }}>Overview: </div>
+              <div style={{ fontStyle: "italic" }}><h4>Overview: </h4></div>
               {selectedTvShowDetails.overview}
             </div>
-            <div><div style={{fontStyle: "italic"}}>Genres: {[""]}
-            </div>{selectedTvShowDetails.genres.map(genre => <div>
-               {genre.name}</div>)}
+            <div className="movie-details"><div style={{fontStyle: "italic"}}><h4>Genres: {[""]}</h4>
+            </div>{selectedTvShowDetails.genres.map(genre => <ul><div key={genre.id}><li>
+              {tvShowGenresList.find((g) => genre.id === g.id).name}</li></div></ul>)}
             </div>
             <div className="movie-details" style={{ marginBottom: "15px" }}>
-              <span style={{ fontStyle: "italic" }}>Last air date: </span>
+              <span style={{ fontStyle: "italic", fontSize: "24px" }}>Last air date: </span>
               <span style={{ paddingLeft: "10px" }}>
                 <SimpleDateTime
                   dateSeparator="."
@@ -197,21 +200,19 @@ export default function TvShows() {
                 </SimpleDateTime>
               </span>
             </div>
-            <div
-              style={{
-                fontSize: "20px",
-                fontStyle: "italic",
-                paddingTop: "30px",
-              }}
-            >
-              Cast:{" "}
+            <div className="movie-details">
+               {selectedTvShowDetails.credits.cast.length !== 0 ? (
+                <div style={{fontStyle: "italic", paddingBottom: "20px"}}>
+                  <h4>Cast:{" "}</h4>
+                </div>
+              ) : null}
             </div>
             <div className="movie-credits">
               <Slider {...settings} style={{ paddingTop:"20px", paddingBottom: "20px", paddingLeft: "80px"}}>{selectedTvShowDetails?.credits.cast.slice(0, 6).map((index) => (
                 <div key={index}>
                   {index.name}
                   <div>{index.profile_path ? (<img
-                            src={`https://image.tmdb.org/t/p/w185${index.profile_path}`}/>) : (<div className="profile-poster" />
+                            src={`https://image.tmdb.org/t/p/w185${index.profile_path}`} alt={`${index.name}`}/>) : (<div className="profile-poster" />
                             )}
                           </div>
                           </div>

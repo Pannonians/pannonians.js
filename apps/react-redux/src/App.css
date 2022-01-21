@@ -298,7 +298,8 @@ header .nav-links li:last-child {
 .selected-movie-title {
   font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: 28px;
-  text-align: center;
+  text-align: left;
+  padding-top: 13px;
 }
 
 .seasons {
