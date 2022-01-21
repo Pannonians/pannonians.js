@@ -71,13 +71,15 @@ export default function Genres() {
 
 
   return (
-    <div>
-      <h2>MOVIE GENRES</h2>
+    <div className="genresSection">
+      
       <div>
+      <h2>MOVIE GENRES</h2>
       {displyMovieGenres}
       </div>
-      <h2>TV SHOW GENRES</h2>
+      
       <div>
+      <h2>TV SHOW GENRES</h2>
       {displyTvShowGenres}
       </div>
     </div>

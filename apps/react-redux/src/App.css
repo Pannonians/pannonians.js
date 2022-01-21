@@ -354,3 +354,9 @@ header .nav-links li:last-child {
   border-radius: 20px;
   
 }
+
+.genresSection {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+}
