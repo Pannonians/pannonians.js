@@ -37,8 +37,8 @@ export default function Genres() {
     
       console.log(response, tvResponse);
       
-    dispatch(addMovieGenres(response));
-    dispatch(addTvShowGenres(tvResponse));
+    dispatch(addMovieGenres(response.genres));
+    dispatch(addTvShowGenres(tvResponse.genres));
   };
   getGenres();
     

@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { movie as movieApi } from "../../api";
+import axios from "axios";
 
 const initialState = {
-  movieGenres: {},
-  tvShowGenres: {},
-  fetched: false,
+  movieGenres: [],
+  tvShowGenres: []
  
 };
 
@@ -13,11 +14,9 @@ const genresSlice = createSlice({
   reducers: {
     addMovieGenres: (state, { payload }) => {
       state.movieGenres = payload;
-      state.fetched = true;
     },
     addTvShowGenres: (state, { payload }) => {
       state.tvShowGenres = payload;
-      state.fetched = true;
     },
 }
 });
@@ -31,3 +30,12 @@ export const {
 
 export const selectMovieGenres = (state) => state.genres.movieGenres;
 export const selectTvShowGenres = (state) => state.genres.tvShowGenres;
+
+export const fetchMovieGenres = () => async (dispatch, getState) => {
+  const allMovieGenres = selectMovieGenres(getState());
+  if ( allMovieGenres.length > 0 ) return
+  const { url } = movieApi.get.genres;
+  const {data} = await axios.get(url);
+  dispatch(addMovieGenres(data.genres));
+}
+// export const fatchTvShowGenres =

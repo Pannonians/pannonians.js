@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+  import axios from "axios";
 import { useEffect } from "react";
 import { movie as movieApi } from "../../api";
 import { NavLink } from "react-router-dom";
@@ -15,11 +15,13 @@ import {
   setSelectedMovie,
   addMovies,
 } from "./movieSlice";
+import { fetchMovieGenres, selectMovieGenres } from "../Genres/genresSlice";
 
 export default function Movies() {
   const allMovies = useSelector(selectMovies);
   const singleMovieDetails = useSelector(selectDetails);
   const selectedMovieDetails = useSelector(selectedMovie);
+  const movieGenresList = useSelector(selectMovieGenres);
   const dispatch = useDispatch();
   const settings = {
     dots: false,
@@ -33,6 +35,7 @@ export default function Movies() {
 
   useEffect(() => {
     if (!dispatch) return;
+    dispatch(fetchMovieGenres());
 
     // if movies are fetched, don't fetch
     if (allMovies.fetched) return;
@@ -43,7 +46,10 @@ export default function Movies() {
     };
 
     getMovies();
+    
   }, [allMovies, dispatch]);
+
+
 
 
   const getDetails = async (movie) => {
@@ -144,7 +150,7 @@ export default function Movies() {
             <div className="movie-details"><div style={{fontStyle: "italic"}}>Overview: </div>{selectedMovieDetails.overview}</div>
             <div><div style={{fontStyle: "italic"}}>Genres: {[""]}
             </div>{selectedMovieDetails.genres.map(genre => <div>
-               {genre.name}</div>)}
+              {movieGenresList.find((g) => genre.id === g.id).name}</div>)}
             </div>
             <div className="movie-details"><span style={{fontStyle: "italic"}}>Release date: </span>
             <span style={{paddingLeft: "10px"}}>

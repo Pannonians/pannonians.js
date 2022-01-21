@@ -32,7 +32,8 @@
 //  * (obojeno u crveno)
 //  */
 // // qwe.find();
-// // qwe.filter();
+// qwe.filter();
+// [].find
 // // qwe.map();
 // // qwe.reduce();
 // /// !!!!!
