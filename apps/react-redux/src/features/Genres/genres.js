@@ -28,13 +28,14 @@ export default function Genres() {
     try {
       const getGenres = async () => {
       const { url } = movieApi.get.genres;
-      const { url: tvUrl } = tvApi.get.genres
+      const { url: tvUrl } = tvApi.get.genres;
       const responses = await Promise.all([ 
       axios.get(url),
       axios.get(tvUrl)
       ]);
       const [{data: response}, {data: tvResponse}] = responses
-     
+    
+      console.log(response, tvResponse);
       
     dispatch(addMovieGenres(response));
     dispatch(addTvShowGenres(tvResponse));
@@ -59,14 +60,14 @@ export default function Genres() {
     
   });
 
-  // const displyTvShowGenres = tvShowGenresList.object.genres?.map(genre => {
-  //   return (
-  //     <div>
-  //      <h4>{genre.name}</h4>
-  //   </div>
-  //   );
+  const displyTvShowGenres = tvShowGenresList.genres?.map(genre => {
+    return (
+      <div>
+       <h4>{genre.name}</h4>
+    </div>
+    );
     
-  // });
+  });
 
 
   return (
@@ -75,10 +76,10 @@ export default function Genres() {
       <div>
       {displyMovieGenres}
       </div>
-      {/* <h2>TV SHOW GENRES</h2>
+      <h2>TV SHOW GENRES</h2>
       <div>
       {displyTvShowGenres}
-      </div> */}
+      </div>
     </div>
   )
 };

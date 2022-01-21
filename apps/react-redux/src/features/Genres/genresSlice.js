@@ -16,7 +16,7 @@ const genresSlice = createSlice({
       state.fetched = true;
     },
     addTvShowGenres: (state, { payload }) => {
-      state.tvShowGenres[payload] = payload;
+      state.tvShowGenres = payload;
       state.fetched = true;
     },
 }
