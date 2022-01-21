@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import SimpleDateTime from "react-simple-timestamp-to-date";
 import Slider from "react-slick";
+import Genres from "../Genres/genres";
 import {
   addSingleMovieDetail,
   selectDetails,
@@ -62,11 +63,12 @@ export default function Movies() {
     axios.get(url(movie.id)),
     axios.get(creditUrl(movie.id))
     ]);
+    console.log(responses);
+
     const [{data: response}, {data}] = responses
 
     const completeMovieDetails = { ...response, credits: data };
-    console.log(completeMovieDetails.credits.cast[0]["name"]);
-
+    
     // Store in redux movie details and set selected movie
     // to be the one we just click on
     dispatch(addSingleMovieDetail(completeMovieDetails));
@@ -80,6 +82,7 @@ export default function Movies() {
         <NavLink to="/" type="btn" className={"btn"}>
           <i className="fas fa-arrow-alt-left"></i> Back
         </NavLink>
+        <NavLink to="/genres">GENRES</NavLink>
         <div className="movie-page">
           <div className="container">
             <div className="result-card">

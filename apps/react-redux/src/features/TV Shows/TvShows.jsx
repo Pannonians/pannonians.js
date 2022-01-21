@@ -112,6 +112,7 @@ export default function TvShows() {
         <NavLink to="/" type="btn" className={"btn"}>
           <i className="fas fa-arrow-alt-left"></i> Back
         </NavLink>
+        <NavLink to="/genres">GENRES</NavLink>
         <div className="movie-page">
           <div className="container">
             <div className="result-card">
