@@ -122,14 +122,14 @@ export default function Movies() {
             </h2>
             <div className="backdrop">
               <img
-                src={`https://image.tmdb.org/t/p/w200${selectedMovieDetails.backdrop_path}`}
+                src={`https://image.tmdb.org/t/p/w1280${selectedMovieDetails.backdrop_path}`}
                 alt={`${selectedMovieDetails.title} Backdrop`}
               />
             </div>
             <div className="poster">
               {selectedMovieDetails.poster_path ? (
                 <img
-                  src={`https://image.tmdb.org/t/p/w200${selectedMovieDetails.poster_path}`}
+                  src={`https://image.tmdb.org/t/p/w780${selectedMovieDetails.poster_path}`}
                   alt={`${selectedMovieDetails.title} Poster`}
                 />
               ) : (
@@ -178,7 +178,7 @@ export default function Movies() {
                 </SimpleDateTime>
               </span>
             </div>
-            <div style={{ fontStyle: "italic", paddingBottom: "20px" }}>
+            <div style={{ fontStyle: "italic", paddingTop: "20px" }}>
                   <h4>Cast: </h4>
                 </div>
                 <div className="movie-details">
