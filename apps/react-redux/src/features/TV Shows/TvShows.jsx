@@ -157,14 +157,14 @@ export default function TvShows() {
             </h2>
             <div className="backdrop">
               <img
-                src={`https://image.tmdb.org/t/p/w200${selectedTvShowDetails.backdrop_path}`}
+                src={`https://image.tmdb.org/t/p/w1280${selectedTvShowDetails.backdrop_path}`}
                 alt={`${selectedTvShowDetails.name} Backdrop`}
               />
             </div>
             <div className="poster">
               {selectedTvShowDetails.poster_path ? (
                 <img
-                  src={`https://image.tmdb.org/t/p/w200${selectedTvShowDetails.poster_path}`}
+                  src={`https://image.tmdb.org/t/p/w780${selectedTvShowDetails.poster_path}`}
                   alt={`${selectedTvShowDetails.name} Poster`}
                 />
               ) : (
