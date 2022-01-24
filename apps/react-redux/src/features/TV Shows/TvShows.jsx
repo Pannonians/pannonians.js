@@ -213,7 +213,7 @@ export default function TvShows() {
                 </SimpleDateTime>
               </span>
             </div>
-            <div style={{ fontStyle: "italic", paddingBottom: "20px" }}>
+            <div style={{ fontStyle: "italic", paddingTop: "10px" }}>
                   <h4>Cast: </h4>
                 </div> 
                 <div className="movie-details">
