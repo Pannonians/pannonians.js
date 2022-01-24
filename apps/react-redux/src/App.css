@@ -361,3 +361,13 @@ header .nav-links li:last-child {
   justify-content: space-evenly;
   text-align: center;
 }
+
+.twoActors {
+  display: flex;
+  justify-content:space-evenly;
+  background-color:rgb(243, 231, 231);
+  border-radius: 20px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+
+}

@@ -21,7 +21,6 @@ import {
 } from "../TV Shows/tvShowsSlice";
 import { fetchTvShowGenres, selectTvShowGenres } from "../Genres/genresSlice";
 
-
 export default function TvShows() {
   const allTvShows = useSelector(selectTvShows);
   const singleTvShowDetails = useSelector(selectTvDetails);
@@ -34,7 +33,7 @@ export default function TvShows() {
     infinite: true,
     speed: 200,
     slidesToShow: 3,
-    slidesToScroll: 1
+    slidesToScroll: 1,
   };
 
   useEffect(() => {
@@ -180,15 +179,29 @@ export default function TvShows() {
               ) : null}
             </div>
             <div className="movie-details">
-              <div style={{ fontStyle: "italic" }}><h4>Overview: </h4></div>
+              <div style={{ fontStyle: "italic" }}>
+                <h4>Overview: </h4>
+              </div>
               {selectedTvShowDetails.overview}
             </div>
-            <div className="movie-details"><div style={{fontStyle: "italic"}}><h4>Genres: {[""]}</h4>
-            </div>{selectedTvShowDetails.genres.map(genre => <ul><div key={genre.id}><li>
-              {tvShowGenresList.find((g) => genre.id === g.id).name}</li></div></ul>)}
+            <div className="movie-details">
+              <div style={{ fontStyle: "italic" }}>
+                <h4>Genres: {[""]}</h4>
+              </div>
+              {selectedTvShowDetails.genres.map((genre) => (
+                <ul>
+                  <div key={genre.id}>
+                    <li>
+                      {tvShowGenresList.find((g) => genre.id === g.id).name}
+                    </li>
+                  </div>
+                </ul>
+              ))}
             </div>
             <div className="movie-details" style={{ marginBottom: "15px" }}>
-              <span style={{ fontStyle: "italic", fontSize: "24px" }}>Last air date: </span>
+              <span style={{ fontStyle: "italic", fontSize: "24px" }}>
+                Last air date:{" "}
+              </span>
               <span style={{ paddingLeft: "10px" }}>
                 <SimpleDateTime
                   dateSeparator="."
@@ -200,25 +213,61 @@ export default function TvShows() {
                 </SimpleDateTime>
               </span>
             </div>
-            <div className="movie-details">
-               {selectedTvShowDetails.credits.cast.length !== 0 ? (
-                <div style={{fontStyle: "italic", paddingBottom: "20px"}}>
-                  <h4>Cast:{" "}</h4>
-                </div>
-              ) : null}
-            </div>
+            <div style={{ fontStyle: "italic", paddingBottom: "20px" }}>
+                  <h4>Cast: </h4>
+                </div> 
+                <div className="movie-details">
+              {selectedTvShowDetails.credits.cast.length >= 3 ? (
+                
+              
             <div className="movie-credits">
-              <Slider {...settings} style={{ paddingTop:"20px", paddingBottom: "20px", paddingLeft: "80px"}}>{selectedTvShowDetails?.credits.cast.slice(0, 6).map((index) => (
+              <Slider
+                {...settings}
+                style={{
+                  paddingTop: "20px",
+                  paddingBottom: "20px",
+                  paddingLeft: "80px",
+                }}
+              >
+                
+                {selectedTvShowDetails?.credits.cast
+                  .slice(0, 6)
+                  .map((index) => (
+                    <div key={index}>
+                      {index.name}
+                      <div>
+                        {index.profile_path ? (
+                          <img
+                            src={`https://image.tmdb.org/t/p/w185${index.profile_path}`}
+                            alt={`${index.name}`}
+                          />
+                        ) : (
+                          <div className="profile-poster" />
+                        )}
+                      </div>
+                    </div>
+                  ))}
+              </Slider>
+            </div>
+            ) : <div className="twoActors">{selectedTvShowDetails?.credits.cast
+              .slice(0, 6)
+              .map((index) => (
                 <div key={index}>
                   {index.name}
-                  <div>{index.profile_path ? (<img
-                            src={`https://image.tmdb.org/t/p/w185${index.profile_path}`} alt={`${index.name}`}/>) : (<div className="profile-poster" />
-                            )}
-                          </div>
-                          </div>
-              ))}</Slider>
+                  <div>
+                    {index.profile_path ? (
+                      <img
+                        src={`https://image.tmdb.org/t/p/w185${index.profile_path}`}
+                        alt={`${index.name}`}
+                      />
+                    ) : (
+                      <div className="profile-poster" />
+                    )}
+                  </div>
+                </div>
+              ))}</div>}
             </div>
-           {selectedTvShowDetails.seasons.length >= 0 &&
+            {selectedTvShowDetails.seasons.length >= 0 &&
               selectedTvShowDetails.seasons.map((season, index) => (
                 <div
                   key={index}
@@ -259,7 +308,6 @@ export default function TvShows() {
             )}
           </div>
         )}
-         
       </div>
     </div>
   );
