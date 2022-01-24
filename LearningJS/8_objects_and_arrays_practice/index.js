@@ -1,41 +1,41 @@
-const exampleData = {
-  user: [
-    {
-      created_at: "2021-09-24T14:01:50.940Z",
-      message: " qwewq e qwe",
-      admin: {
-        email: "petar@kikoff.com",
-      },
-    },
-    {
-      created_at: "2021-09-14T20:50:44.173Z",
-      message: "Notes1!!",
-      admin: {
-        email: "petar@kikoff.com",
-      },
-    },
-  ],
-  admin: {
-    isAdmin: true,
-  },
-};
+// const exampleData = {
+//   user: [
+//     {
+//       created_at: "2021-09-24T14:01:50.940Z",
+//       message: " qwewq e qwe",
+//       admin: {
+//         email: "petar@kikoff.com",
+//       },
+//     },
+//     {
+//       created_at: "2021-09-14T20:50:44.173Z",
+//       message: "Notes1!!",
+//       admin: {
+//         email: "petar@kikoff.com",
+//       },
+//     },
+//   ],
+//   admin: {
+//     isAdmin: true,
+//   },
+// };
 
-// some examples for object methods
+// // some examples for object methods
 
-// Object.create creates a new object based on the old object
-// However, this only makes properties discoverable, it doesn't really
-// assign the values of properties
-const person = {
-  isHuman: false,
-  printIntroduction: function () {
-    console.log(`My name is ${this.name}. Am I human? ${this.isHuman}`);
-  },
-};
+// // Object.create creates a new object based on the old object
+// // However, this only makes properties discoverable, it doesn't really
+// // assign the values of properties
+// const person = {
+//   isHuman: false,
+//   printIntroduction: function () {
+//     console.log(`My name is ${this.name}. Am I human? ${this.isHuman}`);
+//   },
+// };
 
-console.log("person", person);
-const me = Object.create(person);
-console.log("me.isHuman", me.isHuman);
-console.log("me", me);
+// console.log("person", person);
+// const me = Object.create(person);
+// console.log("me.isHuman", me.isHuman);
+// console.log("me", me);
 
 // console.log("Object.entries(person)", Object.entries(person));
 // console.log("Object.entries(me)", Object.entries(me));
@@ -138,6 +138,13 @@ console.log("me", me);
 //     this.dob = dob;
 //   }
 // }
+
+const Igor = {
+  tijana: "tijana",
+  igor: "igor"
+}
+const Tijana = Object.assign({}, Igor);
+console.log("objekat:", Tijana);
 
 // const UserList = [];
 

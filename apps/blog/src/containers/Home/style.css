@@ -23,6 +23,31 @@
 
  .HomeContainer{
      display: flex;
-     justify-content: space-between;
+     justify-content: flex-end;
      margin: 20px 0;
  }
+
+
+ .postImageWrapper{
+    height: 450px;
+    overflow: hidden;
+    
+
+}
+
+.postImageWrapper img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.buttonLoadMore{
+    border: none;
+    outline: none;
+    padding: 16px, 0;
+    /* margin: 10px, 0, 0, 150px,; */
+    margin-left: 190px;
+    width: 56%;
+
+
+}
