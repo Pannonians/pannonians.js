@@ -178,7 +178,7 @@ export default function Movies() {
                 </SimpleDateTime>
               </span>
             </div>
-            <div style={{ fontStyle: "italic", paddingBottom: "20px" }}>
+            <div style={{ fontStyle: "italic", paddingTop: "20px" }}>
                   <h4>Cast: </h4>
                 </div>
                 <div className="movie-details">
@@ -189,7 +189,7 @@ export default function Movies() {
               <Slider
                 {...settings}
                 style={{
-                  paddingTop: "20px",
+                  paddingTop: "10px",
                   paddingBottom: "20px",
                   paddingLeft: "80px",
                 }}
