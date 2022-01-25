@@ -18,6 +18,8 @@ import {
   setSelectedSeasonDetails,
   selectedSeasonDetails,
   setSelectedSeason,
+  selectedSeasonShowing,
+  setShowSeasonDetails
 } from "../TV Shows/tvShowsSlice";
 import { fetchTvShowGenres, selectTvShowGenres } from "../Genres/genresSlice";
 
@@ -27,6 +29,7 @@ export default function TvShows() {
   const selectedTvShowDetails = useSelector(selectedTvShow);
   const singleSeasonDetails = useSelector(selectedSeasonDetails);
   const tvShowGenresList = useSelector(selectTvShowGenres);
+  const tvSeasonDetailsToShow = useSelector(selectedSeasonShowing);
   const dispatch = useDispatch();
   const settings = {
     dots: false,
@@ -107,7 +110,9 @@ export default function TvShows() {
     );
 
     dispatch(setSelectedSeasonDetails(response));
+    dispatch(setShowSeasonDetails(tvSeasonDetailsToShow));
   };
+  
 
   return (
     <div className="d-flex d-flex-start p-5">
@@ -157,14 +162,14 @@ export default function TvShows() {
             </h2>
             <div className="backdrop">
               <img
-                src={`https://image.tmdb.org/t/p/w200${selectedTvShowDetails.backdrop_path}`}
+                src={`https://image.tmdb.org/t/p/w1280${selectedTvShowDetails.backdrop_path}`}
                 alt={`${selectedTvShowDetails.name} Backdrop`}
               />
             </div>
             <div className="poster">
               {selectedTvShowDetails.poster_path ? (
                 <img
-                  src={`https://image.tmdb.org/t/p/w200${selectedTvShowDetails.poster_path}`}
+                  src={`https://image.tmdb.org/t/p/w780${selectedTvShowDetails.poster_path}`}
                   alt={`${selectedTvShowDetails.name} Poster`}
                 />
               ) : (
@@ -213,7 +218,7 @@ export default function TvShows() {
                 </SimpleDateTime>
               </span>
             </div>
-            <div style={{ fontStyle: "italic", paddingBottom: "20px" }}>
+            <div style={{ fontStyle: "italic", paddingTop: "10px" }}>
                   <h4>Cast: </h4>
                 </div> 
                 <div className="movie-details">
@@ -268,9 +273,9 @@ export default function TvShows() {
               ))}</div>}
             </div>
             {selectedTvShowDetails.seasons.length >= 0 &&
-              selectedTvShowDetails.seasons.map((season, index) => (
+              selectedTvShowDetails.seasons.map((season) => (
                 <div
-                  key={index}
+                  key={season.id}
                   onClick={() => {
                     setTvSeason(season.season_number);
                     setSeasonDetails(season.season_number);
@@ -286,6 +291,9 @@ export default function TvShows() {
                 </div>
               ))}
             <hr />
+            <div>
+                {tvSeasonDetailsToShow ? 
+              <div>  
             {singleSeasonDetails && singleSeasonDetails._id && (
               <div>
                 <h2>Season {singleSeasonDetails.season_number}</h2>
@@ -306,6 +314,9 @@ export default function TvShows() {
                 </div>
               </div>
             )}
+            </div>
+            : null}
+              </div>
           </div>
         )}
       </div>
