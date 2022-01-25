@@ -277,6 +277,10 @@ export default function TvShows() {
                 <div
                   key={season.id}
                   onClick={() => {
+                    if (singleSeasonDetails && singleSeasonDetails.id === season.id) {
+                      dispatch(setSelectedSeason(null))
+                      return;
+                    }
                     setTvSeason(season.season_number);
                     setSeasonDetails(season.season_number);
                   }}
