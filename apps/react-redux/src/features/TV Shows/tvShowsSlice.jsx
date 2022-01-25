@@ -7,7 +7,6 @@ const initialState = {
   fetched: false,
   selectedSeason: null,
   seasonDetails: {},
-  showSeasonDetails: false,
 };
 
 const tvShowsSlice = createSlice({
@@ -36,12 +35,8 @@ const tvShowsSlice = createSlice({
       state.seasonDetails = payload;
     },
     setSelectedSeason: (state, { payload }) => {
-        state.selectedSeason = payload;
+        state.selectedSeason = payload
     },
-    setShowSeasonDetails: (state) => {
-      state.showSeasonDetails = !state.showSeasonDetails;
-  },
-    
   },
 });
 
@@ -52,11 +47,9 @@ export const {
   addSingleSeason,
   setSelectedSeasonDetails,
   setSelectedSeason,
-  setShowSeasonDetails
 } = tvShowsSlice.actions;
 export default tvShowsSlice.reducer;
 export const selectTvShows = (state) => state.tvShows;
 export const selectTvDetails = (state) => state.tvShows.tvShowDetails;
 export const selectedTvShow = (state) => state.tvShows.selectedTvShow;
 export const selectedSeasonDetails = (state) => state.tvShows.selectedSeason;
-export const selectedSeasonShowing = (state) => state.tvShows.showSeasonDetails;

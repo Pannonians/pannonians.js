@@ -18,8 +18,6 @@ import {
   setSelectedSeasonDetails,
   selectedSeasonDetails,
   setSelectedSeason,
-  selectedSeasonShowing,
-  setShowSeasonDetails
 } from "../TV Shows/tvShowsSlice";
 import { fetchTvShowGenres, selectTvShowGenres } from "../Genres/genresSlice";
 
@@ -29,7 +27,6 @@ export default function TvShows() {
   const selectedTvShowDetails = useSelector(selectedTvShow);
   const singleSeasonDetails = useSelector(selectedSeasonDetails);
   const tvShowGenresList = useSelector(selectTvShowGenres);
-  const tvSeasonDetailsToShow = useSelector(selectedSeasonShowing);
   const dispatch = useDispatch();
   const settings = {
     dots: false,
@@ -110,9 +107,7 @@ export default function TvShows() {
     );
 
     dispatch(setSelectedSeasonDetails(response));
-    dispatch(setShowSeasonDetails(tvSeasonDetailsToShow));
   };
-  
 
   return (
     <div className="d-flex d-flex-start p-5">
@@ -273,9 +268,9 @@ export default function TvShows() {
               ))}</div>}
             </div>
             {selectedTvShowDetails.seasons.length >= 0 &&
-              selectedTvShowDetails.seasons.map((season) => (
+              selectedTvShowDetails.seasons.map((season, index) => (
                 <div
-                  key={season.id}
+                  key={index}
                   onClick={() => {
                     setTvSeason(season.season_number);
                     setSeasonDetails(season.season_number);
@@ -291,9 +286,6 @@ export default function TvShows() {
                 </div>
               ))}
             <hr />
-            <div>
-                {tvSeasonDetailsToShow ? 
-              <div>  
             {singleSeasonDetails && singleSeasonDetails._id && (
               <div>
                 <h2>Season {singleSeasonDetails.season_number}</h2>
@@ -314,9 +306,6 @@ export default function TvShows() {
                 </div>
               </div>
             )}
-            </div>
-            : null}
-              </div>
           </div>
         )}
       </div>
