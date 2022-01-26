@@ -12,7 +12,8 @@
   "scripts": {
     "todo": "yarn workspace @pannonians/todo",
     "blog": "yarn workspace @pannonians/blog",
-    "react-redux": "yarn workspace @pannonians/react-redux"
+    "react-redux": "yarn workspace @pannonians/react-redux",
+    "ts-app": "yarn workspace @pannonians/typescript-app"
   },
   "dependencies": {
     "@babel/helper-environment-visitor": "^7.16.7",
