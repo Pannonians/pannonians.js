@@ -1,6 +1,6 @@
-import AddTask from "./components/AddTask";
-import AllTodoItems from "./components/AllTodoItems";
-import TodoList from "./components/TodoList";
+import AddTask from "./features/AddTask";
+import AllTodoItems from "./features/AllTodoItems";
+import TodoList from "./features/TodoList";
 
 function App() {
   return (
