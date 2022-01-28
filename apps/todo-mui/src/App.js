@@ -4,7 +4,7 @@ import TodoList from "./features/TodoList";
 
 function App() {
   return (
-    <div className="container bg-white p-4 mt-5">
+    <div >
       <h1>Todo List MUI</h1>
       <AddTask />
       <TodoList />
