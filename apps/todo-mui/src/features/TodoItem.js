@@ -1,12 +1,12 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { toggleCompleted, deleteTodo } from "./todoSlice";
+import { toggleComplete, deleteTodo } from "./todoSlice";
 
 const TodoItem = ({ id, title, completed }) => {
   const dispatch = useDispatch();
 
-  const handleComplete = (todos) => {
-	dispatch(toggleCompleted({ id: todos.id, completed: !completed }));
+  const handleComplete = () => {
+	dispatch(toggleComplete({ id: id, completed: !completed }));
   };
 
   const handleDelete = () => {
@@ -22,7 +22,7 @@ const TodoItem = ({ id, title, completed }) => {
 						type='checkbox'
 						className='mr-3'
 						checked={completed}
-						onClick={handleComplete}
+						onChange={handleComplete}
 					></input>
 				{title}
 			</span>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import { useDispatch } from "react-redux";
 import { addTodo } from "./todoSlice";
 
@@ -12,6 +13,7 @@ const AddTask = () => {
     dispatch(addTodo({
 		title: value,
 	}))
+	setValue("");
   };
 
   return (
@@ -25,9 +27,9 @@ const AddTask = () => {
         onChange={(event) => setValue(event.target.value)}
       ></input>
 
-      <button type="submit" className="btn btn-primary mb-2">
+      <Button color="secondary">
         Submit
-      </button>
+	  </Button>
     </form>
   );
 };

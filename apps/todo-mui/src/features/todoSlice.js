@@ -6,24 +6,24 @@ const todoSlice = createSlice({
   name: "todos",
   initialState: [],
   reducers: {
-    addTodo: (state, {payload}) => {
+    addTodo: (state, action) => {
       const newTodo = {
         id: Date.now(),
-        title: payload.title,
+        title: action.payload.title,
         completed: false,
       };
       state.push(newTodo);
     },
-    toggleComplete: (state, {payload}) => {
-        const index = state.findIndex((todo) => todo.id === payload.id);
-        state[index].completed = payload.completed;
+    toggleComplete: (state, action) => {
+        const index = state.findIndex((todo) => todo.id === action.payload.id);
+        state[index].completed = action.payload.completed;
     },
-    deleteTodo: (state, {payload}) => {
-        return state.filter((todo) => todo.id !== payload.id);
+    deleteTodo: (state, action) => {
+        return state.filter((todo) => todo.id !== action.payload.id);
     },
   },
 });
 
-export const { addTodo, toggleCompleted, deleteTodo } = todoSlice.actions;
+export const { addTodo, toggleComplete, deleteTodo } = todoSlice.actions;
 
 export default todoSlice.reducer;
