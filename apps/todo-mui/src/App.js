@@ -4,8 +4,8 @@ import TodoList from "./features/TodoList";
 
 function App() {
   return (
-    <div className='container bg-white p-4 mt-5'>
-			<h1>Todo List MUI</h1>
+    <div className='container bg-white p-4 mt-5' style={{width: "60%", margin: "auto"}}>
+			<h1>Todo App with React-Redux and MUI</h1>
 			<AddTodoForm />
 			<TodoList />
 			<AllTodoItems />
