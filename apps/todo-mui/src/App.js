@@ -4,8 +4,17 @@ import TodoList from "./features/TodoList";
 
 function App() {
   return (
-    <div >
-      <h1>Todo List MUI</h1>
+    <div style={{ marginTop: "10px", marginLeft: "20px" }}>
+      <h1
+        style={{
+          marginLeft: "35px",
+          textAlign: "center",
+          maxWidth: "580px",
+          color: "#6588fc",
+        }}
+      >
+        Todo List MUI
+      </h1>
       <AddTask />
       <TodoList />
       <AllTodoItems />

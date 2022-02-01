@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-
+import Button from '@mui/material/Button';
 import { useDispatch } from "react-redux";
 import { addTodo } from "./todoSlice";
+import { TextField } from "@mui/material";
+
 
 const AddTask = () => {
   const [value, setValue] = useState("");
@@ -17,19 +19,38 @@ const AddTask = () => {
   };
 
   return (
-    <form onSubmit={onSubmit} className="form-inline mt-3 mb-3">
-      <label className="sr-only">Todo Item</label>
-      <input
+    <form onSubmit={onSubmit}  style={{marginTop: "20px", marginLeft: "35px", fontSize:"22px", maxWidth: '600px'}}>
+      <label style={{fontSize: "18px", textDecoration: "bold", paddingTop: "10px"}}>
+		  New Task
+	  </label>
+      <TextField id="outlined-basic" variant="outlined" size="small" fontSize="22px" 
         type="text"
-        className="form-control mb-2 mr-sm-2"
         placeholder="Add todo..."
         value={value}
         onChange={(event) => setValue(event.target.value)}
-      ></input>
+		style={{
+			borderRadius: "5px",
+			borderColor: "black",
+			color: "black",
+			fontSize: "20px",
+			marginLeft: "10px",
+			width: "380px"
+		}}
+      />
 
-      <Button color="secondary">
-        Submit
-	  </Button>
+    <Button variant="outlined" 
+	    type="submit"
+	    style={{
+        borderRadius: "5px",
+		borderColor: "black",
+        color: "black",
+        padding: "5px 5px",
+        fontSize: "14px",
+		marginLeft: "10px",
+		backgroundColor: "#6588fc"
+    }}>
+		Add Task
+	</Button>
     </form>
   );
 };
