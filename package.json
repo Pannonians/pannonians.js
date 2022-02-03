@@ -13,6 +13,7 @@
     "todo": "yarn workspace @pannonians/todo",
     "blog": "yarn workspace @pannonians/blog",
     "react-redux": "yarn workspace @pannonians/react-redux",
+    "todo-mui": "yarn workspace @pannonians/todo-mui",
     "todo-ts": "yarn workspace @pannonians/todo-ts"
   },
   "dependencies": {
