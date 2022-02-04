@@ -2,17 +2,21 @@ import React from 'react';
 import TodoItem from './TodoItem';
 import { useSelector } from 'react-redux';
 import { Todo } from "../redux/types"
-import { RootState, selectTodos } from "../redux/store"
-import todoSlice from '../redux/todoSlice';
+import { RootState } from "../redux/store"
+
+
+
 
 
 const TodoList = () => {
-	const todos = useSelector((state: RootState) => state);
+	
+	const todos = useSelector((state: RootState) => state.todos);
 
 	return (<div>
 		<ul className='list-group'>
-			{todos.map((todo: Todo) => (
-				<TodoItem id={todo.id} title={todo.title} completed={todo.completed} />
+			
+			{todos.todos.map((todo: Todo) => (
+				<TodoItem key={todo.title} id={todo.id} title={todo.title} completed={todo.completed} />
 			))}
 		</ul>
 		</div>
@@ -21,4 +25,3 @@ const TodoList = () => {
 
 export default TodoList;
 
-const todoList = useSelector((state: RootState) => state);
