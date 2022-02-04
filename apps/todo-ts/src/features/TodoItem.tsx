@@ -7,8 +7,9 @@ import { green } from '@mui/material/colors';
 import { red } from '@mui/material/colors';
 import Checkbox from '@mui/material/Checkbox';
 import Divider from '@mui/material/Divider';
+import { Todo } from "../redux/types"
 
-const TodoItem = ({ id, title, completed }) => {
+const TodoItem = ({ id, title, completed }: Todo) => {
   const dispatch = useDispatch();
   const handleCompleteClick = () => {
     dispatch(toggleComplete({ id: id, completed: !completed }));
@@ -20,14 +21,13 @@ const TodoItem = ({ id, title, completed }) => {
     <li style={{listStyleType:"none"}}>
       <div style={{width:"100%", display:"flex", flexDirection: "row",justifyContent:"space-between", marginTop:"10px", marginBottom:"10px"}}>
         <span>
-        <Divider sx={{ width: 500 }} variant="left"/>
+        <Divider sx={{ width: 500 }} variant="middle"/>
           <Checkbox sx={{
           color: red[800],
           '&.Mui-checked': {
             color: green[600],
           },
         }}
-            type="checkbox"
             className="mr-3"
             checked={completed}
             onChange={handleCompleteClick}
@@ -43,3 +43,4 @@ const TodoItem = ({ id, title, completed }) => {
 };
 
 export default TodoItem;
+

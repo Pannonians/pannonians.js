@@ -10,8 +10,10 @@ const AddTodoForm = () => {
   const [value, setValue] = useState("");
   const dispatch = useDispatch();
 
+  
 
-  const submitTodo = (event:ChangeEvent<HTMLInputElement>) => {
+
+  const submitTodo: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     dispatch(
       addTodo({
