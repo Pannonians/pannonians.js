@@ -1,7 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { Todo } from "./types"
-
-
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Todo } from "./types";
 
 interface TodoSliceState {
   todos: Todo[];
@@ -15,20 +13,16 @@ const todoSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
-    addTodo: (state, { payload }) => {
-      state.todos = [
-        ...state.todos,
-        {
-          id: state.todos.length,
-          title: payload,
-          completed: false,
-        },
-      ];
+    addTodo: (state, action: PayloadAction<Todo>) => {
+      state.todos.push(action.payload);
     },
 
-    toggleComplete: (state, { payload }) => {
+    toggleComplete: (
+      state,
+      action: PayloadAction<{ completed: Boolean; id: number }>
+    ) => {
       state.todos.map((todos) => {
-        if (todos.id === payload.id) {
+        if (todos.id === action.payload.id) {
           if (todos.completed === true) {
             todos.completed = false;
           } else {
@@ -38,13 +32,11 @@ const todoSlice = createSlice({
       });
     },
 
-    deleteTodo: (state, { payload }) => {
-      state.todos = state.todos.filter(({id}) => id !== payload.id);
+    deleteTodo: (state, action: PayloadAction<{ id: number }>) => {
+      state.todos = state.todos.filter(({ id }) => id !== action.payload.id);
     },
   },
 });
 
 export const { addTodo, toggleComplete, deleteTodo } = todoSlice.actions;
 export default todoSlice.reducer;
-
-
