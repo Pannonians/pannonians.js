@@ -19,7 +19,7 @@
   "dependencies": {
     "@babel/helper-environment-visitor": "^7.16.7",
     "@babel/helper-validator-identifier": "^7.16.7",
-    "@reduxjs/toolkit": "^1.7.1",
+    "@reduxjs/toolkit": "^1.7.2",
     "axios": "^0.24.0",
     "dotenv": "^10.0.0",
     "firebase": "^9.4.1",
