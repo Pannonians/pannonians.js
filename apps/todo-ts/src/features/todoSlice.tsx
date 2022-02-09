@@ -4,13 +4,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 
 
-interface Todo {
+export interface Todo {
     text: string;
     id: number;
     completed: boolean;
   }
   
-  interface TodosSliceState {
+  export interface TodosSliceState {
     todos: Todo[];
   }
   
@@ -22,29 +22,24 @@ interface Todo {
     name: "todos",
     initialState,
     reducers: {
-      addTodo: (state, action: PayloadAction<string>) => {
-        state.todos = [
-            ...state.todos,
-            {
-              id: state.todos.length +1,
-              text: action.payload,
-              completed: false,
-            },
-          ];
+      addTodo: (state, action: PayloadAction<Todo>) => {
+        state.todos.push(action.payload)
         },
-        toggleComplete: (state, action: PayloadAction<number>) => {
-            state.todos.map((todo  => {
-              if (todo.id === action.payload) {
+
+        toggleComplete: (state, action: PayloadAction<{completed: boolean; id: number}>) => {
+            state.todos.map((todo)  => {
+              if (todo.id === action.payload.id) {
                 if (todo.completed === true) {
                   todo.completed = false
                 } else {
                   todo.completed = true
                 }
               }
-            }))
+              return todo;
+            })
           },
-        removeTodo: (state, action: PayloadAction<number>) => {
-            state.todos = state.todos.filter(({ id }) => id !== action.payload);
+        removeTodo: (state, action: PayloadAction<{id: number}>) => {
+            state.todos = state.todos.filter(({ id }) => id !== action.payload.id);
           },
         },
       });
