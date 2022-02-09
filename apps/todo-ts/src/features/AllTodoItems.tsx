@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import { Todo } from "../redux/types";
-import { RootState } from "../redux/store";
+import { selectTodos } from "../redux/store";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -13,15 +13,16 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const AllTodoItems = (): JSX.Element => {
-  const completedTodos = useSelector((state: RootState) =>
-    state.todos.todos.filter((todo: Todo) => todo.completed === true)
-  ).length;
+const AllTodoItems = () => {
+  const allTodos = useSelector(selectTodos);
+  const completedTodos = 
+    allTodos.filter((todo: Todo) => todo.completed === true)
+  .length;
 
-  const pendingTodos = useSelector((state: RootState) =>
-    state.todos.todos.filter((todo: Todo) => todo.completed === false)
-  ).length;
-
+  const pendingTodos = 
+    allTodos.filter((todo: Todo) => todo.completed === false)
+  .length;
+ 
   return (
     <Grid
       container

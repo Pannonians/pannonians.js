@@ -29,6 +29,7 @@ const todoSlice = createSlice({
             todos.completed = true;
           }
         }
+        return todos;
       });
     },
 
