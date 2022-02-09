@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Todo } from "./types";
 
-interface TodoSliceState {
+export interface TodoSliceState {
   todos: Todo[];
 }
 
