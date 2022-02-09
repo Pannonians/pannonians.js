@@ -25,8 +25,7 @@ const AddTask = () => {
       <label style={{fontSize: "18px", textDecoration: "bold", paddingTop: "10px"}}>
 		  New Task
 	  </label>
-      <
-        TextField id="outlined-basic" label="Outlined" variant="outlined" 
+      <TextField id="outlined-basic" label="Add Task..." variant="outlined" 
         type="text"
         placeholder="Add todo..."
         value={value}
