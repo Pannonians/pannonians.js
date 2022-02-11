@@ -17,6 +17,7 @@ const TodoList = () => {
         <Grid>
           {todos.map((todo: Todo) => (
             <List
+              key={todo.id}
               sx={{
                 width: "100%",
                 maxWidth: 600,
