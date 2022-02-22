@@ -14,7 +14,8 @@
     "blog": "yarn workspace @pannonians/blog",
     "react-redux": "yarn workspace @pannonians/react-redux",
     "todo-mui": "yarn workspace @pannonians/todo-mui",
-    "todo-ts": "yarn workspace @pannonians/todo-ts"
+    "todo-ts": "yarn workspace @pannonians/todo-ts",
+    "next-js-tijana": "yarn workspace @pannonians/next-js-tijana"
   },
   "dependencies": {
     "@babel/helper-environment-visitor": "^7.16.7",
